@@ -14,6 +14,7 @@ class HomePage extends Component {
     render() {
         let {groups} = this.props;
         const {groupBlockType} = this.state;
+        console.log("home ", groups);
         return (
             <Container>
                 <HomeMain/>

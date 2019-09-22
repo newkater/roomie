@@ -3,11 +3,27 @@
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
+    display: flex;
     line-height: 21px;
     /* identical to box height */
 
     letter-spacing: 0.25px;
 
     color: #000000;
+}
 
+.collapse-dropdown-button {
+    background-image: url("./../../images/arrow-down.png");
+    width: 16px;
+    height: 10px;
+    color: #0019FF;
+    cursor: pointer;
+    transform: rotate(0);
+    margin-left: auto;
+    margin-top:  7px;
+    transition: all 300ms ease-in-out;
+}
+
+.collapse-dropdown-button--open {
+    transform: rotate(180deg);
 }

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {Box, Container, Content, Icon} from "bloomer";
+import { withHelpersModifiers  } from 'bloomer';
+
 
 import UsersListItem from "../users-list-item";
 import "./users-list-collapse.css";
 import * as PropTypes from "prop-types";
+
 
 class UsersListCollapse extends Component {
     state = {
@@ -24,23 +27,11 @@ class UsersListCollapse extends Component {
         return (
             <div>
                 <Box>
-                    <div className="collapse-header">{name} ({membersNumber})
-                        <button className="btn btn-sm float-right"
-                                onClick={() => this.setState({isBoxBottomHidden: false})}>
-                            <Icon
-                                isHidden={!isBoxBottomHidden}
-                                className="fa fa-chevron-down fa-lg"
-                                style={{"color": "#0019FF"}}
-                            />
-                        </button>
-                        <button className="btn btn-sm float-right"
-                                onClick={() => this.setState({isBoxBottomHidden: true})}>
-                            <Icon
-                                isHidden={isBoxBottomHidden}
-                                className="fa fa-chevron-up fa-lg"
-                                style={{"color": "#0019FF"}}
-                            />
-                        </button>
+                    <div className="collapse-header">
+                        <div>{name} ({membersNumber})</div>
+                        <div className={ isBoxBottomHidden ? "collapse-dropdown-button collapse-dropdown-button--open" : "collapse-dropdown-button" }
+                             onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}
+                        />
                     </div>
                 </Box>
                 <Container isHidden={isBoxBottomHidden}>
@@ -59,6 +50,6 @@ UsersListCollapse.propTypes = {
     name: PropTypes.any,
     membersNumber: PropTypes.any,
     usersList: PropTypes.any
-}
+};
 
-export default UsersListCollapse
+export default withHelpersModifiers(UsersListCollapse);

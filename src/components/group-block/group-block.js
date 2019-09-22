@@ -32,7 +32,7 @@ const membersList = () => {
             <Avatar size={64} image={user4}/>
         </div>
     )
-}
+};
 
 const infoItem = (title, value) => {
     return (
@@ -54,14 +54,14 @@ const GroupBlock = ({type, isClick, group}) => {
         <div>
             <Box style={boxStyle} className="group-block">
                 <header className="group-block-header">
-                    <h3 className="group-block-title">Студенты-физики</h3>
-                    <span className="group-block-city">Алматы</span>
+                    <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
+                    <span className="group-block-city">{city}</span>
                     <Link to="/group">
                         <div className="arrow-right"></div>
                     </Link>
                 </header>
                 <div className="group-block-about">
-                    <p>“Привет! Мы ищем таких же увлеченных физикой студентов!</p>
+                    <p>"{groupInfo}"</p>
                 </div>
                 { membersList() }
                 <div className="group-block-info">

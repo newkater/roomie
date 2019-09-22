@@ -13,7 +13,7 @@ class ProfilePage extends Component {
     };
 
     componentDidMount() {
-        this.setState({loading: true})
+        this.setState({loading: true});
         this.props.getUser({id: this.props.id})
             .then(user =>  this.setState({user: user, loading: false}));
     }

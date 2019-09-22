@@ -101,7 +101,7 @@ export default class Data {
             question: "Могу ли я найти сожителей на короткий срок?",
             answer: "Минимальным сроком является семестр"
         },
-    ]
+    ];
 
     createUser = (id, name, age, city, info, birthDate, university, specialty, languages, badHabits, phoneNumber, groups) => {
         return {
@@ -183,7 +183,7 @@ export default class Data {
         return new Promise(resolve => {
             setTimeout( () => {resolve(a)},100)
         });
-    }
+    };
 
     getQuestions = () => this._questions
 }

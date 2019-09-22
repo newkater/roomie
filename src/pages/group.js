@@ -39,6 +39,6 @@ class GroupPage extends Component {
     }
 }
 
-GroupPage.propTypes = {id: PropTypes.any}
+GroupPage.propTypes = {id: PropTypes.any};
 
 export default GroupPage;
