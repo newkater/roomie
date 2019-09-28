@@ -20,20 +20,28 @@ class GroupPage extends Component {
         let {group} = this.props;
         console.log("group page props ", this.props);
         console.log("group page", group);
-        const {id} = group;
+        const {id, name} = group;
         return (
             <Container>
-                <p className="group-name">Студенты-физики</p>
-                <h4>{id}</h4>
-                <Columns>
-                    <Column isSize="1/3">
+                <p className="group-name">{name}</p>
+                <div className="flex-container">
+                    <div style={{"flex-basis": "352px"}}>
                         <GroupBlock type={groupBlockType} isClick={this.isClick} group={group}/>
-                    </Column>
-                    <Column>
+                    </div>
+                    <div style={{"flex-basis": "737px"}}>
                         <UsersListCollapse name="Участники" membersNumber={group.members.length} usersList={group.members}/>
                         <UsersListCollapse name="Заявки на участие" membersNumber={group.applications.length} usersList={group.applications}/>
-                    </Column>
-                </Columns>
+                    </div>
+                </div>
+                {/*<Columns>*/}
+                {/*    <Column isSize="1/3">*/}
+                {/*        <GroupBlock type={groupBlockType} isClick={this.isClick} group={group}/>*/}
+                {/*    </Column>*/}
+                {/*    <Column>*/}
+                {/*        <UsersListCollapse name="Участники" membersNumber={group.members.length} usersList={group.members}/>*/}
+                {/*        <UsersListCollapse name="Заявки на участие" membersNumber={group.applications.length} usersList={group.applications}/>*/}
+                {/*    </Column>*/}
+                {/*</Columns>*/}
             </Container>
         );
     }
