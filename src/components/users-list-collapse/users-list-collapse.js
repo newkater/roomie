@@ -26,11 +26,10 @@ class UsersListCollapse extends Component {
 
         return (
             <div>
-                <Box>
+                <Box onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
                     <div className="collapse-header">
                         <div>{name} ({membersNumber})</div>
                         <div className={ isBoxBottomHidden ? "collapse-dropdown-button collapse-dropdown-button--open" : "collapse-dropdown-button" }
-                             onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}
                         />
                     </div>
                 </Box>
