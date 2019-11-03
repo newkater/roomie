@@ -63,7 +63,7 @@ export default class RegisterForm extends Component {
                     <Field>
                         <Label isSize="medium">Дополнительная информация</Label>
                         <Control>
-                            <Input type="text" placeholder='' isSize="medium"/>
+                            <textarea  style={{"width": "100%"}} type="text" placeholder='' isSize="medium"/>
                         </Control>
                     </Field>
                 </form>
