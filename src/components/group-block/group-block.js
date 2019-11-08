@@ -24,6 +24,33 @@ const buttonStyle = {
     color: "#0019FF"
 }
 
+const buttonStyle1 = {
+    display: "flex",
+    background: "#001AFF",
+    borderRadius: "4px",
+    fontFamily: "Roboto",
+    fontWeight: "500",
+    fontSize: "14px",
+    lineHeight: "16px",
+    textAlign: "center",
+    letterSpacing: "0.25px",
+    width: "90%",
+    height: "50px",
+
+    color: "#FFFFFF"
+}
+
+const buttonStyle2 = {
+    fontFamily: "Roboto",
+    fontWeight: "500",
+    fontSize: "18px",
+    lineHeight: "21px",
+    textalign: "center",
+    letterSpacing: "0.25px",
+
+    color: "#C2C2C2"
+}
+
 const membersList = () => {
     return(
         <div className="group-block-members">
@@ -48,32 +75,69 @@ const infoItem = (title, value) => {
 }
 
 
-const GroupBlock = ({type, isClick, group}) => {
+const GroupBlock = (
+    {
+        type,
+        isClick,
+        group,
+        showHeader = true,
+        showAbout = true,
+        showInfo = true,
+        showMembers = true
+    }) => {
     const {id, name, city, rentalPeriod, peopleNumber, free, groupInfo} = group;
     return (
         <div>
             <Box style={boxStyle} className="group-block">
-                <header className="group-block-header">
-                    <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
-                    <span className="group-block-city">{city}</span>
-                    <Link to="/group">
-                        <div className="arrow-right"></div>
-                    </Link>
-                </header>
-                <div className="group-block-about">
-                    <p>"{groupInfo}"</p>
-                </div>
-                { membersList() }
-                <div className="group-block-info">
-                    {infoItem("Период аренды", "1 год")}
-                    {infoItem("Всего", "6 мест ")}
-                    {infoItem("Осталось", "2 места")}
-                </div>
+                {
+                    showHeader &&
+                    <header className="group-block-header">
+                        <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
+                        <span className="group-block-city">{city}</span>
+                        <Link to="/group">
+                            <div className="arrow-right"></div>
+                        </Link>
+                    </header>
+                }
+                {
+                    showAbout &&
+                    <div className="group-block-about">
+                        <p>"{groupInfo}"</p>
+                    </div>
+                }
+                {
+                    showMembers && membersList()
+                }
+                {
+                    showInfo &&
+                    <div className="group-block-info">
+                        {infoItem("Период аренды", "1 год")}
+                        {infoItem("Всего", "6 мест ")}
+                        {infoItem("Осталось", "2 места")}
+                    </div>
+                }
 
-                <footer className="group-block-controls">
-                    <Button disabled>Заявка подана</Button>
-                    <Button style={buttonStyle}>Отменить</Button>
-                </footer>
+                {
+                    (type === "1") &&
+                    <footer className="group-block-controls">
+                        <Button style={buttonStyle1}>Подать заявку</Button>
+                    </footer>
+                }
+
+                {
+                    (type === "2") &&
+                    <footer className="group-block-controls">
+                        <Button disabled>Заявка подана</Button>
+                        <Button style={buttonStyle}>Отменить</Button>
+                    </footer>
+                }
+
+                {
+                    (type === "3") &&
+                    <footer className="group-block-controls">
+                        <div style={buttonStyle2}>Ваша заявка на рассмотрении!</div>
+                    </footer>
+                }
 
 
             </Box>

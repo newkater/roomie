@@ -1,7 +1,7 @@
 .group-block {
     display: flex;
     flex-direction: column;
-    min-height: 478px;
+    /*min-height: 478px;*/
 }
 
 .group-block-header {
@@ -41,6 +41,7 @@
     color: #000000;
     flex: 1;
     display: flex;
+    min-height: 150px;
     align-items: center
 }
 

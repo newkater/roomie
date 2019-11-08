@@ -7,11 +7,20 @@ import UsersListItem from "../users-list-item";
 import "./users-list-collapse.css";
 import * as PropTypes from "prop-types";
 
+const containerStyle = {
+    marginTop: "-35px",
+    zIndex: "10"
+}
+
+const boxStyle = {
+    zIndex: "20"
+}
 
 class UsersListCollapse extends Component {
     state = {
         isBoxBottomHidden: true
     };
+
     render() {
         let {isBoxBottomHidden} = this.state;
         let {name, membersNumber, usersList} = this.props;
@@ -26,20 +35,18 @@ class UsersListCollapse extends Component {
 
         return (
             <div>
-                <Box onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
+                <Box style={boxStyle} onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
                     <div className="collapse-header">
                         <div>{name} ({membersNumber})</div>
                         <div className={ isBoxBottomHidden ? "collapse-dropdown-button collapse-dropdown-button--open" : "collapse-dropdown-button" }
                         />
                     </div>
                 </Box>
-                <Container isHidden={isBoxBottomHidden}>
-                    <Box>
-                        <ul>
-                            {elements}
-                        </ul>
-                    </Box>
-                </Container>
+                <Box style={containerStyle} isHidden={isBoxBottomHidden}>
+                    <ul>
+                        {elements}
+                    </ul>
+                </Box>
             </div>
         );
     }

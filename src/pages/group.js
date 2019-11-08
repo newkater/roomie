@@ -26,7 +26,12 @@ class GroupPage extends Component {
                 <p className="group-name">{name}</p>
                 <div className="flex-container">
                     <div style={{"flex-basis": "352px"}}>
-                        <GroupBlock type={groupBlockType} isClick={this.isClick} group={group}/>
+                        <GroupBlock type={groupBlockType}
+                                    isClick={this.isClick}
+                                    group={group}
+                                    showMembers={false}
+                                    showHeader={false}
+                        />
                     </div>
                     <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "36px"}}>
                         <UsersListCollapse name="Участники" membersNumber={group.members.length} usersList={group.members}/>
