@@ -8,12 +8,12 @@ import "./users-list-collapse.css";
 import * as PropTypes from "prop-types";
 
 const containerStyle = {
-    marginTop: "-35px",
+    marginTop: "-15px",
     zIndex: "10"
 }
 
 const boxStyle = {
-    zIndex: "20"
+    zIndex: "100"
 }
 
 class UsersListCollapse extends Component {
