@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RegisterForm from "../components/register-form";
-import {Button, Container, Section, Title} from "bloomer";
+import {Button, Container, Section, Tag, Title} from "bloomer";
 
 const registerTitle = {
     "font-family": "Roboto",
@@ -14,20 +14,8 @@ const registerTitle = {
     "color": "#000000"
 }
 
-const dalshe = {
-    "background": "#001AFF",
-    "border-radius": "4px",
-    "font-family": "Roboto",
-    "font-weight": "500",
-    "font-size": "14px",
-    "line-height": "16px",
-    "letter-spacing": "0.25px",
-
-    "color": "#FFFFFF"
-}
-
 class RegisterPage extends Component {
-    state = { page: 1}
+    state = {page: 1}
 
     changePage = (page) => {
         if (page >= 1 && page <= 3 ) {
@@ -37,6 +25,7 @@ class RegisterPage extends Component {
 
     render() {
         const { page } = this.state;
+        const {register} = this.props;
 
         return (
             <Container>
@@ -50,12 +39,9 @@ class RegisterPage extends Component {
                 </Section>
 
                 <Section style={{"max-width": "500px", "margin": "0 auto"}}>
-                    <RegisterForm page={page} changePage={this.changePage}/>
+                    <RegisterForm register = {register} page={page} changePage={this.changePage}/>
                     {/*{ page > 1 && <Button onClick={() => this.changePage(page - 1)} isColor='info' isSize="medium" style={{"margin-top": "10px"}}>Вернуться</Button> }*/}
-                    <div style={{"display": "flex", "justify-content": "flex-end", "margin-top": "50px"}}>
-                        { page < 3 && <Button onClick={() => this.changePage(page + 1)} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button> }
-                    </div>
-                    { page === 3 && <Button onClick={() => this.changePage(page + 1)} isColor='info' style={{"width": "100%", "height": "54px"}}>Готово!</Button> }
+
                 </Section>
             </Container>
         );

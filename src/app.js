@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import * as authService from "./services/auth-service"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './app.css';
 
@@ -15,8 +16,48 @@ import Data from './data';
 export default class App extends Component {
     data = new Data();
 
+    initialAuthData = {
+        id: null,
+        email: null,
+        password: null,
+        userName: null,
+        sex: null,
+        birthCountry: null,
+        birthCity: null,
+        university: null,
+        speciality: null,
+        phoneNumber: null,
+        currentCity: null,
+        maxRoommatesNumber: null,
+        rentalPeriod: null,
+        languages: null,
+        badHabits: null,
+        userInfo: null,
+        loading: false,
+        error: null
+    };
+
     state = {
-        groups: []
+        groups: [],
+        Auth: this.initialAuthData
+    };
+
+    setAuthData = ({id, email, password}) => {
+        const newAuthData = {
+            id, email, password, loading: false, error: null,
+        };
+        this.setState({Auth: newAuthData});
+        console.log(this.state);
+    };
+
+    setAuthLoading = () => {
+        const newAuthData = {...this.state.Auth, loading: true, error: null};
+        this.setState({Auth: newAuthData})
+    };
+
+    setAuthError = (errorMessage) => {
+        const newAuthData = {...this.state.Auth, loading: false, error: errorMessage};
+        this.setState({Auth: newAuthData})
     };
 
     onError = (err) => {
@@ -45,6 +86,20 @@ export default class App extends Component {
     componentDidMount() {
         this.getGroups();
     }
+
+    register = (credentials) => {
+        this.setAuthLoading();
+        authService.signUp(credentials)
+            .then(result => {
+                console.log(result);
+                const {email, localId} = result;
+                this.setAuthData({email: email, id: localId});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
 
     getGroupById = (id) => {
         let {groups} = this.state;
@@ -85,6 +140,7 @@ export default class App extends Component {
                         <Route exact path={'/register'}
                                render = {() =>
                                    <RegisterPage
+                                       register={this.register}
                                        num={"first"}
                                    />
                                }
