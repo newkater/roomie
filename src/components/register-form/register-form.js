@@ -1,7 +1,10 @@
 import React, {Component} from "react";
 import "./register-form.css";
-import {Button, Control, Field, Input, Label, Select} from "bloomer";
+import {Button, Control, Field, Input, Label} from "bloomer";
 import {COUNTRIES} from "../../utils";
+import {LANGUAGES} from "../../utils/languages";
+//import ".../data.js";
+import Select from 'react-select';
 
 const dalshe = {
     "background": "#001AFF",
@@ -14,6 +17,52 @@ const dalshe = {
 
     "color": "#FFFFFF"
 };
+
+const genders = [
+    { value: 'male', label: 'Мужской' },
+    { value: 'female', label: 'Женский' }
+];
+
+const habits = [
+    {value: "Нет", label: "Нет"},
+    {value: "Курение", label: "Курение"},
+    {value: "Алкоголь", label: "Алкоголь"},
+    {value: "Курение и алкоголь", label: "Курение и алкоголь"}
+];
+
+const timePeriods = [
+    { value: 1, label: '1 месяц' },
+    { value: 3, label: 'до 3 месяцев' },
+    { value: 6, label: 'до 6 месяцев' },
+    { value: 9, label: 'до 9 месяцев' },
+    { value: 12, label: 'больше' }
+];
+
+const roommatesNumber = [
+    {value: 1, label: '1'},
+    {value: 2, label: '2'},
+    {value: 3, label: '3'},
+    {value: 4, label: '4'},
+    {value: 5, label: '5'},
+    {value: 6, label: '6'}
+];
+
+const customStyles = {
+    option: (provided) => ({
+        ...provided,
+        borderBottom: '1px dotted pink',
+        padding: 20,
+    }),
+    control: () => ({
+        // none of react-select's styles are passed to <Control />
+        width: 200,
+    }),
+    singleValue: (provided, state) => {
+        const transition = 'opacity 300ms';
+
+        return { ...provided, transition };
+    }
+}
 
 export default class RegisterForm extends Component {
     state = {
@@ -29,14 +78,15 @@ export default class RegisterForm extends Component {
         currentCity: '',
         maxRoommatesNumber: '',
         rentalPeriod: '',
-        languages: [],
-        badHabits: [],
+        languages: null,
+        badHabits: '',
         userInfo: '',
         isPasswordCorrect: true
     };
 
     handleInput = (key, value) => {
         this.setState({[key]: value} )
+        console.log(this.state);
     };
 
     handleSubmit = (event) => {
@@ -71,53 +121,67 @@ export default class RegisterForm extends Component {
                     <Field>
                         <Label isSize="medium">В каком городе вы ищете жилье?</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                {COUNTRIES.map(country => <option value={country}>{country}</option>)}
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('currentCity', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.currentCity}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Максимальное число сожителей</Label>
                         <Control>
-                            <Input type="text"
-                                   placeholder=''
-                                   onChange={(event) => this.handleInput('maxRoommatesNumber', event.target.value)}
-                                   isSize="medium"/>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('maxRoommatesNumber', value)}
+                                    options={roommatesNumber}
+                                    className="is-fullwidth"
+                                    value={this.state.maxRoommatesNumber}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Период аренды</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                <option>1 месяц</option>
-                                <option>3 месяца</option>
-                                <option>6 месяцев</option>
-                                <option>9 месяцев</option>
-                                <option>1 год</option>
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('rentalPeriod', value)}
+                                    options={timePeriods}
+                                    className="is-fullwidth"
+                                    value={this.state.rentalPeriod}
+                            />
                         </Control>
                     </Field>
                     <Field>
-                        <Label isSize="medium">Языки!!!!!!!!!</Label>
+                        <Label isSize="medium">Языки</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                <option>1 месяц</option>
-                                <option>3 месяца</option>
-                                <option>6 месяцев</option>
-                                <option>9 месяцев</option>
-                                <option>1 год</option>
-                            </Select>
+                            <Select isSize="medium"
+                                    isMulti
+                                    options={LANGUAGES}
+                                    isSearchable
+                                    closeMenuOnSelect={false}
+                                    onChange={(value) => this.handleInput('languages', value)}
+                                    className="is-fullwidth"
+                                    value={this.state.languages}
+                                />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Есть ли вредные привычки</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                <option>Нет</option>
-                                <option>Курение</option>
-                                <option>Алкоголь</option>
-                                <option>Курение и алкоголь</option>
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('badHabits', value)}
+                                    options={habits}
+                                    className="is-fullwidth"
+                                    value={this.state.badHabits}
+                            />
                         </Control>
                     </Field>
                     <Field>
@@ -146,48 +210,72 @@ export default class RegisterForm extends Component {
                             <Input type="text"
                                    onChange={(event) => this.handleInput('userName', event.target.value)}
                                    placeholder='Александр Сергеевич Пушкин'
-                                   isSize="medium"/>
+                                   isSize="medium"
+                                   value={this.state.userName}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Пол</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                <option>Женский</option>
-                                <option>Мужской</option>
-                            </Select>
+                            <Select isSize="medium"
+                                    options={genders}
+                                    onChange={(value) => this.handleInput('sex', value)}
+                                    className="is-fullwidth"
+                                    value={this.state.sex}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Родная страна</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                {COUNTRIES.map(country => <option value={country}>{country}</option>)}
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('birthCountry', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.birthCountry}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Родной город</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                {COUNTRIES.map(country => <option value={country}>{country}</option>)}
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('birthCity', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.birthCity}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Университет или колледж</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                {COUNTRIES.map(country => <option value={country}>{country}</option>)}
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('university', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.university}
+                            />
                         </Control>
                     </Field>
                     <Field>
                         <Label isSize="medium">Специальность</Label>
                         <Control className="is-expanded">
-                            <Select isSize="medium" className="is-fullwidth">
-                                {COUNTRIES.map(country => <option value={country}>{country}</option>)}
-                            </Select>
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('speciality', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.speciality}
+                            />
                         </Control>
                     </Field>
                     <Field>

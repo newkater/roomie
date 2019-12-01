@@ -1,4 +1,4 @@
-export const COUNTRIES = [
+const C = [
     'Австралия',
     'Австрия',
     'Азербайджан',
@@ -234,3 +234,7 @@ export const COUNTRIES = [
     'Ямайка',
     'Япония',
 ];
+
+export const COUNTRIES = C.map((item) => {
+    return {label: item, value: item}
+});

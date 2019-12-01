@@ -68,6 +68,19 @@ export default class Data {
     //     };
     // };
     //
+
+    colourOptions = [
+        { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
+        { value: 'blue', label: 'Blue', color: '#0052CC' },
+        { value: 'purple', label: 'Purple', color: '#5243AA' },
+        { value: 'red', label: 'Red', color: '#FF5630' },
+        { value: 'orange', label: 'Orange', color: '#FF8B00' },
+        { value: 'yellow', label: 'Yellow', color: '#FFC400' },
+        { value: 'green', label: 'Green', color: '#36B37E' },
+        { value: 'forest', label: 'Forest', color: '#00875A' },
+        { value: 'slate', label: 'Slate', color: '#253858' },
+        { value: 'silver', label: 'Silver', color: '#666666' },
+    ];
     _univercities = ["AlmaU", "Narxoz", "SDU", "MUIT", "KazNU", "KBTU"];
     _specialities = ["биолог", "физик", "математик", "геолог", "химик", "фезмот"];
     _languages = [["kz", "ru"], ["fr", "kx"], ["en", "gr"], ["ru"], ["sp"], ["aaaaaaa"]];
@@ -119,51 +132,6 @@ export default class Data {
             phoneNumber:phoneNumber
         };
     };
-    //
-    // getUsers = async () => {
-    //     let users = [];
-    //     for (let i = 0; i < 6; i++) {
-    //         let userId = i + 200;
-    //         let userName = this._users[i];
-    //         let age = this._age[i];
-    //         let userCity = this._cities[i];
-    //         let userInfo = this._usersInfo[i];
-    //
-    //         let user = this.createUser(userId, userName, age, userCity, userInfo);
-    //         users.push(user);
-    //     }
-    //     return users;
-    // };
-    //
-    // getGroups = async () => {
-    //     const groups = [];
-    //     for (let i = 0; i < 6; i++) {
-    //         let id = i + 100;
-    //         let name = this._groupNames[i];
-    //         let city = this._cities[i];
-    //         let rentalPeriod = this._rentalPeriods[i];
-    //         let peopleNumber = this._peopleNumbers[i];
-    //         let free = this._free[i];
-    //         let info = this._groupsInfo[i];
-    //         let members, applications, polls;
-    //         await this.getUsers(peopleNumber - free).then(result => {
-    //             members = result;
-    //         });
-    //         await this.getUsers(peopleNumber).then(result => {
-    //             applications = result;
-    //             polls = result;
-    //         });
-    //
-    //         //let members = this.getUsers(peopleNumber - free);
-    //         //let applications = this.getUsers(peopleNumber);
-    //         //let polls = this.getUsers(peopleNumber);
-    //
-    //         let group = this.createGroup(id, name, city, rentalPeriod, peopleNumber, free, info, members, applications, polls);
-    //         groups.push(group);
-    //     }
-    //
-    //     return groups;
-    // }
 
     getGroups = () => {
         return fetch('http://localhost:9200/allgroups')
