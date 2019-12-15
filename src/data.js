@@ -134,7 +134,7 @@ export default class Data {
     };
 
     getGroups = () => {
-        return fetch('http://localhost:9200/allgroups')
+        return fetch('http://localhost:9300/allgroups')
             .then(res => res.json())
             .then(res => {
             //console.log("res " + JSON.stringify(res));

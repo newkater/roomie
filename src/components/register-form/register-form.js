@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import debounce from "lodash";
 import "./register-form.css";
 import {Button, Control, Field, Input, Label} from "bloomer";
 import {COUNTRIES} from "../../utils";
@@ -62,12 +63,24 @@ const customStyles = {
 
         return { ...provided, transition };
     }
-}
+};
+
+let putError = (password, pass) => {
+    console.log("putError came");
+    console.log("PutError: ", (password !== pass));
+    return ((password !== pass) || (pass == '' && password == ''));
+};
+
+let debouncedError = (password, pass) => {
+    console.log("debouncedError came ", putError(password, pass));
+    return (debounce(putError(password, pass), 500));
+};
 
 export default class RegisterForm extends Component {
     state = {
         email: '',
         password: '',
+        pass: '',
         userName: '',
         sex: '',
         birthCountry: '',
@@ -85,7 +98,11 @@ export default class RegisterForm extends Component {
     };
 
     handleInput = (key, value) => {
-        this.setState({[key]: value} )
+        if (key === 'pass') {
+            debouncedError();
+            console.log(debouncedError());
+        }
+        this.setState({[key]: value} );
         console.log(this.state);
     };
 
@@ -320,18 +337,18 @@ export default class RegisterForm extends Component {
                     <Control>
                         <Input type="password"
                                isSize="medium"
-                               onChange={(event) => ((event.target.value === this.state.password)? this.handleInput('isPasswordCorrect', true): this.handleInput('isPasswordCorrect', false))}
+                               onChange={(event) => this.handleInput('pass', event.target.value)}
                                placeholder='password'/>
                     </Control>
                     <div>
                         {
-                            !this.state.isPasswordCorrect &&
+                            (putError(this.state.password, this.state.pass) && this.state.pass !== '' && this.state.password !== '') &&
                             <h3 style={{"color": "red"}}>Неверный пароль</h3>
                         }
                     </div>
                 </Field>
                 <div style={{"display": "flex", "justify-content": "flex-end", "margin-top": "50px"}}>
-                    <Button disabled={!this.state.isPasswordCorrect} onClick={this.state.isPasswordCorrect && (() => changePage(page + 1))} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
+                    <Button disabled={putError(this.state.password, this.state.pass)} onClick={(() => changePage(page + 1))} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
                 </div>
             </form>
         )
