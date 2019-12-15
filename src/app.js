@@ -101,6 +101,22 @@ export default class App extends Component {
             })
     };
 
+    login = (credentials) => {
+        this.setAuthLoading();
+        authService.signIn(credentials)
+            .then(result => {
+                console.log(result);
+                const {email, localId} = result;
+                this.setAuthData({userEmail: email, userId: localId});
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userId', localId);
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
+
     getGroupById = (id) => {
         let {groups} = this.state;
         const index = groups.findIndex(el => el.id === id);
@@ -136,7 +152,14 @@ export default class App extends Component {
                                }
                                }
                         />
-                        <Route exact path={'/login'} component={LoginPage}/>
+                        <Route exact path={'/login'}
+                            render = {() =>
+                                <LoginPage
+                                    authData={this.state.Auth}
+                                    login={this.login}
+                                />
+                            }
+                        />
                         <Route exact path={'/register'}
                                render = {() =>
                                    <RegisterPage

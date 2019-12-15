@@ -15,13 +15,13 @@ const registerTitle = {
 }
 
 class RegisterPage extends Component {
-    state = {page: 1}
+    state = {page: 1};
 
     changePage = (page) => {
         if (page >= 1 && page <= 3 ) {
             this.setState({ page })
         }
-    }
+    };
 
     render() {
         const { page } = this.state;

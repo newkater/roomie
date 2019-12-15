@@ -14,7 +14,7 @@ export const signIn = async (credentials) => {
         throw new Error('Sign in failed');
     }
     return await result.json();
-}
+};
 
 export const signUp = async (credentials) => {
     const result = await fetch(SIGNUP_URL, {
@@ -28,4 +28,4 @@ export const signUp = async (credentials) => {
         throw new Error(`Sign Up Failed`);
     }
     return await result.json();
-}
+};
