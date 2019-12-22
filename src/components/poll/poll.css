@@ -1,0 +1,15 @@
+.poll-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.25px;
+    color: #000000;
+}
+
+.poll-progress {
+    height: 12px;
+    progress-value-background-color: #2B44FF;
+    background: #DCDCDC;
+    border-radius: 6px;
+}

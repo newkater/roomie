@@ -94,8 +94,8 @@ const GroupBlock = (
                     <header className="group-block-header">
                         <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
                         <span className="group-block-city">{city}</span>
-                        <Link to="/group">
-                            <div className="arrow-right"></div>
+                        <Link to={`/group/${id}`}>
+                            <div className="arrow-right"/>
                         </Link>
                     </header>
                 }

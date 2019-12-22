@@ -7,7 +7,7 @@ export const signIn = async (credentials) => {
         method: "POST",
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...credentials, returnSecureToken: true}),
+        body: JSON.stringify({...credentials}),
     });
     if (!result.ok) {
         console.log(result);
@@ -16,12 +16,12 @@ export const signIn = async (credentials) => {
     return await result.json();
 };
 
-export const signUp = async (credentials) => {
+export const signUp = async (form) => {
     const result = await fetch(SIGNUP_URL, {
         method: "POST",
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...credentials, returnSecureToken: true}),
+        body: JSON.stringify({...form}),
     });
     if (!result.ok) {
         console.log(result);

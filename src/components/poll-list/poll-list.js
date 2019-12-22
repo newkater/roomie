@@ -1,11 +1,6 @@
-import React, {Component} from 'react';
-import {Box, Container, Content, Icon} from "bloomer";
-import { withHelpersModifiers  } from 'bloomer';
-
-
-import UsersListItem from "../users-list-item";
-import "./users-list-collapse.css";
-import * as PropTypes from "prop-types";
+import React, {Component} from "react";
+import Poll from "../poll";
+import {Box} from "bloomer";
 
 const containerStyle = {
     marginTop: "-15px",
@@ -16,19 +11,19 @@ const boxStyle = {
     zIndex: "100"
 };
 
-class UsersListCollapse extends Component {
+export default class PollList extends Component {
     state = {
         isBoxBottomHidden: true
     };
-
     render() {
         let {isBoxBottomHidden} = this.state;
-        let {name, membersNumber, usersList} = this.props;
-        const elements = usersList.map((item) => {
+        let {name, membersNumber, pollList} = this.props;
+        console.log("PollList elements", pollList);
+        const elements = pollList.map((item) => {
             const id = item.id;
             return (
                 <li key={id}>
-                    <UsersListItem user={item}/>
+                    <Poll form={item}/>
                 </li>
             );
         });
@@ -51,11 +46,3 @@ class UsersListCollapse extends Component {
         );
     }
 }
-
-UsersListCollapse.propTypes = {
-    name: PropTypes.any,
-    membersNumber: PropTypes.any,
-    usersList: PropTypes.any
-};
-
-export default withHelpersModifiers(UsersListCollapse);
