@@ -7,9 +7,50 @@
     color: #000000;
 }
 
+.flex-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.vote-button {
+    margin: -25px 10px 0px;
+
+    border: 1px solid #0019FF;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: 0.25px;
+}
+
+.single-poll {
+    margin: 30px 0px;
+}
+
+.flex-item {
+    justify-content: flex-end;
+}
+
+.voted-people {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+
+    color: #000000;
+}
+
 .poll-progress {
     height: 12px;
     progress-value-background-color: #2B44FF;
     background: #DCDCDC;
     border-radius: 6px;
+    margin: 15px 0px 10px;
 }
