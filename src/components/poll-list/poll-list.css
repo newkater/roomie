@@ -34,7 +34,7 @@
     position: relative;
 }
 
-.container-style {
-    margin: -30px 10px 0px;
+.poll-container-style {
+    margin: -50px 10px 0px;
     z-index: 10;
 }

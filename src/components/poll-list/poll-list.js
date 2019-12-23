@@ -1,15 +1,7 @@
 import React, {Component} from "react";
 import Poll from "../poll";
 import {Box} from "bloomer";
-
-const containerStyle = {
-    marginTop: "-15px",
-    zIndex: "10"
-};
-
-const boxStyle = {
-    zIndex: "100"
-};
+import './poll-list.css';
 
 export default class PollList extends Component {
     state = {
@@ -30,14 +22,14 @@ export default class PollList extends Component {
 
         return (
             <div>
-                <Box style={boxStyle} onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
+                <Box className="box-style" onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
                     <div className="collapse-header">
                         <div>{name} ({membersNumber})</div>
                         <div className={ isBoxBottomHidden ? "collapse-dropdown-button collapse-dropdown-button--open" : "collapse-dropdown-button" }
                         />
                     </div>
                 </Box>
-                <Box style={containerStyle} isHidden={isBoxBottomHidden}>
+                <Box className="poll-container-style" isHidden={isBoxBottomHidden}>
                     <ul>
                         {elements}
                     </ul>
