@@ -21,6 +21,7 @@ export default class App extends Component {
         email: null,
         password: null,
         userName: null,
+        birthDate: null,
         sex: null,
         birthCountry: null,
         birthCity: null,

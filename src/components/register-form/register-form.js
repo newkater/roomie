@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import debounce from "lodash";
 import "./register-form.css";
+import DatePicker from "react-date-picker";
 import {Button, Control, Field, Input, Label} from "bloomer";
 import {COUNTRIES} from "../../utils";
 import {LANGUAGES} from "../../utils/languages";
 //import ".../data.js";
 import Select from 'react-select';
+import "react-date-picker/dist/DatePicker.css"
 
 const dalshe = {
     "background": "#001AFF",
@@ -66,8 +68,8 @@ const customStyles = {
 };
 
 let putError = (password, pass) => {
-    console.log("putError came");
-    console.log("PutError: ", (password !== pass));
+    //console.log("putError came");
+    //console.log("PutError: ", (password !== pass));
     return ((password !== pass) || (pass == '' && password == ''));
 };
 
@@ -85,6 +87,7 @@ export default class RegisterForm extends Component {
         sex: '',
         birthCountry: '',
         birthCity: '',
+        birthDate: '',
         university: '',
         speciality: '',
         phoneNumber: '',
@@ -116,6 +119,7 @@ export default class RegisterForm extends Component {
                 userName: this.state.userName,
                 sex: this.state.sex,
                 birthCountry: this.state.birthCountry,
+                birthDate: this.state.birthDate,
                 birthCity: this.state.birthCity,
                 university: this.state.university,
                 speciality: this.state.speciality,
@@ -233,6 +237,16 @@ export default class RegisterForm extends Component {
                         </Control>
                     </Field>
                     <Field>
+                        <Label isSize="medium">Дата рождения</Label>
+                        <Control>
+                            <Input type="date"
+                                   isSize="medium"
+                                   value={this.state.birthDate}
+                                   onChange={(event) => this.handleInput('birthDate', event.target.value)}
+                            />
+                        </Control>
+                    </Field>
+                    <Field>
                         <Label isSize="medium">Пол</Label>
                         <Control className="is-expanded">
                             <Select isSize="medium"
@@ -322,7 +336,6 @@ export default class RegisterForm extends Component {
                                isSize="medium"/>
                     </Control>
                 </Field>
-                {console.log(this.state)}
                 <Field>
                     <Label isSize="medium">Пароль</Label>
                     <Control>
