@@ -5,8 +5,31 @@
     font-size: 36px;
     line-height: 42px;
     letter-spacing: 0.25px;
+    margin: 30px 0px;
 
     color: #000000;
+}
+
+.previous-page-button {
+    background-image: url("./../images/line.svg");
+    width: 19px;
+    height: 8px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.previous-page-text {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.previous-page {
+    display: flex;
+    align-items: center;
 }
 
 .flex-container {

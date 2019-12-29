@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Box, Column, Columns, Container, Content, Table} from "bloomer";
+import {Box, Button, Column, Columns, Container, Content, Table} from "bloomer";
 import GroupBlock from "../components/group-block";
 import UsersListCollapse from "../components/users-list-collapse";
 import "./group.css";
 import * as PropTypes from "prop-types";
 import PollList from "../components/poll-list";
+import {Link} from "react-router-dom";
 
 class GroupPage extends Component {
     state = {
@@ -45,6 +46,12 @@ class GroupPage extends Component {
         const {id, name, members, applications} = group;
         return (
             <Container>
+                <Link to="/">
+                    <div className="previous-page">
+                        <div className="previous-page-button"/>
+                        <div className="previous-page-text">Назад к списку групп</div>
+                    </div>
+                </Link>
                 <p className="group-name">{name}</p>
                 <div className="flex-container">
                     <div style={{"flex-basis": "352px"}}>
@@ -55,7 +62,7 @@ class GroupPage extends Component {
                                     showHeader={false}
                         />
                     </div>
-                    <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "36px"}}>
+                    <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                         <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
                         <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
                         <PollList name="Опросы" membersNumber={elements.length} pollList={elements}/>
