@@ -88,9 +88,9 @@ export default class App extends Component {
         this.getGroups();
     }
 
-    register = (credentials) => {
+    register = (form) => {
         this.setAuthLoading();
-        authService.signUp(credentials)
+        authService.signUp(form)
             .then(result => {
                 console.log(result);
                 const {email, localId} = result;

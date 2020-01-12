@@ -7,7 +7,8 @@ import {COUNTRIES} from "../../utils";
 import {LANGUAGES} from "../../utils/languages";
 //import ".../data.js";
 import Select from 'react-select';
-import "react-date-picker/dist/DatePicker.css"
+import {withRouter} from 'react-router-dom';
+import "react-date-picker/dist/DatePicker.css";
 
 const dalshe = {
     "background": "#001AFF",
@@ -78,7 +79,7 @@ let debouncedError = (password, pass) => {
     return (debounce(putError(password, pass), 500));
 };
 
-export default class RegisterForm extends Component {
+class RegisterForm extends Component {
     state = {
         email: '',
         password: '',
@@ -110,9 +111,11 @@ export default class RegisterForm extends Component {
     };
 
     handleSubmit = (event) => {
+        const {register, history} = this.props;
+        console.log("register props", this.props);
         event.preventDefault();
         console.log("Submit", this.state);
-        this.props.register(
+        register(
             {
                 email: this.state.email,
                 password: this.state.password,
@@ -131,6 +134,7 @@ export default class RegisterForm extends Component {
                 badHabits: this.state.badHabits,
                 userInfo: this.state.userInfo
             });
+        history.push('/');
     };
 
     render() {
@@ -209,7 +213,7 @@ export default class RegisterForm extends Component {
                         <Label isSize="medium">Дополнительная информация</Label>
                         <Control>
                             <textarea  style={{"width": "100%"}}
-                                       type="text"
+                                       className="textarea"
                                        onChange={(event) => this.handleInput('userInfo', event.target.value)}
                                        placeholder=''
                                        isSize="medium"/>
@@ -367,3 +371,5 @@ export default class RegisterForm extends Component {
         )
     }
 }
+
+export default withRouter(RegisterForm);

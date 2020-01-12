@@ -1,5 +1,5 @@
 .home-bg-image {
-    background-image: url("./../../images/image.png");
+    background-image: url("./../images/image.png");
     min-height: 774px;
     background-repeat: no-repeat;
     background-position: right;

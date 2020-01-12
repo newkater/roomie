@@ -39,7 +39,7 @@ class RegisterPage extends Component {
                 </Section>
 
                 <Section style={{"max-width": "500px", "margin": "0 auto"}}>
-                    <RegisterForm register = {register} page={page} changePage={this.changePage}/>
+                    <RegisterForm register={register} page={page} changePage={this.changePage}/>
                     {/*{ page > 1 && <Button onClick={() => this.changePage(page - 1)} isColor='info' isSize="medium" style={{"margin-top": "10px"}}>Вернуться</Button> }*/}
 
                 </Section>
