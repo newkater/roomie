@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Columns, Column} from "bloomer";
 
 import GroupBlock from '../group-block';
@@ -13,11 +13,9 @@ const GroupBlocks = ({groups, type}) => {
         );
     });
     return (
-        <div>
-            <Columns isMultiline={true}>
-                {groupsList}
-            </Columns>
-        </div>
+        <Fragment>
+            {groupsList}
+        </Fragment>
     );
 };
 

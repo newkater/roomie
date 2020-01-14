@@ -33,12 +33,12 @@ class ProfilePage extends Component {
                         <Column isSize={'1/3'} >
                             <ConfettiBlock/>
                         </Column>
+                        <GroupBlocks type={groupBlockType} groups={[
+                            <GroupBlock type={groupBlockType}/>,
+                            <GroupBlock type={groupBlockType}/>,
+                            <GroupBlock type={groupBlockType}/>]
+                        }/>
                     </Columns>
-                    <GroupBlocks type={groupBlockType} groups={[
-                        <GroupBlock type={groupBlockType}/>,
-                        <GroupBlock type={groupBlockType}/>,
-                        <GroupBlock type={groupBlockType}/>]
-                    }/>
                 </Container>
             </div>
         );

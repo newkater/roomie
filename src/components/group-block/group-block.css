@@ -86,7 +86,7 @@
 }
 
 .arrow-right {
-    background-image: url("./../../images/arrow-right.png");
+    background-image: url("./../../images/arrow-right.svg");
     width: 24px;
     height: 24px;
     position: absolute;

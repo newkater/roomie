@@ -24,7 +24,9 @@ class HomePage extends Component {
                     <PromoBlock onAnchorClick={() => groupBlockRef.current.scrollIntoView({behavior: "smooth"})}/>
                 </div>
                 <h3 id="group-blocks" ref={groupBlockRef} className="title2 title-groups">Найдите подходящую группу</h3>
-                <GroupBlocks type={groupBlockType} groups={groups}/>
+                <Columns isMultiline={true}>
+                    <GroupBlocks type={groupBlockType} groups={groups}/>
+                </Columns>
             </Container>
         );
     }

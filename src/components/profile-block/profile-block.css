@@ -9,7 +9,7 @@
 .profile-edit-button {
     width: 24px;
     height: 24px;
-    background-image: url("./../../images/pencil.png");
+    background-image: url("./../../images/pencil.svg");
     position: absolute;
     top: 60px;
     right: 60px;
@@ -19,7 +19,7 @@
 }
 
 .profile-dropdown-button {
-    background-image: url("./../../images/arrow-down.png");
+    background-image: url("./../../images/arrow-down.svg");
     width: 16px;
     height: 10px;
     position: absolute;
