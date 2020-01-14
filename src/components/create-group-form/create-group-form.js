@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Button, Control, Field, Input, Label} from "bloomer";
 import Select from "react-select";
 import {COUNTRIES} from "../../utils";
+import {withRouter} from 'react-router-dom';
 
 const timePeriods = [
     { value: 1, label: '1 месяц' },
@@ -19,7 +20,7 @@ const peopleNumber = [
     { value: 6, label: 'больше' }
 ];
 
-export default class CreateGroupForm extends Component {
+class CreateGroupForm extends Component {
     state = {
         groupName: '',
         city: '',
@@ -54,7 +55,7 @@ export default class CreateGroupForm extends Component {
     };
 
     render() {
-        //const {createGroup} = this.props;
+        const {createGroup} = this.props;
         return (
             <form>
                 <Field>
@@ -149,3 +150,5 @@ export default class CreateGroupForm extends Component {
         )
     }
 }
+
+export default withRouter(CreateGroupForm);

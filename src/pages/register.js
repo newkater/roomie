@@ -12,7 +12,7 @@ const registerTitle = {
     "letter-spacing": "0.25px",
 
     "color": "#000000"
-}
+};
 
 class RegisterPage extends Component {
     state = {page: 1};

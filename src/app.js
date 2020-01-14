@@ -193,7 +193,7 @@ export default class App extends Component {
                                }
                         />
                         <Route exact path={'/create-group'}
-                               render = {({match}) =>
+                               render = {() =>
                                    <CreateGroupPage
                                        createGroup={this.createGroup}
                                    />

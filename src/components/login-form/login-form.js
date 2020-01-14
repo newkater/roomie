@@ -1,7 +1,8 @@
 import React from "react";
 import {Button, Container, Control, Field, Help, Input, Label, Section} from "bloomer";
+import {withRouter} from 'react-router-dom';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
     state = {
         email: '',
         password: ''
@@ -106,3 +107,5 @@ export default class LoginForm extends React.Component {
         )
     }
 }
+
+export default withRouter(LoginForm);
