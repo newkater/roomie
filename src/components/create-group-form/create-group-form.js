@@ -12,11 +12,11 @@ const timePeriods = [
 ];
 
 const peopleNumber = [
-    { value: 2, label: '≤ 2' },
+    { value: 2, label: '2' },
     { value: 3, label: '≤ 3' },
     { value: 4, label: '≤ 4' },
     { value: 5, label: '≤ 5' },
-    { value: 6, label: '>' }
+    { value: 6, label: 'больше' }
 ];
 
 export default class CreateGroupForm extends Component {
@@ -30,7 +30,31 @@ export default class CreateGroupForm extends Component {
         groupInfo: ''
     };
 
+    handleInput = (key, value) => {
+        this.setState({[key]: value} );
+        console.log(this.state);
+    };
+
+    handleSubmit = (event) => {
+        const {createGroup, history} = this.props;
+        console.log("create-group props", this.props);
+        event.preventDefault();
+        console.log("Submit", this.state);
+        createGroup(
+            {
+                groupName: this.state.groupName,
+                city: this.state.city,
+                peopleNeeded: this.state.peopleNeeded,
+                rentalPeriod: this.state.rentalPeriod,
+                telegramLink: this.state.telegramLink,
+                whatsappLink: this.state.whatsappLink,
+                groupInfo: this.state.groupInfo
+            });
+        history.push('/');
+    };
+
     render() {
+        //const {createGroup} = this.props;
         return (
             <form>
                 <Field>
@@ -80,6 +104,26 @@ export default class CreateGroupForm extends Component {
                                 options={timePeriods}
                                 className="is-fullwidth"
                                 value={this.state.rentalPeriod}
+                        />
+                    </Control>
+                </Field>
+                <Field>
+                    <Label isSize="medium">Ссылка на беседу в Telegram</Label>
+                    <Control>
+                        <Input type="text"
+                               onChange={(event) => this.handleInput('telegramLink', event.target.value)}
+                               isSize="medium"
+                               value={this.state.telegramLink}
+                        />
+                    </Control>
+                </Field>
+                <Field>
+                    <Label isSize="medium">Ссылка на беседу в Whats app</Label>
+                    <Control>
+                        <Input type="text"
+                               onChange={(event) => this.handleInput('whatsappLink', event.target.value)}
+                               isSize="medium"
+                               value={this.state.whatsappLink}
                         />
                     </Control>
                 </Field>

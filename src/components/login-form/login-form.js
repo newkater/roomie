@@ -8,9 +8,11 @@ export default class LoginForm extends React.Component {
     };
 
     handleSubmit = (event) => {
+        const {login, history} = this.props;
         event.preventDefault();
         console.log("Submit", this.state);
-        this.props.login({email: this.state.email, password: this.state.password});
+        login({email: this.state.email, password: this.state.password});
+        history.push('/');
     };
 
     handleInput = (key, value) => {

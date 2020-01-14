@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container, Section, Tag, Title} from "bloomer";
+import {Button, Container, Field, Section, Tag, Title} from "bloomer";
 import CreateGroupForm from "../components/create-group-form/create-group-form";
 
 const registerTitle = {
@@ -16,6 +16,7 @@ const registerTitle = {
 
 class CreateGroupPage extends Component {
     render() {
+        const {createGroup} = this.props;
         return (
             <Container>
                 <Section style={{"margin-top": "50px"}}>
@@ -25,7 +26,7 @@ class CreateGroupPage extends Component {
                     </Title>
                 </Section>
                 <Section style={{"max-width": "500px", "margin": "0 auto"}}>
-                    <CreateGroupForm/>
+                    <CreateGroupForm createGroup={createGroup}/>
                 </Section>
             </Container>
         );

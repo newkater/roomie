@@ -71,7 +71,7 @@ const customStyles = {
 let putError = (password, pass) => {
     //console.log("putError came");
     //console.log("PutError: ", (password !== pass));
-    return ((password !== pass) || (pass == '' && password == ''));
+    return ((password !== pass) || (pass === '' && password === ''));
 };
 
 let debouncedError = (password, pass) => {

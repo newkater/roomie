@@ -119,6 +119,28 @@ export default class App extends Component {
             })
     };
 
+    createGroup = (form) => {
+        this.setAuthLoading();
+        authService.groupCreation(form)
+            .then(result => {
+                console.log(result);
+                const {groupName, peopleNumber, city, groupInfo, telegramLink, watsappLink, rentalPeriod} = result;
+                this.setAuthData({
+                    name: groupName,
+                    peopleNumber: peopleNumber,
+                    city: city,
+                    groupInfo: groupInfo,
+                    telegramLink: telegramLink,
+                    watsappLink: watsappLink,
+                    rentalPeriod: rentalPeriod
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
+
     getGroupById = (id) => {
         let {groups} = this.state;
         const index = groups.findIndex(el => el.id === id);
@@ -172,7 +194,9 @@ export default class App extends Component {
                         />
                         <Route exact path={'/create-group'}
                                render = {({match}) =>
-                                   <CreateGroupPage/>
+                                   <CreateGroupPage
+                                       createGroup={this.createGroup}
+                                   />
                                }
                         />
                         <Route exact path={'/profile/:id'}

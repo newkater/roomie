@@ -29,3 +29,17 @@ export const signUp = async (form) => {
     }
     return await result.json();
 };
+
+export const groupCreation = async (form) => {
+    const result = await fetch(SIGNUP_URL, {
+        method: "POST",
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({...form}),
+    });
+    if (!result.ok) {
+        console.log(result);
+        throw new Error(`Group Creation Failed`);
+    }
+    return await result.json();
+};
