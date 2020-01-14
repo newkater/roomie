@@ -12,6 +12,7 @@ import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import ProfilePage from './pages/profile';
 import Data from './data';
+import CreateGroupPage from "./pages/create-group";
 
 export default class App extends Component {
     data = new Data();
@@ -167,6 +168,11 @@ export default class App extends Component {
                                        register={this.register}
                                        num={"first"}
                                    />
+                               }
+                        />
+                        <Route exact path={'/create-group'}
+                               render = {({match}) =>
+                                   <CreateGroupPage/>
                                }
                         />
                         <Route exact path={'/profile/:id'}
