@@ -30,10 +30,7 @@ class RegisterPage extends Component {
         return (
             <Container>
                 <Section style={{"margin-top": "50px"}}>
-                    { page === 1 && <Title style={registerTitle}
-                                           hasTextAlign="centered">
-                        Регистрация
-                    </Title> }
+                    { page === 1 && <Title style={registerTitle} hasTextAlign="centered">Регистрация</Title> }
                     { page === 2 && <Title style={registerTitle} hasTextAlign="centered">Завершение регистрации</Title> }
                     { page === 3 && <Title style={registerTitle} hasTextAlign="centered">Еще немного вопросов :)</Title> }
                 </Section>

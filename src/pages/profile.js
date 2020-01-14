@@ -3,7 +3,8 @@ import React, {Component} from 'react'
 import ProfileBlock from '../components/profile-block';
 import GroupBlocks from "../components/group-blocks";
 import GroupBlock from "../components/group-block";
-import {Container} from "bloomer";
+import {Column, Columns, Container} from "bloomer";
+import ConfettiBlock from "../components/confetti-block";
 
 class ProfilePage extends Component {
     state = {
@@ -20,6 +21,7 @@ class ProfilePage extends Component {
 
     render() {
         const {groupBlockType, user} = this.state;
+        const groups = user.groups;
         return (
             <div className="page">
                 <Container>
@@ -27,7 +29,12 @@ class ProfilePage extends Component {
 
                     <h3 className="title2 title-groups">Мои группы</h3>
 
-                    <GroupBlocks groups={[
+                    <Columns isMultiline={true}>
+                        <Column isSize={'1/3'} >
+                            <ConfettiBlock/>
+                        </Column>
+                    </Columns>
+                    <GroupBlocks type={groupBlockType} groups={[
                         <GroupBlock type={groupBlockType}/>,
                         <GroupBlock type={groupBlockType}/>,
                         <GroupBlock type={groupBlockType}/>]

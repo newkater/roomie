@@ -1,0 +1,48 @@
+.confetti-block-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confetti-block {
+    display: flex;
+    flex-direction: column;
+    /*min-height: 478px;*/
+}
+
+.confetti {
+    margin: 50px 100px;
+    max-width: content-box;
+    height: auto;
+}
+
+.confetti-title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    margin-bottom: 10px;
+
+    color: #000000;
+}
+
+.confetti-title-afterword {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    color: #000000;
+}
+
+.confetti-block-controls {
+
+}
