@@ -111,9 +111,22 @@ const GroupBlock = (
                 {
                     showInfo &&
                     <div className="group-block-info">
-                        {infoItem("Период аренды", "1 год")}
-                        {infoItem("Всего", "6 мест ")}
-                        {infoItem("Осталось", "2 места")}
+                        {(rentalPeriod===1) && infoItem("Период аренды", "1 мес.")}
+                        {(rentalPeriod===3) && infoItem("Период аренды", "3 мес.")}
+                        {(rentalPeriod===6) && infoItem("Период аренды", "6 мес.")}
+                        {(rentalPeriod===9) && infoItem("Период аренды", "9 мес.")}
+                        {(rentalPeriod===12) && infoItem("Период аренды", "1 год")}
+                        {(peopleNumber===2) && infoItem("Всего", "2 места")}
+                        {(peopleNumber===3) && infoItem("Всего", "3 места")}
+                        {(peopleNumber===4) && infoItem("Всего", "4 места")}
+                        {(peopleNumber===5) && infoItem("Всего", "5 мест")}
+                        {(peopleNumber===6) && infoItem("Всего", "6 мест")}
+                        {(free===0) && infoItem("Осталось", "0 мест")}
+                        {(free===1) && infoItem("Осталось", "1 место")}
+                        {(free===2) && infoItem("Осталось", "2 места")}
+                        {(free===3) && infoItem("Осталось", "3 места")}
+                        {(free===4) && infoItem("Осталось", "4 места")}
+                        {(free===5) && infoItem("Осталось", "5 мест")}
                     </div>
                 }
 
