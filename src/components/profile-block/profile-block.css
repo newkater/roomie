@@ -87,6 +87,29 @@
     color: #000000;
 }
 
+.profile-change-value {
+    font-family: Roboto;
+    line-height: 24px;
+    width: 470px;
+    margin-right: 40px;
+}
+
+.save-changes {
+    background: #001AFF;
+    border-radius: 4px;
+    width: 450px;
+    height: 54px;
+
+    margin-top: 40px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.25px;
+    color: #FFFFFF;
+}
+
 .edit {
     font-family: Roboto;
     font-style: normal;

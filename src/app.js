@@ -141,6 +141,20 @@ export default class App extends Component {
             })
     };
 
+    userUpdate = (form) => {
+        this.setAuthLoading();
+        authService.userUpdate(form)
+            .then(result => {
+                console.log(result);
+                const {email, localId} = result;
+                this.setAuthData({email: email, id: localId});
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
+
     getGroupById = (id) => {
         let {groups} = this.state;
         const index = groups.findIndex(el => el.id === id);
@@ -202,6 +216,7 @@ export default class App extends Component {
                         <Route exact path={'/profile/:id'}
                                render = {({match}) =>
                                    <ProfilePage
+                                       userUpdate={this.userUpdate}
                                        id={match.params.id}
                                        getUser = {this.data.getUser}
                                        //user={this.getUser(match.params.id)}

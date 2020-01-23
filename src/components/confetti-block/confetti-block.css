@@ -7,6 +7,7 @@
 .confetti-block {
     display: flex;
     flex-direction: column;
+    height: 450px;
     /*min-height: 478px;*/
 }
 
