@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RegisterForm from "../components/register-form";
-import {Button, Container, Section, Tag, Title} from "bloomer";
+import {Container, Section, Title} from "bloomer";
 
 const registerTitle = {
     "font-family": "Roboto",

@@ -1,4 +1,3 @@
-import React from 'react';
 const AUTH_URL =`http://localhost:9200/login`;
 const SIGNUP_URL = `http://localhost:9200/register`;
 const CREATE_GROUP_URL =`http://localhost:9200/create-group`;

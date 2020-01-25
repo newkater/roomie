@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {Columns, Column} from "bloomer";
+import {Column} from "bloomer";
 
 import GroupBlock from '../group-block';
 

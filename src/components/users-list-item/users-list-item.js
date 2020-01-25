@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Content} from "bloomer";
+import {Content} from "bloomer";
 import {Link} from "react-router-dom";
 
 const UsersListItem = ({user}) => {
@@ -8,6 +8,7 @@ const UsersListItem = ({user}) => {
         <Content isDisplay="flex">
             <figure className="image is-64x64">
                 <Link to={`/profile/${id}`}>
+                    {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                     <img className="is-rounded"
                      src="https://bulma.io/images/placeholders/64x64.png"
                      alt="Image"/>

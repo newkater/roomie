@@ -55,7 +55,6 @@ class CreateGroupForm extends Component {
     };
 
     render() {
-        const {createGroup} = this.props;
         return (
             <form>
                 <Field>

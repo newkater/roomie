@@ -1,4 +1,3 @@
-import React from 'react';
 import user1 from "./images/user1.png"
 
 const COUNTRIES_URL =`104.208.217.122/allcountries`;

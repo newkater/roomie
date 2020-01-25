@@ -1,11 +1,9 @@
 import React, {Component} from "react";
 import debounce from "lodash";
 import "./register-form.css";
-import DatePicker from "react-date-picker";
 import {Button, Control, Field, Input, Label} from "bloomer";
 import {COUNTRIES} from "../../utils";
 import {LANGUAGES} from "../../utils/languages";
-//import ".../data.js";
 import Select from 'react-select';
 import {withRouter} from 'react-router-dom';
 import "react-date-picker/dist/DatePicker.css";
@@ -51,22 +49,22 @@ const roommatesNumber = [
     {value: 6, label: '6'}
 ];
 
-const customStyles = {
-    option: (provided) => ({
-        ...provided,
-        borderBottom: '1px dotted pink',
-        padding: 20,
-    }),
-    control: () => ({
-        // none of react-select's styles are passed to <Control />
-        width: 200,
-    }),
-    singleValue: (provided, state) => {
-        const transition = 'opacity 300ms';
-
-        return { ...provided, transition };
-    }
-};
+// const customStyles = {
+//     option: (provided) => ({
+//         ...provided,
+//         borderBottom: '1px dotted pink',
+//         padding: 20,
+//     }),
+//     control: () => ({
+//         // none of react-select's styles are passed to <Control />
+//         width: 200,
+//     }),
+//     singleValue: (provided, state) => {
+//         const transition = 'opacity 300ms';
+//
+//         return { ...provided, transition };
+//     }
+// };
 
 let putError = (password, pass) => {
     //console.log("putError came");
@@ -138,7 +136,7 @@ class RegisterForm extends Component {
     };
 
     render() {
-        const { page, changePage, register } = this.props;
+        const { page, changePage } = this.props;
 
         if (page === 3) {
             return (

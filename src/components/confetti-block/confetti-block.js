@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Box, Button} from "bloomer";
-import {Link} from "react-router-dom";
 
 import { ReactComponent as Confetti } from './../../images/confetti.svg';
 import './confetti-block.css';

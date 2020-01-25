@@ -22,20 +22,6 @@ export default class App extends Component {
         id: null,
         email: null,
         password: null,
-        userName: null,
-        birthDate: null,
-        sex: null,
-        birthCountry: null,
-        birthCity: null,
-        university: null,
-        speciality: null,
-        phoneNumber: null,
-        currentCity: null,
-        maxRoommatesNumber: null,
-        rentalPeriod: null,
-        languages: null,
-        badHabits: null,
-        userInfo: null,
         loading: false,
         error: null
     };
@@ -109,9 +95,9 @@ export default class App extends Component {
         this.setAuthLoading();
         authService.signUp(form)
             .then(result => {
-                console.log(result);
-                const {email, localId} = result;
-                this.setAuthData({email: email, id: localId});
+                console.log("app register ", result);
+                const {id} = result;
+                this.setAuthData({id: id});
             })
             .catch(error => {
                 console.log(error);
@@ -124,10 +110,8 @@ export default class App extends Component {
         authService.signIn(credentials)
             .then(result => {
                 console.log(result);
-                const {email, localId} = result;
-                this.setAuthData({userEmail: email, userId: localId});
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userId', localId);
+                const {id} = result;
+                this.setAuthData({id: id});
             })
             .catch(error => {
                 console.log(error);
@@ -139,17 +123,7 @@ export default class App extends Component {
         this.setAuthLoading();
         authService.groupCreation(form)
             .then(result => {
-                console.log(result);
-                const {groupName, peopleNumber, city, groupInfo, telegramLink, watsappLink, rentalPeriod} = result;
-                this.setAuthData({
-                    name: groupName,
-                    peopleNumber: peopleNumber,
-                    city: city,
-                    groupInfo: groupInfo,
-                    telegramLink: telegramLink,
-                    watsappLink: watsappLink,
-                    rentalPeriod: rentalPeriod
-                });
+                console.log("app createGroup ", result);
             })
             .catch(error => {
                 console.log(error);
@@ -162,9 +136,7 @@ export default class App extends Component {
         console.log("app userUpdate ", form);
         authService.userUpdate(form)
             .then(result => {
-                console.log("app userUpdate", result);
-                const {email, localId} = result;
-                this.setAuthData({email: email, id: localId});
+                console.log("app userUpdate ", result);
             })
             .catch(error => {
                 console.log(error);

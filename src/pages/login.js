@@ -2,10 +2,10 @@ import React from 'react'
 import LoginForm from "../components/login-form";
 
 const LoginPage = ({login, authData}) => {
-    const {userId, token, userEmail, loading, error} = authData;
+    const {error} = authData;
     return (
         <div>
-            <LoginForm login={login}/>
+            <LoginForm login={login} authData={authData}/>
             {error && <div>{error.toString()}</div>}
         </div>
     );

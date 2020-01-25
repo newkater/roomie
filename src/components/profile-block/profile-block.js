@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { CSSTransition } from "react-transition-group";
-import {Button, Icon, Input} from "bloomer";
+import {Button, Input} from "bloomer";
 import { withHelpersModifiers  } from 'bloomer';
 
 import './profile-block.css';
@@ -57,7 +57,7 @@ class ProfileBlock extends Component {
     };
 
     handleSubmit = (event) => {
-        const {userUpdate, history} = this.props;
+        const {userUpdate} = this.props;
         console.log("update user props", this.props);
         event.preventDefault();
         console.log("Submit", this.state);

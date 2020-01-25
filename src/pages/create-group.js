@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container, Field, Section, Tag, Title} from "bloomer";
+import {Container, Section, Title} from "bloomer";
 import CreateGroupForm from "../components/create-group-form/create-group-form";
 
 const registerTitle = {

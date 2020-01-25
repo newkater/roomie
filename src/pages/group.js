@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Box, Button, Column, Columns, Container, Content, Table} from "bloomer";
+import {Container} from "bloomer";
 import GroupBlock from "../components/group-block";
 import UsersListCollapse from "../components/users-list-collapse";
 import "./group.css";
@@ -43,7 +43,7 @@ class GroupPage extends Component {
         let {group} = this.props;
         console.log("group page props ", this.props);
         console.log("group page", group);
-        const {id, name, members, applications} = group;
+        const {name, members, applications} = group;
         return (
             <Container>
                 <Link to="/">

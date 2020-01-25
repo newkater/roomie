@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
-import {Box, Container, Content, Icon} from "bloomer";
+import {Box} from "bloomer";
 import { withHelpersModifiers  } from 'bloomer';
 
 
 import UsersListItem from "../users-list-item";
 import "./users-list-collapse.css";
 import * as PropTypes from "prop-types";
-
-const containerStyle = {
-    marginTop: "-30px",
-    zIndex: "10"
-};
-
-const boxStyle = {
-    zIndex: "20",
-    position: "relative"
-};
 
 class UsersListCollapse extends Component {
     state = {

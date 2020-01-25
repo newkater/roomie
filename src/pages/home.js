@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 
 import GroupBlocks from '../components/group-blocks';
-import {Content, Title, Container, Section, Column, Columns} from "bloomer";
-import GroupBlock from "../components/group-block";
+import {Container, Columns} from "bloomer";
 import PromoBlock from "../components/promo-block";
 import './home.css';
 
@@ -10,8 +9,6 @@ class HomePage extends Component {
     state = {
         groupBlockType: "1",
     };
-
-
 
     render() {
         let {groups} = this.props;

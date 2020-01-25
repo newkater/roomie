@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import './poll.css';
-import {Link} from "react-router-dom";
-import {Button, Content, Progress} from "bloomer";
+import {Button} from "bloomer";
 
 export default class Poll extends Component {
     render() {
         let {form} = this.props;
-        let {id, type, person, positive, negative} = form;
+        let {type, person, positive, negative} = form;
         console.log("Poll ", form);
         return(
             <div className="single-poll">

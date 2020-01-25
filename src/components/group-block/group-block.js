@@ -1,5 +1,5 @@
 import React from 'react'
-import {Box, Image, Content, Icon, Columns, Column, Notification, Button, Control} from "bloomer";
+import {Box, Button} from "bloomer";
 import {Link} from 'react-router-dom';
 import "./group-block.css";
 import Avatar from "../avatar";
