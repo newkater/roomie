@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import * as authService from "./services/auth-service"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import './app.css';
 
+
+import './app.css';
 import AppHeader from './components/app-header';
 import AppFooter from './components/app-footer';
 import HomePage from './pages/home';
@@ -41,6 +42,7 @@ export default class App extends Component {
 
     state = {
         groups: [],
+        countries: [],
         Auth: this.initialAuthData
     };
 
@@ -76,6 +78,20 @@ export default class App extends Component {
         this.data.getGroups()
             .then(groups => {
                 this.onGroupsLoaded(groups);
+            })
+            .catch(this.onError)
+    };
+
+    onCountriesLoaded = (countries) => {
+        this.setState({
+            countries: [...countries]
+        });
+    };
+
+    getCountries = () => {
+        this.data.getCountries()
+            .then(countries => {
+                this.onCountriesLoaded(countries);
             })
             .catch(this.onError)
     };
@@ -143,9 +159,10 @@ export default class App extends Component {
 
     userUpdate = (form) => {
         this.setAuthLoading();
+        console.log("app userUpdate ", form);
         authService.userUpdate(form)
             .then(result => {
-                console.log(result);
+                console.log("app userUpdate", result);
                 const {email, localId} = result;
                 this.setAuthData({email: email, id: localId});
             })
@@ -164,7 +181,7 @@ export default class App extends Component {
     };
 
     render() {
-        let {groups} = this.state;
+        let {groups, countries} = this.state;
         return (
             <Router>
                 <div>
@@ -187,8 +204,7 @@ export default class App extends Component {
                                        id={match.params.id}
                                        group={this.getGroupById(parseInt(match.params.id))}
                                    />
-                               }
-                               }
+                               }}
                         />
                         <Route exact path={'/login'}
                             render = {() =>
@@ -216,6 +232,7 @@ export default class App extends Component {
                         <Route exact path={'/profile/:id'}
                                render = {({match}) =>
                                    <ProfilePage
+                                       countries={countries}
                                        userUpdate={this.userUpdate}
                                        id={match.params.id}
                                        getUser = {this.data.getUser}

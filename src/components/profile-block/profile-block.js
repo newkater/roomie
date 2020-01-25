@@ -5,7 +5,7 @@ import { withHelpersModifiers  } from 'bloomer';
 
 import './profile-block.css';
 import Avatar from "../avatar";
-import {ageToString, COUNTRIES} from "../../utils";
+import {ageToString} from "../../utils";
 import Select from "react-select";
 import {LANGUAGES} from "../../utils/languages";
 
@@ -82,11 +82,13 @@ class ProfileBlock extends Component {
                 userInfo: this.state.userInfo,
                 groups: this.state.groups
             });
+        //window.location.reload();
     };
 
     render() {
         let {showDetails, isChanging} = this.state;
         let {imgPath, age, badHabits, birthDate, city, languages, info, name, phoneNumber, specialty, university} = this.state;
+        const {countries} = this.props;
         return (
             <div className="profile">
                 <div className="profile-edit-button" onClick={this.editMode}/>
@@ -164,7 +166,7 @@ class ProfileBlock extends Component {
                                                 isSearchable
                                                 closeMenuOnSelect={true}
                                                 onChange={(value) => this.handleInput('university', value)}
-                                                options={COUNTRIES}
+                                                options={countries}
                                                 value={this.state.university}
                                         />
                                     </div>
@@ -177,7 +179,7 @@ class ProfileBlock extends Component {
                                                 className="profile-change-value"
                                                 closeMenuOnSelect={true}
                                                 onChange={(value) => this.handleInput('specialty', value)}
-                                                options={COUNTRIES}
+                                                options={countries}
                                                 value={this.state.specialty}
                                         />
                                     </div>

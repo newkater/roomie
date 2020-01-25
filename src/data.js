@@ -1,10 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import user1 from "./images/user1.png"
-import user2 from "./images/user2.png"
-import user3 from "./images/user3.png"
-import user4 from "./images/user4.png"
 
+const COUNTRIES_URL =`104.208.217.122/allcountries`;
 
 export default class Data {
     _users = [
@@ -142,6 +139,19 @@ export default class Data {
             //console.log("fourps = " + JSON.stringify(groups));
             return groups;
         });
+    };
+
+    getCountries = async () => {
+        return await fetch(COUNTRIES_URL)
+            .then(res => res.json())
+            .then(res => {
+                //console.log("res " + JSON.stringify(res));
+                //console.log("fourps = " + JSON.stringify(groups));
+                const countries = res.map((item) => {
+                    return {label: item.name, value: item.name, id: item.id}
+                });
+                return countries
+            });
     };
 
     getUser = ({id}) => {
