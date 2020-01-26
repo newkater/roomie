@@ -51,7 +51,7 @@ export default class App extends Component {
     };
 
     onError = (err) => {
-        console.log(err);
+        console.log("Error", err);
     };
 
     onGroupsLoaded = (groups) => {
@@ -89,6 +89,7 @@ export default class App extends Component {
 
     componentDidMount() {
         this.getGroups();
+        this.getCountries();
     }
 
     register = (form) => {

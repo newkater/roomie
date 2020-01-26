@@ -23,7 +23,7 @@ class ProfilePage extends Component {
         const {groupBlockType, user} = this.state;
         const {userUpdate, countries} = this.props;
         const groups = user.groups;
-        console.log("profile page countries ", countries);
+        //console.log("profile page countries ", countries);
         return (
             <div className="page">
                 <Container>

@@ -1,8 +1,11 @@
+import {Component} from 'react';
 import user1 from "./images/user1.png"
 
-const COUNTRIES_URL =`104.208.217.122/allcountries`;
+const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
+//const ALL_GROUPS_URL = "http://api.roomie.kz/allgroups";
 
-export default class Data {
+export default class Data extends Component {
+
     _users = [
         "Катя Смирнова",
         "Асель Муратова",
@@ -64,19 +67,6 @@ export default class Data {
     //     };
     // };
     //
-
-    colourOptions = [
-        { value: 'ocean', label: 'Ocean', color: '#00B8D9' },
-        { value: 'blue', label: 'Blue', color: '#0052CC' },
-        { value: 'purple', label: 'Purple', color: '#5243AA' },
-        { value: 'red', label: 'Red', color: '#FF5630' },
-        { value: 'orange', label: 'Orange', color: '#FF8B00' },
-        { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-        { value: 'green', label: 'Green', color: '#36B37E' },
-        { value: 'forest', label: 'Forest', color: '#00875A' },
-        { value: 'slate', label: 'Slate', color: '#253858' },
-        { value: 'silver', label: 'Silver', color: '#666666' },
-    ];
     _univercities = ["AlmaU", "Narxoz", "SDU", "MUIT", "KazNU", "KBTU"];
     _specialities = ["биолог", "физик", "математик", "геолог", "химик", "фезмот"];
     _languages = [["kz", "ru"], ["fr", "kx"], ["en", "gr"], ["ru"], ["sp"], ["aaaaaaa"]];
@@ -141,16 +131,16 @@ export default class Data {
     };
 
     getCountries = async () => {
-        return await fetch(COUNTRIES_URL)
-            .then(res => res.json())
+        //fetch(COUNTRIES_URL).then(response => response.json()).then(console.log);
+        return fetch(COUNTRIES_URL, {method: 'GET'})
+            .then(res => {return res.json()})
             .then(res => {
-                //console.log("res " + JSON.stringify(res));
-                //console.log("fourps = " + JSON.stringify(groups));
-                const countries = res.map((item) => {
+                const countries = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
                     return {label: item.name, value: item.name, id: item.id}
                 });
                 return countries
-            });
+            })
     };
 
     getUser = ({id}) => {
