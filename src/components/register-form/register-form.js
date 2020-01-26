@@ -136,7 +136,7 @@ class RegisterForm extends Component {
     };
 
     render() {
-        const { page, changePage } = this.props;
+        const { page, changePage, countries } = this.props;
 
         if (page === 3) {
             return (
@@ -148,7 +148,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('currentCity', value)}
-                                    options={COUNTRIES}
+                                    options={countries}
                                     className="is-fullwidth"
                                     value={this.state.currentCity}
                             />
@@ -266,7 +266,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCountry', value)}
-                                    options={COUNTRIES}
+                                    options={countries}
                                     className="is-fullwidth"
                                     value={this.state.birthCountry}
                             />
@@ -279,7 +279,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCity', value)}
-                                    options={COUNTRIES}
+                                    options={countries}
                                     className="is-fullwidth"
                                     value={this.state.birthCity}
                             />
@@ -292,7 +292,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('university', value)}
-                                    options={COUNTRIES}
+                                    options={countries}
                                     className="is-fullwidth"
                                     value={this.state.university}
                             />
@@ -305,7 +305,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('speciality', value)}
-                                    options={COUNTRIES}
+                                    options={countries}
                                     className="is-fullwidth"
                                     value={this.state.speciality}
                             />

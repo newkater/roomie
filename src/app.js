@@ -190,6 +190,7 @@ export default class App extends Component {
                         <Route exact path={'/register'}
                                render = {() =>
                                    <RegisterPage
+                                       countries={countries}
                                        register={this.register}
                                        num={"first"}
                                    />
