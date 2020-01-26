@@ -6,10 +6,21 @@ import GroupBlock from "../components/group-block";
 import {Column, Columns, Container} from "bloomer";
 import ConfettiBlock from "../components/confetti-block";
 
+const groupsList = (groups, type) => {
+    return groups.map((el) => {
+        return (
+            <Column isSize={'1/3'} >
+                <GroupBlock type={type} group={el}/>
+            </Column>
+        );
+    });
+};
+
 class ProfilePage extends Component {
     state = {
         loading: false,
         groupBlockType: "4",
+        groups: [],
         user: {}
     };
 
@@ -22,7 +33,8 @@ class ProfilePage extends Component {
     render() {
         const {groupBlockType, user} = this.state;
         const {userUpdate, countries} = this.props;
-        const groups = user.groups;
+        this.setState(user.groups);
+        let groups = groupsList(this.state.groups, "2");
         //console.log("profile page countries ", countries);
         return (
             <div className="page">
@@ -35,11 +47,7 @@ class ProfilePage extends Component {
                         <Column isSize={'1/3'} >
                             <ConfettiBlock/>
                         </Column>
-                        <GroupBlocks type={groupBlockType} groups={[
-                            <GroupBlock type={groupBlockType}/>,
-                            <GroupBlock type={groupBlockType}/>,
-                            <GroupBlock type={groupBlockType}/>]
-                        }/>
+                        <GroupBlocks type={groupBlockType} groups={groups}/>
                     </Columns>
                 </Container>
             </div>
