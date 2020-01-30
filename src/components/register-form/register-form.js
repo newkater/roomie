@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import debounce from "lodash";
 import "./register-form.css";
 import {Button, Control, Field, Input, Label} from "bloomer";
-import {COUNTRIES} from "../../utils";
 import {LANGUAGES} from "../../utils/languages";
 import Select from 'react-select';
 import {withRouter} from 'react-router-dom';
@@ -49,26 +48,7 @@ const roommatesNumber = [
     {value: 6, label: '6'}
 ];
 
-// const customStyles = {
-//     option: (provided) => ({
-//         ...provided,
-//         borderBottom: '1px dotted pink',
-//         padding: 20,
-//     }),
-//     control: () => ({
-//         // none of react-select's styles are passed to <Control />
-//         width: 200,
-//     }),
-//     singleValue: (provided, state) => {
-//         const transition = 'opacity 300ms';
-//
-//         return { ...provided, transition };
-//     }
-// };
-
 let putError = (password, pass) => {
-    //console.log("putError came");
-    //console.log("PutError: ", (password !== pass));
     return ((password !== pass) || (pass === '' && password === ''));
 };
 

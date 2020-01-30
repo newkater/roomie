@@ -10,6 +10,10 @@ class HomePage extends Component {
         groupBlockType: "1",
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         let {groups} = this.props;
         const {groupBlockType} = this.state;

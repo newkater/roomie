@@ -15,6 +15,11 @@ const registerTitle = {
 };
 
 class CreateGroupPage extends Component {
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         const {createGroup} = this.props;
         return (

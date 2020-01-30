@@ -16,6 +16,10 @@ class GroupPage extends Component {
         this.setState({groupBlockType: "3"});
     };
 
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
 
         const elements = [

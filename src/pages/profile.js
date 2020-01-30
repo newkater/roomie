@@ -25,6 +25,7 @@ class ProfilePage extends Component {
     };
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.setState({loading: true});
         this.props.getUser({id: this.props.id})
             .then(user =>  this.setState({user: user, loading: false}));

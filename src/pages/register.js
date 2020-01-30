@@ -21,7 +21,12 @@ class RegisterPage extends Component {
         if (page >= 1 && page <= 3 ) {
             this.setState({ page })
         }
+        window.scrollTo(0, 0);
     };
+
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
 
     render() {
         const { page } = this.state;

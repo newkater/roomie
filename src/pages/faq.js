@@ -1,17 +1,27 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Container} from "bloomer";
 import FaqBlock from "../components/faq-block";
+import * as PropTypes from "prop-types";
 
-const FAQPage = ({questions}) => {
+class FAQPage extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
 
-    return(
-        <div className="page">
-            <Container>
-                <h3 className="title2">Часто задаваемые вопросы</h3>
-                {questions && <FaqBlock questions={questions}/>}
-            </Container>
-        </div>
-    );
-};
+    render() {
+        let {questions} = this.props;
+
+        return (
+            <div className="page">
+                <Container>
+                    <h3 className="title2">Часто задаваемые вопросы</h3>
+                    {questions && <FaqBlock questions={questions}/>}
+                </Container>
+            </div>
+        );
+    }
+}
+
+FAQPage.propTypes = {questions: PropTypes.any}
 
 export default FAQPage;
