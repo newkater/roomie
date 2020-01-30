@@ -17,7 +17,7 @@ import ProfilePage from './pages/profile';
 import Data from './data';
 import CreateGroupPage from "./pages/create-group";
 
-toast.configure()
+toast.configure();
 
 export default class App extends Component {
     data = new Data();
@@ -124,6 +124,18 @@ export default class App extends Component {
             })
     };
 
+    userDelete = (credentials) => {
+        this.setAuthLoading();
+        authService.userDelete(credentials)
+            .then(result => {
+                console.log("deleted");
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
+
     createGroup = (form) => {
         this.setAuthLoading();
         authService.groupCreation(form)
@@ -214,6 +226,7 @@ export default class App extends Component {
                                        userUpdate={this.userUpdate}
                                        id={match.params.id}
                                        getUser = {this.data.getUser}
+                                       userDelete={this.userDelete}
                                        //user={this.getUser(match.params.id)}
                                    />
                                }

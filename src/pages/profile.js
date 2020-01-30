@@ -32,14 +32,14 @@ class ProfilePage extends Component {
 
     render() {
         const {groupBlockType, user} = this.state;
-        const {userUpdate, countries} = this.props;
+        const {userUpdate, countries, userDelete} = this.props;
         this.setState(user.groups);
         let groups = groupsList(this.state.groups, groupBlockType);
         //console.log("profile page countries ", countries);
         return (
             <div className="page">
                 <Container>
-                    {this.state.loading ? <div>Loading ...</div> : <ProfileBlock userUpdate = {userUpdate} user={user} countries={countries}/>}
+                    {this.state.loading ? <div>Loading ...</div> : <ProfileBlock userDelete={userDelete} userUpdate = {userUpdate} user={user} countries={countries}/>}
 
                     <h3 className="title2 title-groups">Мои группы</h3>
 

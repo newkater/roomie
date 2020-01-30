@@ -34,7 +34,10 @@ const userProp = (key, value, isChanging) => {
 
 class ProfileBlock extends Component {
     state = {
+        id: this.props.user.id,
+        email: this.props.user.email,
         imgPath: this.props.user.imgPath,
+        password: this.props.user.password,
         name: this.props.user.name,
         age: this.props.user.age,
         city: this.props.user.city,
@@ -62,7 +65,7 @@ class ProfileBlock extends Component {
         return (
             <span>
                 <p>Уверены, что хотите удалить аккаунт?</p>
-                <Link to={'/'}>Да</Link>
+                <Link onClick={this.handleDelete} to={'/'}>Да</Link>
             </span>
         );
     };
@@ -70,6 +73,19 @@ class ProfileBlock extends Component {
     editMode = () => {
         if (!this.state.isChanging) this.setState({showDetails: true});
         this.setState({isChanging: !this.state.isChanging});
+    };
+
+    handleDelete = (event) => {
+        const {userDelete, history} = this.props;
+        console.log("delete user props", this.props);
+        event.preventDefault();
+        console.log("Delete", this.state);
+        userDelete(
+            {
+                id: this.state.id,
+                email: this.state.email,
+                password: this.state.password
+            });
     };
 
     handleInput = (key, value) => {
