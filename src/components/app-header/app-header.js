@@ -53,8 +53,8 @@ const AppHeader = () => {
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link to="/logoff" onClick={() => setIsAuthorized(false)}>
-                                <div className="logout-button"></div>
+                            <Link to="./../../" onClick={() => setIsAuthorized(false)}>
+                                <div className="logout-button"/>
                             </Link>
                         </NavbarItem>
 

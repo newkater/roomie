@@ -44,7 +44,7 @@ class GroupPage extends Component {
             }
             ];
         const {groupBlockType} = this.state;
-        let {group} = this.props;
+        let {group, groupUpdate} = this.props;
         console.log("group page props ", this.props);
         console.log("group page", group);
         const {name, members, applications} = group;
@@ -61,6 +61,7 @@ class GroupPage extends Component {
                     <div style={{"flex-basis": "352px"}}>
                         <GroupBlock type={groupBlockType}
                                     isClick={this.isClick}
+                                    groupUpdate={groupUpdate}
                                     group={group}
                                     showMembers={false}
                                     showHeader={false}

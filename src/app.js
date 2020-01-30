@@ -161,6 +161,19 @@ export default class App extends Component {
             })
     };
 
+    groupUpdate = (form) => {
+        this.setAuthLoading();
+        console.log("app groupUpdate ", form);
+        authService.userUpdate(form)
+            .then(result => {
+                console.log("app groupUpdate ", result);
+            })
+            .catch(error => {
+                console.log(error);
+                this.setAuthError(error);
+            })
+    };
+
     getGroupById = (id) => {
         let {groups} = this.state;
         const index = groups.findIndex(el => el.id === id);
@@ -179,6 +192,7 @@ export default class App extends Component {
                         <Route exact path={'/'}
                                render = {() =>
                                    <HomePage
+                                       groupUpdate={this.groupUpdate}
                                        groups={groups}
                                    />
                                }
@@ -190,6 +204,7 @@ export default class App extends Component {
                                render ={({match}) => {
                                    //console.log("APP", this.getGroupById(parseInt(match.params.id)));
                                    return <GroupPage
+                                       groupUpdate={this.groupUpdate}
                                        id={match.params.id}
                                        group={this.getGroupById(parseInt(match.params.id))}
                                    />
@@ -222,6 +237,7 @@ export default class App extends Component {
                         <Route exact path={'/profile/:id'}
                                render = {({match}) =>
                                    <ProfilePage
+                                       groupUpdate={this.groupUpdate}
                                        countries={countries}
                                        userUpdate={this.userUpdate}
                                        id={match.params.id}

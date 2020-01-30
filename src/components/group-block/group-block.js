@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Box, Button} from "bloomer";
 import {Link} from 'react-router-dom';
 import "./group-block.css";
@@ -6,6 +6,7 @@ import Avatar from "../avatar";
 import user2 from "./../../images/user2.png"
 import user3 from "./../../images/user3.png"
 import user4 from "./../../images/user4.png"
+import * as PropTypes from "prop-types";
 
 
 const boxStyle = {
@@ -72,92 +73,165 @@ const infoItem = (title, value) => {
             </div>
         </div>
     )
+};
+
+class GroupBlock extends Component {
+
+    state = {
+        groupBlockType: this.props.type,
+        id: this.props.group.id,
+        name: this.props.group.name,
+        city: this.props.group.city,
+        groupInfo: this.props.group.groupInfo,
+        memberNumber: this.props.group.memberNumber,
+        peopleNumber: this.props.group.peopleNumber,
+        rentalPeriod: this.props.group.rentalPeriod,
+        free: this.props.group.free,
+        members: this.props.group.members,
+        applications: this.props.group.applications,
+        polls: this.props.group.polls
+    };
+
+    addApplication = () => {
+        this.setState({groupBlockType: "3"});
+        this.setState({applications: ()=>[...this.state.applications, {
+                id: this.props.user.id,
+                name: this.props.user.name,
+                age: this.props.user.age,
+                photo: this.props.user.proto,
+                userCity: this.props.user.city,
+                userInfo: this.props.user.info
+            }]});
+        this.handleSubmit();
+    };
+
+    handleSubmit = () => {
+        const {groupUpdate} = this.props;
+        console.log("update group props", this.props);
+        //event.preventDefault();
+        console.log("Submit", this.state);
+        groupUpdate(
+            {
+                id: this.state.id,
+                name: this.state.name,
+                city: this.state.city,
+                groupInfo: this.state.groupInfo,
+                memberNumber: this.state.memberNumber,
+                peopleNumber: this.state.peopleNumber,
+                rentalPeriod: this.state.rentalPeriod,
+                free: this.state.free,
+                members: this.state.members,
+                applications: this.state.applications,
+                polls: this.state.polls
+            });
+        //window.location.reload();
+    };
+
+    render() {
+        let {
+            type,
+            isClick,
+            group,
+            showHeader,
+            showAbout,
+            showInfo,
+            showMembers,
+            user
+        } = this.props;
+        const {id, name, city, rentalPeriod, peopleNumber, free, groupInfo} = group;
+        type = this.state.groupBlockType;
+        return (
+            <div>
+                <Box style={boxStyle} className="group-block">
+                    {
+                        showHeader &&
+                        <header className="group-block-header">
+                            <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
+                            <span className="group-block-city">{city}</span>
+                            <Link to={`/group/${id}`}>
+                                <div className="arrow-right"/>
+                            </Link>
+                        </header>
+                    }
+                    {
+                        showAbout &&
+                        <div className="group-block-about">
+                            <p>"{groupInfo}"</p>
+                        </div>
+                    }
+                    {
+                        showMembers && membersList()
+                    }
+                    {
+                        showInfo &&
+                        <div className="group-block-info">
+                            {(rentalPeriod === 1) && infoItem("Период аренды", "1 мес.")}
+                            {(rentalPeriod === 3) && infoItem("Период аренды", "3 мес.")}
+                            {(rentalPeriod === 6) && infoItem("Период аренды", "6 мес.")}
+                            {(rentalPeriod === 9) && infoItem("Период аренды", "9 мес.")}
+                            {(rentalPeriod === 12) && infoItem("Период аренды", "1 год")}
+                            {(peopleNumber === 2) && infoItem("Всего", "2 места")}
+                            {(peopleNumber === 3) && infoItem("Всего", "3 места")}
+                            {(peopleNumber === 4) && infoItem("Всего", "4 места")}
+                            {(peopleNumber === 5) && infoItem("Всего", "5 мест")}
+                            {(peopleNumber === 6) && infoItem("Всего", "6 мест")}
+                            {(free === 0) && infoItem("Осталось", "0 мест")}
+                            {(free === 1) && infoItem("Осталось", "1 место")}
+                            {(free === 2) && infoItem("Осталось", "2 места")}
+                            {(free === 3) && infoItem("Осталось", "3 места")}
+                            {(free === 4) && infoItem("Осталось", "4 места")}
+                            {(free === 5) && infoItem("Осталось", "5 мест")}
+                        </div>
+                    }
+
+                    {
+                        (type === "1") &&
+                        <footer className="group-block-controls">
+                            <Button style={buttonStyle1} onClick={this.addApplication}>Подать заявку</Button>
+                        </footer>
+                    }
+
+                    {
+                        (type === "2") &&
+                        <footer className="group-block-controls">
+                            <Button disabled>Заявка подана</Button>
+                            <Button style={buttonStyle}>Отменить</Button>
+                        </footer>
+                    }
+
+                    {
+                        (type === "3") &&
+                        <footer className="group-block-controls">
+                            <div style={buttonStyle2}>Ваша заявка на рассмотрении!</div>
+                        </footer>
+                    }
+
+                    {
+                        (type === "4") &&
+                        <footer className="group-block-controls">
+                            <div style={buttonStyle2}>Вы состоите в группе.</div>
+                        </footer>
+                    }
+
+
+                </Box>
+
+            </div>
+
+        );
+    }
 }
 
+GroupBlock.propTypes = {
+    type: PropTypes.any,
+    isClick: PropTypes.any,
+    group: PropTypes.any,
+    showHeader: PropTypes.bool,
+    showAbout: PropTypes.bool,
+    showInfo: PropTypes.bool,
+    showMembers: PropTypes.bool
+}
 
-const GroupBlock = (
-    {
-        type,
-        isClick,
-        group,
-        showHeader = true,
-        showAbout = true,
-        showInfo = true,
-        showMembers = true
-    }) => {
-    const {id, name, city, rentalPeriod, peopleNumber, free, groupInfo} = group;
-    return (
-        <div>
-            <Box style={boxStyle} className="group-block">
-                {
-                    showHeader &&
-                    <header className="group-block-header">
-                        <h3 className="group-block-title"><Link to={`/group/${id}`}>{name}</Link></h3>
-                        <span className="group-block-city">{city}</span>
-                        <Link to={`/group/${id}`}>
-                            <div className="arrow-right"/>
-                        </Link>
-                    </header>
-                }
-                {
-                    showAbout &&
-                    <div className="group-block-about">
-                        <p>"{groupInfo}"</p>
-                    </div>
-                }
-                {
-                    showMembers && membersList()
-                }
-                {
-                    showInfo &&
-                    <div className="group-block-info">
-                        {(rentalPeriod===1) && infoItem("Период аренды", "1 мес.")}
-                        {(rentalPeriod===3) && infoItem("Период аренды", "3 мес.")}
-                        {(rentalPeriod===6) && infoItem("Период аренды", "6 мес.")}
-                        {(rentalPeriod===9) && infoItem("Период аренды", "9 мес.")}
-                        {(rentalPeriod===12) && infoItem("Период аренды", "1 год")}
-                        {(peopleNumber===2) && infoItem("Всего", "2 места")}
-                        {(peopleNumber===3) && infoItem("Всего", "3 места")}
-                        {(peopleNumber===4) && infoItem("Всего", "4 места")}
-                        {(peopleNumber===5) && infoItem("Всего", "5 мест")}
-                        {(peopleNumber===6) && infoItem("Всего", "6 мест")}
-                        {(free===0) && infoItem("Осталось", "0 мест")}
-                        {(free===1) && infoItem("Осталось", "1 место")}
-                        {(free===2) && infoItem("Осталось", "2 места")}
-                        {(free===3) && infoItem("Осталось", "3 места")}
-                        {(free===4) && infoItem("Осталось", "4 места")}
-                        {(free===5) && infoItem("Осталось", "5 мест")}
-                    </div>
-                }
-
-                {
-                    (type === "1") &&
-                    <footer className="group-block-controls">
-                        <Button style={buttonStyle1}>Подать заявку</Button>
-                    </footer>
-                }
-
-                {
-                    (type === "2") &&
-                    <footer className="group-block-controls">
-                        <Button disabled>Заявка подана</Button>
-                        <Button style={buttonStyle}>Отменить</Button>
-                    </footer>
-                }
-
-                {
-                    (type === "3") &&
-                    <footer className="group-block-controls">
-                        <div style={buttonStyle2}>Ваша заявка на рассмотрении!</div>
-                    </footer>
-                }
-
-
-            </Box>
-
-        </div>
-
-    );
-};
+GroupBlock.defaultProps = {showHeader: true, showAbout: true, showInfo: true, showMembers: true}
 
 export default GroupBlock;

@@ -33,7 +33,7 @@ class ProfilePage extends Component {
 
     render() {
         const {groupBlockType, user} = this.state;
-        const {userUpdate, countries, userDelete} = this.props;
+        const {userUpdate, countries, userDelete, groupUpdate} = this.props;
         this.setState(user.groups);
         let groups = groupsList(this.state.groups, groupBlockType);
         //console.log("profile page countries ", countries);
@@ -48,7 +48,7 @@ class ProfilePage extends Component {
                         <Column isSize={'1/3'} >
                             <ConfettiBlock/>
                         </Column>
-                        <GroupBlocks type={groupBlockType} groups={groups}/>
+                        <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
                     </Columns>
                 </Container>
             </div>
