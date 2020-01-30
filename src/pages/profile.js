@@ -10,7 +10,7 @@ const groupsList = (groups, type) => {
     return groups.map((el) => {
         return (
             <Column isSize={'1/3'} >
-                <GroupBlock type={type} group={el}/>
+                <GroupBlock style={{"height": "450px"}} type={type} group={el}/>
             </Column>
         );
     });
