@@ -41,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-toast-notifications": "^2.4.0",
+    "react-toastify": "^5.5.0"
   }
 }

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import * as authService from "./services/auth-service"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import './app.css';
@@ -14,6 +16,8 @@ import RegisterPage from './pages/register';
 import ProfilePage from './pages/profile';
 import Data from './data';
 import CreateGroupPage from "./pages/create-group";
+
+toast.configure()
 
 export default class App extends Component {
     data = new Data();

@@ -18,6 +18,18 @@
     cursor: pointer;
 }
 
+.profile-delete-button {
+    width: 24px;
+    height: 24px;
+    background-image: url("./../../images/delete.svg");
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    color: #000000;
+    z-index: 5;
+    cursor: pointer;
+}
+
 .profile-dropdown-button {
     background-image: url("./../../images/arrow-down.svg");
     width: 16px;

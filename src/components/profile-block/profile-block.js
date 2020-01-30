@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import { CSSTransition } from "react-transition-group";
 import {Button, Input} from "bloomer";
 import { withHelpersModifiers  } from 'bloomer';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './profile-block.css';
 import Avatar from "../avatar";
 import {ageToString} from "../../utils";
 import Select from "react-select";
 import {LANGUAGES} from "../../utils/languages";
+import {Link} from "react-router-dom";
 
 const habits = [
     {value: "Нет", label: "Нет"},
@@ -44,6 +47,24 @@ class ProfileBlock extends Component {
         info: this.props.user.info,
         showDetails: false,
         isChanging: false
+    };
+
+    notify = () => toast.error(this.toastMessage, {
+        position: "bottom-center",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true
+    });
+
+    toastMessage = () => {
+        return (
+            <span>
+                <p>Уверены, что хотите удалить аккаунт?</p>
+                <Link to={'/'}>Да</Link>
+            </span>
+        );
     };
 
     editMode = () => {
@@ -91,6 +112,17 @@ class ProfileBlock extends Component {
         const {countries} = this.props;
         return (
             <div className="profile">
+                <ToastContainer
+                    position="bottom-center"
+                    containerId={'A'}
+                    autoClose={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnVisibilityChange
+                    draggable
+                />
+                <div className="profile-delete-button" onClick={this.notify}/>
                 <div className="profile-edit-button" onClick={this.editMode}/>
                 {
                     !isChanging &&
