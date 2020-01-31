@@ -112,6 +112,8 @@ class GroupBlock extends Component {
         console.log("Submit", this.state);
         groupUpdate(
             {
+                email: localStorage.getItem('email'),
+                password: localStorage.getItem('password'),
                 id: this.state.id,
                 name: this.state.name,
                 city: this.state.city,

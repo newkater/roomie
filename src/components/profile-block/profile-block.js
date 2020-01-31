@@ -35,9 +35,7 @@ const userProp = (key, value, isChanging) => {
 class ProfileBlock extends Component {
     state = {
         id: this.props.user.id,
-        email: this.props.user.email,
         imgPath: this.props.user.imgPath,
-        password: this.props.user.password,
         name: this.props.user.name,
         age: this.props.user.age,
         city: this.props.user.city,
@@ -82,9 +80,9 @@ class ProfileBlock extends Component {
         console.log("Delete", this.state);
         userDelete(
             {
+                email: localStorage.getItem('email'),
+                password: localStorage.getItem('password'),
                 id: this.state.id,
-                email: this.state.email,
-                password: this.state.password
             });
     };
 
@@ -100,9 +98,9 @@ class ProfileBlock extends Component {
         console.log("Submit", this.state);
         userUpdate(
             {
+                email: localStorage.getItem('email'),
+                password: localStorage.getItem('password'),
                 id: this.state.id,
-                email: this.state.email,
-                password: this.state.password,
                 userName: this.state.userName,
                 sex: this.state.sex,
                 birthCountry: this.state.birthCountry,
