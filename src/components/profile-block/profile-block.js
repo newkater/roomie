@@ -80,8 +80,8 @@ class ProfileBlock extends Component {
         console.log("Delete", this.state);
         userDelete(
             {
-                email: localStorage.getItem('email'),
-                password: localStorage.getItem('password'),
+                email: sessionStorage.getItem('email'),
+                password: sessionStorage.getItem('password'),
                 id: this.state.id,
             });
     };
@@ -98,8 +98,8 @@ class ProfileBlock extends Component {
         console.log("Submit", this.state);
         userUpdate(
             {
-                email: localStorage.getItem('email'),
-                password: localStorage.getItem('password'),
+                email: sessionStorage.getItem('email'),
+                password: sessionStorage.getItem('password'),
                 id: this.state.id,
                 userName: this.state.userName,
                 sex: this.state.sex,

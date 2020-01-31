@@ -102,6 +102,9 @@ export default class App extends Component {
             .then(result => {
                 console.log("app register ", result);
                 const {id} = result;
+                sessionStorage.setItem('id', result.id);
+                sessionStorage.setItem('photo', result.photo);
+                sessionStorage.setItem('name', result.name);
                 this.setAuthData({id: id});
             })
             .catch(error => {
@@ -116,6 +119,9 @@ export default class App extends Component {
             .then(result => {
                 console.log(result);
                 const {id} = result;
+                sessionStorage.setItem('id', result.id);
+                sessionStorage.setItem('photo', result.photo);
+                sessionStorage.setItem('name', result.name);
                 this.setAuthData({id: id});
             })
             .catch(error => {
@@ -128,6 +134,7 @@ export default class App extends Component {
         this.setAuthLoading();
         authService.userDelete(credentials)
             .then(result => {
+                sessionStorage.clear();
                 console.log("deleted");
             })
             .catch(error => {

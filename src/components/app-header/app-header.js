@@ -55,8 +55,8 @@ const AppHeader = () => {
                         <NavbarItem>
                             <Link to="./../../" onClick={() => {
                                 setIsAuthorized(false);
-                                localStorage.removeItem('email');
-                                localStorage.removeItem('password');
+                                sessionStorage.removeItem('email');
+                                sessionStorage.removeItem('password');
                             }}>
                                 <div className="logout-button"/>
                             </Link>

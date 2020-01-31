@@ -43,8 +43,8 @@ class CreateGroupForm extends Component {
         console.log("Submit", this.state);
         createGroup(
             {
-                email: localStorage.getItem('email'),
-                password: localStorage.getItem('password'),
+                email: sessionStorage.getItem('email'),
+                password: sessionStorage.getItem('password'),
                 groupName: this.state.groupName,
                 city: this.state.city,
                 peopleNeeded: this.state.peopleNeeded,

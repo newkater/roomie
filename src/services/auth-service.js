@@ -16,8 +16,8 @@ export const signIn = async (credentials) => {
         console.log(result);
         throw new Error('Sign in failed');
     }
-    localStorage.setItem('email', credentials.email);
-    localStorage.setItem('password', credentials.password);
+    sessionStorage.setItem('email', credentials.email);
+    sessionStorage.setItem('password', credentials.password);
     return await result.json();
 };
 
@@ -32,8 +32,8 @@ export const signUp = async (form) => {
         console.log(result);
         throw new Error(`Sign Up Failed`);
     }
-    localStorage.setItem('email', form.email);
-    localStorage.setItem('password', form.password);
+    sessionStorage.setItem('email', form.email);
+    sessionStorage.setItem('password', form.password);
     return await result.json();
 };
 
