@@ -95,13 +95,22 @@ class GroupBlock extends Component {
     addApplication = () => {
         this.setState({groupBlockType: "3"});
         this.setState({applications: ()=>[...this.state.applications, {
-                id: this.props.user.id,
-                name: this.props.user.name,
-                age: this.props.user.age,
-                photo: this.props.user.proto,
-                userCity: this.props.user.city,
-                userInfo: this.props.user.info
+                id: sessionStorage.getItem('id'),
+                name: sessionStorage.getItem('name'),
+                age: undefined,
+                photo: sessionStorage.getItem('photo'),
+                userCity: undefined,
+                userInfo: undefined
             }]});
+        this.handleSubmit();
+    };
+
+    deleteApplication = () => {
+        this.setState({groupBlockType: "1"});
+        let array = [...this.state.applications];
+        const index = Number(sessionStorage.getItem('id'));
+        array.splice(index, 1);
+        this.setState({applications: array});
         this.handleSubmit();
     };
 
@@ -197,7 +206,7 @@ class GroupBlock extends Component {
                         (type === "2") &&
                         <footer className="group-block-controls">
                             <Button disabled>Заявка подана</Button>
-                            <Button style={buttonStyle}>Отменить</Button>
+                            <Button style={buttonStyle} onClick={this.deleteApplication}>Отменить</Button>
                         </footer>
                     }
 
