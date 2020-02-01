@@ -9,13 +9,13 @@ export default class PollList extends Component {
     };
     render() {
         let {isBoxBottomHidden} = this.state;
-        let {name, membersNumber, pollList} = this.props;
-        console.log("PollList elements", pollList);
+        let {name, membersNumber, pollList, groupUpdate, group} = this.props;
+        //console.log("PollList elements", pollList);
         const elements = pollList.map((item) => {
             const id = item.id;
             return (
                 <li key={id}>
-                    <Poll form={item}/>
+                    <Poll form={item} groupUpdate={groupUpdate} group={group}/>
                 </li>
             );
         });

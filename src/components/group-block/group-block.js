@@ -116,7 +116,7 @@ class GroupBlock extends Component {
 
     handleSubmit = () => {
         const {groupUpdate} = this.props;
-        console.log("update group props", this.props);
+        //console.log("update group props", this.props);
         //event.preventDefault();
         console.log("Submit", this.state);
         groupUpdate(

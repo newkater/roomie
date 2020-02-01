@@ -70,7 +70,7 @@ class GroupPage extends Component {
                     <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                         <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
                         <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
-                        <PollList name="Опросы" membersNumber={elements.length} pollList={elements}/>
+                        <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
                     </div>
                 </div>
                 {/*<Columns>*/}
