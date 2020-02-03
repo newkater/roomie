@@ -55,7 +55,7 @@ export default class App extends Component {
     };
 
     onError = (err) => {
-        console.log("Error", err);
+        console.trace("Error", err);
     };
 
     onGroupsLoaded = (groups) => {
@@ -69,7 +69,7 @@ export default class App extends Component {
             .then(groups => {
                 this.onGroupsLoaded(groups);
             })
-            .catch(this.onError)
+            .catch(() => {console.log("Failed Getting Groups.")})
     };
 
     onCountriesLoaded = (countries) => {
@@ -99,6 +99,10 @@ export default class App extends Component {
     register = (form) => {
         this.setAuthLoading();
         authService.signUp(form)
+            // .then(result => {
+            //     console.log(`result = ${result}`);
+            //     return result.json();
+            // })
             .then(result => {
                 console.log("app register ", result);
                 const {id} = result;

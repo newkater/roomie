@@ -2,6 +2,7 @@ import {Component} from 'react';
 import user1 from "./images/user1.png"
 
 const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
+const GET_GROUPS_URL="http://localhost:9301/allgroups";
 //const ALL_GROUPS_URL = "http://api.roomie.kz/allgroups";
 
 export default class Data extends Component {
@@ -120,7 +121,7 @@ export default class Data extends Component {
     };
 
     getGroups = () => {
-        return fetch('http://localhost:9300/allgroups')
+        return fetch(GET_GROUPS_URL)
             .then(res => res.json())
             .then(res => {
             //console.log("res " + JSON.stringify(res));

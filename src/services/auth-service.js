@@ -1,9 +1,9 @@
-const AUTH_URL =`http://localhost:9200/login`;
-const SIGNUP_URL = `http://localhost:9200/register`;
-const CREATE_GROUP_URL =`http://localhost:9200/create-group`;
-const UPDATE_USER_URL =`http://localhost:9200/profile/:id`;
-const UPDATE_GROUP_URL =`http://localhost:9200/profile/:id`;
-const DELETE_USER_URL =`http://localhost:9200/profile/:id`;
+const AUTH_URL =`http://localhost:9301/login`;
+const SIGNUP_URL = `http://localhost:9301/register`;
+const CREATE_GROUP_URL =`http://localhost:9301/create-group`;
+const UPDATE_USER_URL =`http://localhost:9301/profile/:id`;
+const UPDATE_GROUP_URL =`http://localhost:9301/group/:id`;
+const DELETE_USER_URL =`http://localhost:9301/profile/:id`;
 
 export const signIn = async (credentials) => {
     const result = await fetch(AUTH_URL, {
@@ -22,19 +22,26 @@ export const signIn = async (credentials) => {
 };
 
 export const signUp = async (form) => {
-    const result = await fetch(SIGNUP_URL, {
+    const result = fetch(SIGNUP_URL, {
         method: "POST",
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({...form}),
+    }).then(result=> result.json()).then(result => {
+        console.log(`signup result`);
+        if (!result.ok) {
+            throw new Error(`Sign Up Failed`);
+        }
+       return result
     });
-    if (!result.ok) {
-        console.log(result);
-        throw new Error(`Sign Up Failed`);
-    }
-    sessionStorage.setItem('email', form.email);
-    sessionStorage.setItem('password', form.password);
-    return await result.json();
+    return result;
+    // if (!result.ok) {
+    //     console.log(result);
+    //     throw new Error(`Sign Up Failed`);
+    // }
+    // sessionStorage.setItem('email', form.email);
+    // sessionStorage.setItem('password', form.password);
+    // return await result.json();
 };
 
 export const groupCreation = async (form) => {
