@@ -16,6 +16,7 @@ import RegisterPage from './pages/register';
 import ProfilePage from './pages/profile';
 import Data from './data';
 import CreateGroupPage from "./pages/create-group";
+import AboutPage from "./pages/about";
 
 toast.configure();
 
@@ -231,6 +232,13 @@ export default class App extends Component {
                                        countries={countries}
                                        register={this.register}
                                        num={"first"}
+                                   />
+                               }
+                        />
+                        <Route exact path={'/about'}
+                               render = {() =>
+                                   <AboutPage
+                                       projectInfo={this.data.getProjectInfo()}
                                    />
                                }
                         />
