@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Container} from "bloomer";
 import {Link} from "react-router-dom";
+import './about.css';
 
 export default class AboutPage extends Component {
     componentDidMount() {
@@ -21,13 +22,13 @@ export default class AboutPage extends Component {
             );
         })
         let questions = form.map((item) =>
-            <li><Link onClick={() => item.myItemRef.current.scrollIntoView({behavior: "smooth"})}>{item.question}</Link></li>
+            <li><Link className="other" onClick={() => item.myItemRef.current.scrollIntoView({behavior: "smooth"})}>{item.question}</Link></li>
         );
         let answers = form.map((item) => {
             return (
                 <div ref={item.myItemRef}>
-                    <p>{item.question}</p>
-                    <p>{item.answer}</p>
+                    <p className="other1">{item.question}</p>
+                    <p className="other">{item.answer}</p>
                 </div>
             );
         });
@@ -36,7 +37,8 @@ export default class AboutPage extends Component {
             <div className="page">
                 <Container>
                     <h3 className="title2">О проекте</h3>
-                    <p>Roomie – возможность быстрого и качественного поиска сожителей с использованием минимальных усилий.</p>
+                    <p className="roomie-description">Roomie – возможность быстрого и качественного поиска сожителей с использованием минимальных усилий.</p>
+                    <p className="other">А для большей эффективности можете посмотреть следующие темы:</p>
                     <ul>
                         {questions}
                     </ul>
