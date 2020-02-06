@@ -15,7 +15,7 @@ const boxStyle = {
     borderRadius: "8px",
     width: "352px",
     padding: "36px 24px"
-}
+};
 
 const buttonStyle = {
     fontFamily: "Roboto",
@@ -75,7 +75,7 @@ const infoItem = (title, value) => {
     )
 };
 
-class GroupBlock extends Component {
+export default class GroupBlock extends Component {
 
     state = {
         groupBlockType: this.props.type,
@@ -233,16 +233,4 @@ class GroupBlock extends Component {
     }
 }
 
-GroupBlock.propTypes = {
-    type: PropTypes.any,
-    isClick: PropTypes.any,
-    group: PropTypes.any,
-    showHeader: PropTypes.bool,
-    showAbout: PropTypes.bool,
-    showInfo: PropTypes.bool,
-    showMembers: PropTypes.bool
-}
-
 GroupBlock.defaultProps = {showHeader: true, showAbout: true, showInfo: true, showMembers: true}
-
-export default GroupBlock;

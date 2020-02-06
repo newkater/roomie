@@ -1,0 +1,41 @@
+.group-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+
+    /* identical to box height */
+    letter-spacing: 0.25px;
+
+    color: #000000;
+}
+
+.group-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.link-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 15px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.25px;
+
+    color: #0019FF;
+}
+
+.bottom-link {
+    margin-top: 15px;
+}

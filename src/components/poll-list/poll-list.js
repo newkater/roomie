@@ -22,7 +22,7 @@ export default class PollList extends Component {
 
         return (
             <div>
-                <Box className="box-style" onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
+                <Box className="poll-box-style" onClick={() => this.setState({isBoxBottomHidden: !isBoxBottomHidden})}>
                     <div className="collapse-header">
                         <div>{name} ({membersNumber})</div>
                         <div className={ isBoxBottomHidden ? "collapse-dropdown-button collapse-dropdown-button--open" : "collapse-dropdown-button" }

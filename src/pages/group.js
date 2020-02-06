@@ -6,6 +6,7 @@ import "./group.css";
 import * as PropTypes from "prop-types";
 import PollList from "../components/poll-list";
 import {Link} from "react-router-dom";
+import LinksBlock from "../components/links-block/links-block";
 
 class GroupPage extends Component {
     state = {
@@ -47,7 +48,7 @@ class GroupPage extends Component {
         let {group, groupUpdate} = this.props;
         console.log("group page props ", this.props);
         console.log("group page", group);
-        const {name, members, applications} = group;
+        const {name, members, applications, telegramLink, whatsappLink} = group;
         return (
             <Container>
                 <Link to="/">
@@ -58,14 +59,19 @@ class GroupPage extends Component {
                 </Link>
                 <p className="group-name">{name}</p>
                 <div className="flex-container">
-                    <div style={{"flex-basis": "352px"}}>
-                        <GroupBlock type={groupBlockType}
-                                    isClick={this.isClick}
-                                    groupUpdate={groupUpdate}
-                                    group={group}
-                                    showMembers={false}
-                                    showHeader={false}
-                        />
+                     <div style={{"flex-basis": "352px"}}>
+                        <div>
+                            <GroupBlock type={groupBlockType}
+                                        isClick={this.isClick}
+                                        groupUpdate={groupUpdate}
+                                        group={group}
+                                        showMembers={false}
+                                        showHeader={false}
+                            />
+                        </div>
+                        <div>
+                            <LinksBlock telegramLink={telegramLink} whatsappLink={whatsappLink}/>
+                        </div>
                     </div>
                     <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                         <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
