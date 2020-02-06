@@ -129,7 +129,7 @@ class RegisterForm extends Component {
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('currentCity', value)}
                                     options={countries}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.currentCity}
                             />
                         </Control>
@@ -142,7 +142,7 @@ class RegisterForm extends Component {
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('maxRoommatesNumber', value)}
                                     options={roommatesNumber}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.maxRoommatesNumber}
                             />
                         </Control>
@@ -155,7 +155,7 @@ class RegisterForm extends Component {
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('rentalPeriod', value)}
                                     options={timePeriods}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.rentalPeriod}
                             />
                         </Control>
@@ -169,7 +169,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={false}
                                     onChange={(value) => this.handleInput('languages', value)}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.languages}
                                 />
                         </Control>
@@ -211,6 +211,7 @@ class RegisterForm extends Component {
                         <Label isSize="medium">ФИО</Label>
                         <Control>
                             <Input type="text"
+                                   className="mandatory-field"
                                    onChange={(event) => this.handleInput('userName', event.target.value)}
                                    placeholder='Александр Сергеевич Пушкин'
                                    isSize="medium"
@@ -222,6 +223,7 @@ class RegisterForm extends Component {
                         <Label isSize="medium">Дата рождения</Label>
                         <Control>
                             <Input type="date"
+                                   className="mandatory-field"
                                    isSize="medium"
                                    value={this.state.birthDate}
                                    onChange={(event) => this.handleInput('birthDate', event.target.value)}
@@ -234,7 +236,7 @@ class RegisterForm extends Component {
                             <Select isSize="medium"
                                     options={genders}
                                     onChange={(value) => this.handleInput('sex', value)}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.sex}
                             />
                         </Control>
@@ -247,7 +249,7 @@ class RegisterForm extends Component {
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCountry', value)}
                                     options={countries}
-                                    className="is-fullwidth"
+                                    className="is-fullwidth mandatory-field"
                                     value={this.state.birthCountry}
                             />
                         </Control>
@@ -313,6 +315,7 @@ class RegisterForm extends Component {
                     <Label isSize="medium">Электронная почта</Label>
                     <Control>
                         <Input type="email"
+                               className="mandatory-field"
                                onChange={(event) => this.handleInput('email', event.target.value)}
                                placeholder='example@gmail.com'
                                isSize="medium"/>
@@ -322,6 +325,7 @@ class RegisterForm extends Component {
                     <Label isSize="medium">Пароль</Label>
                     <Control>
                         <Input type="password"
+                               className="mandatory-field"
                                onChange={(event) => this.handleInput('password', event.target.value)}
                                isSize="medium"
                                placeholder='password'/>
@@ -331,6 +335,7 @@ class RegisterForm extends Component {
                     <Label isSize="medium">Повторите пароль</Label>
                     <Control>
                         <Input type="password"
+                               className="mandatory-field"
                                isSize="medium"
                                onChange={(event) => this.handleInput('pass', event.target.value)}
                                placeholder='password'/>
