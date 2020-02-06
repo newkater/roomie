@@ -2,6 +2,7 @@ import {Component} from 'react';
 import user1 from "./images/user1.png"
 
 const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
+const LANGUAGES_URL ="http://api.roomie.kz/languages";
 //const ALL_GROUPS_URL = "http://api.roomie.kz/allgroups";
 
 export default class Data extends Component {
@@ -193,6 +194,20 @@ export default class Data extends Component {
                     return {label: item.name, value: item.name, id: item.id}
                 });
                 return countries
+            })
+    };
+
+    getLanguages = async () => {
+        //fetch(LANGUAGES_URL).then(response => response.json()).then(console.log);
+        return fetch(LANGUAGES_URL, {method: 'GET'})
+            .then(res => {return res.json()})
+            .then(res => {
+                const languages = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
+                    return {label: item.lang_name, value: item.id, id: item.id}
+                });
+                console.log("data lang", languages);
+                return languages
             })
     };
 

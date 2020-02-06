@@ -34,6 +34,7 @@ export default class App extends Component {
     state = {
         groups: [],
         countries: [],
+        languages: [],
         Auth: this.initialAuthData
     };
 
@@ -79,10 +80,24 @@ export default class App extends Component {
         });
     };
 
+    onLanguagesLoaded = (languages) => {
+        this.setState({
+            languages: [...languages]
+        });
+    };
+
     getCountries = () => {
         this.data.getCountries()
             .then(countries => {
                 this.onCountriesLoaded(countries);
+            })
+            .catch(this.onError)
+    };
+
+    getLanguages = () => {
+        this.data.getLanguages()
+            .then(languages => {
+                this.onLanguagesLoaded(languages);
             })
             .catch(this.onError)
     };
@@ -95,6 +110,7 @@ export default class App extends Component {
     componentDidMount() {
         this.getGroups();
         this.getCountries();
+        this.getLanguages();
     }
 
     register = (form) => {
@@ -191,7 +207,7 @@ export default class App extends Component {
     };
 
     render() {
-        let {groups, countries} = this.state;
+        let {groups, countries, languages} = this.state;
         return (
             <Router>
                 <div>
@@ -256,6 +272,7 @@ export default class App extends Component {
                                        countries={countries}
                                        userUpdate={this.userUpdate}
                                        id={match.params.id}
+                                       languages={languages}
                                        getUser = {this.data.getUser}
                                        userDelete={this.userDelete}
                                        //user={this.getUser(match.params.id)}

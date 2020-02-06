@@ -9,7 +9,6 @@ import './profile-block.css';
 import Avatar from "../avatar";
 import {ageToString} from "../../utils";
 import Select from "react-select";
-import {LANGUAGES} from "../../utils/languages";
 import {Link} from "react-router-dom";
 
 const habits = [
@@ -122,8 +121,9 @@ class ProfileBlock extends Component {
 
     render() {
         let {showDetails, isChanging} = this.state;
-        let {imgPath, age, badHabits, birthDate, city, languages, info, name, phoneNumber, specialty, university} = this.state;
-        const {countries} = this.props;
+        let {imgPath, age, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
+        const {countries, languages} = this.props;
+        console.log("profile-block lang", languages);
         return (
             <div className="profile">
                 <ToastContainer
@@ -236,7 +236,7 @@ class ProfileBlock extends Component {
                                         <Select isSize="medium"
                                                 isMulti
                                                 className="profile-change-value is-fullwidth"
-                                                options={LANGUAGES}
+                                                options={languages}
                                                 isSearchable
                                                 closeMenuOnSelect={false}
                                                 onChange={(value) => this.handleInput('languages', value)}
