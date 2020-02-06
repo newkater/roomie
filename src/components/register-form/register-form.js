@@ -198,7 +198,7 @@ class RegisterForm extends Component {
                         </Control>
                     </Field>
                     <div>
-                        { page === 3 && <Button type="submit" onClick={this.handleSubmit} isColor='info' style={{"width": "100%", "height": "54px"}}>Готово!</Button> }
+                        { page === 3 && <Button disabled={this.state.maxRoommatesNumber==="" || this.state.languages===null || this.state.currentCity==="" || this.state.rentalPeriod===""} type="submit" onClick={this.handleSubmit} isColor='info' style={{"width": "100%", "height": "54px"}}>Готово!</Button> }
                     </div>
                 </form>
             )
@@ -303,7 +303,7 @@ class RegisterForm extends Component {
                         </Control>
                     </Field>
                     <div style={{"display": "flex", "justify-content": "flex-end", "margin-top": "50px"}}>
-                        <Button onClick={() => changePage(page + 1)} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
+                        <Button disabled={this.state.userName==="" || this.state.birthDate==="" || this.state.birthCountry===""} onClick={() => changePage(page + 1)} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
                     </div>
                 </form>
             )
@@ -348,7 +348,7 @@ class RegisterForm extends Component {
                     </div>
                 </Field>
                 <div style={{"display": "flex", "justify-content": "flex-end", "margin-top": "50px"}}>
-                    <Button disabled={putError(this.state.password, this.state.pass)} onClick={(() => changePage(page + 1))} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
+                    <Button disabled={putError(this.state.password, this.state.pass) || this.state.email===""} onClick={(() => changePage(page + 1))} isSize='large' isColor='info' style={{dalshe}}>Дальше</Button>
                 </div>
             </form>
         )
