@@ -226,6 +226,36 @@ export default class Data extends Component {
             })
     }
 
+    getSpecialities = async ({universityId}) => {
+        //console.log("dataaaa", countryName);
+        return fetch(`http://api.roomie.kz/specialities/${universityId}`, {method: 'GET'})
+            .then(res => {
+                return res.json()
+            })
+            .then(res => {
+                const specialities = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
+                    return {label: item.name, value: item.id, id: item.id}
+                });
+                //console.log("data cities", cities);
+                return specialities;
+            });
+    }
+
+    getKazakhCities = async () => {
+        //console.log("dataaaa", countryName);
+        return fetch(`http://api.roomie.kz/cities/Казахстан`, {method: 'GET'})
+            .then(res => {return res.json()})
+            .then(res => {
+                const cities = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
+                    return {label: item.name, value: item.id, id: item.id}
+                });
+                //console.log("data cities", cities);
+                return cities;
+            })
+    }
+
     getAlmatyUniversities = async () => {
         //fetch(LANGUAGES_URL).then(response => response.json()).then(console.log);
         return fetch(ALMATY_UNI_URL, {method: 'GET'})

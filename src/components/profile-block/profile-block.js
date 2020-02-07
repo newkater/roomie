@@ -11,6 +11,7 @@ import {ageToString} from "../../utils";
 import Select from "react-select";
 import {COUNTRIES} from "./../../utils/countries";
 import {Link} from "react-router-dom";
+import Data from "../../data";
 
 const habits = [
     {value: "Нет", label: "Нет"},
@@ -33,6 +34,7 @@ const userProp = (key, value, isChanging) => {
 };
 
 class ProfileBlock extends Component {
+    data=new Data();
     state = {
         id: this.props.user.id,
         imgPath: this.props.user.imgPath,
@@ -47,7 +49,8 @@ class ProfileBlock extends Component {
         phoneNumber: this.props.user.phoneNumber,
         info: this.props.user.info,
         showDetails: false,
-        isChanging: false
+        isChanging: false,
+        specialities: []
     };
 
     notify = () => toast.error(this.toastMessage, {
@@ -119,6 +122,23 @@ class ProfileBlock extends Component {
             });
         //window.location.reload();
     };
+
+    getSpecialities = (universityId) => {
+        this.data.getSpecialities({universityId})
+        // .then(res => {
+        //     console.log("getSpecialities", res);
+        //     return res;
+        // })
+            .then(res => this.setState({specialities: res}))
+        // .then(() => console.log("after", this.state.specialities));
+    };
+
+    handleChangeUniversity = (value) => {
+        this.setState({university: value} );
+        this.getSpecialities(value.value);
+        //console.log("value", value);
+        //console.log("handle cities", this.state.cities);
+    }
 
     render() {
         let {showDetails, isChanging} = this.state;
@@ -212,7 +232,7 @@ class ProfileBlock extends Component {
                                                 className="profile-change-value"
                                                 isSearchable
                                                 closeMenuOnSelect={true}
-                                                onChange={(value) => this.handleInput('university', value)}
+                                                onChange={(value) => this.handleChangeUniversity(value)}
                                                 options={almatyUniversities}
                                                 value={this.state.university}
                                         />
@@ -226,7 +246,7 @@ class ProfileBlock extends Component {
                                                 className="profile-change-value"
                                                 closeMenuOnSelect={true}
                                                 onChange={(value) => this.handleInput('specialty', value)}
-                                                options={COUNTRIES}
+                                                options={this.state.specialities}
                                                 value={this.state.specialty}
                                         />
                                     </div>

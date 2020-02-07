@@ -37,6 +37,7 @@ export default class App extends Component {
         languages: [],
         cities: [],
         almatyUniversities: [],
+        kazakhCities: [],
         Auth: this.initialAuthData
     };
 
@@ -88,6 +89,12 @@ export default class App extends Component {
         });
     };
 
+    onKazakhCitiesLoaded = (kazakhCities) => {
+        this.setState({
+            kazakhCities: [...kazakhCities]
+        });
+    };
+
     onAlmatyUniversitiesLoaded = (almatyUniversities) => {
         this.setState({
             almatyUniversities: [...almatyUniversities]
@@ -110,6 +117,14 @@ export default class App extends Component {
             .catch(this.onError)
     };
 
+    getKazakhCities = () => {
+        this.data.getKazakhCities()
+            .then(kazakhCities => {
+                this.onKazakhCitiesLoaded(kazakhCities);
+            })
+            .catch(this.onError)
+    };
+
     getAlmatyUniversities = () => {
         this.data.getAlmatyUniversities()
             .then(almatyUniversities => {
@@ -127,6 +142,7 @@ export default class App extends Component {
         this.getGroups();
         this.getCountries();
         this.getLanguages();
+        this.getKazakhCities();
         this.getAlmatyUniversities();
     }
 
@@ -224,7 +240,7 @@ export default class App extends Component {
     };
 
     render() {
-        let {groups, countries, languages, almatyUniversities} = this.state;
+        let {groups, countries, languages, almatyUniversities, kazakhCities} = this.state;
         return (
             <Router>
                 <div>
@@ -265,6 +281,7 @@ export default class App extends Component {
                                        countries={countries}
                                        register={this.register}
                                        languages={languages}
+                                       kazakhCities={kazakhCities}
                                        almatyUniversities={almatyUniversities}
                                        num={"first"}
                                    />

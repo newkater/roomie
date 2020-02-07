@@ -30,7 +30,7 @@ class RegisterPage extends Component {
 
     render() {
         const { page } = this.state;
-        const {register, countries, languages, almatyUniversities} = this.props;
+        const {register, countries, languages, almatyUniversities, kazakhCities} = this.props;
 
         return (
             <Container>
@@ -41,7 +41,7 @@ class RegisterPage extends Component {
                 </Section>
 
                 <Section style={{"max-width": "500px", "margin": "0 auto"}}>
-                    <RegisterForm almatyUniversities={almatyUniversities} languages={languages} register={register} page={page} changePage={this.changePage} countries={countries}/>
+                    <RegisterForm almatyUniversities={almatyUniversities} kazakhCities={kazakhCities} languages={languages} register={register} page={page} changePage={this.changePage} countries={countries}/>
                     {/*{ page > 1 && <Button onClick={() => this.changePage(page - 1)} isColor='info' isSize="medium" style={{"margin-top": "10px"}}>Вернуться</Button> }*/}
 
                 </Section>
