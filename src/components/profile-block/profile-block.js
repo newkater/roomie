@@ -20,7 +20,7 @@ const habits = [
     {value: "Курение и алкоголь", label: "Курение и алкоголь"}
 ];
 
-const userProp = (key, value, isChanging) => {
+const userProp = (key, value) => {
     return(
         <div className="profile-info-prop">
             <div className="profile-info-key">
@@ -142,8 +142,9 @@ class ProfileBlock extends Component {
 
     render() {
         let {showDetails, isChanging} = this.state;
-        let {imgPath, age, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
-        const {languages, almatyUniversities} = this.props;
+        let {imgPath, age, languages, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
+        const { almatyUniversities} = this.props;
+        const allLanguages=this.props.languages;
         //console.log("profile-block coun", countries);
         return (
             <div className="profile">
@@ -257,7 +258,7 @@ class ProfileBlock extends Component {
                                         <Select isSize="medium"
                                                 isMulti
                                                 className="profile-change-value is-fullwidth"
-                                                options={languages}
+                                                options={allLanguages}
                                                 isSearchable
                                                 closeMenuOnSelect={false}
                                                 onChange={(value) => this.handleInput('languages', value)}

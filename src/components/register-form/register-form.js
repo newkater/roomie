@@ -148,7 +148,9 @@ class RegisterForm extends Component {
     }
 
     render() {
-        const { page, changePage, languages, almatyUniversities, kazakhCities } = this.props;
+        const { page, changePage, almatyUniversities, kazakhCities } = this.props;
+
+        const allLanguages=this.props.languages;
 
         const {specialities, cities} = this.state;
 
@@ -186,7 +188,7 @@ class RegisterForm extends Component {
                         <Control className="is-expanded">
                             <Select isSize="medium"
                                     isMulti
-                                    options={languages}
+                                    options={allLanguages}
                                     isSearchable
                                     closeMenuOnSelect={false}
                                     onChange={(value) => this.handleInput('languages', value)}
