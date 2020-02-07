@@ -6,6 +6,7 @@ import {COUNTRIES} from "../../utils/countries";
 import Select from 'react-select';
 import {withRouter} from 'react-router-dom';
 import "react-date-picker/dist/DatePicker.css";
+import Data from "../../data";
 
 const dalshe = {
     "background": "#001AFF",
@@ -58,6 +59,7 @@ let debouncedError = (password, pass) => {
 };
 
 class RegisterForm extends Component {
+    data= new Data();
     state = {
         email: '',
         password: '',
@@ -76,7 +78,12 @@ class RegisterForm extends Component {
         languages: null,
         badHabits: '',
         userInfo: '',
-        isPasswordCorrect: true
+        isPasswordCorrect: true,
+        cities: []
+    };
+
+    getCities = (countryName) => {
+        this.data.getCities({countryName}).then(res => console.log("getCities", res)).then(res => this.setState({cities: res}))
     };
 
     handleInput = (key, value) => {
@@ -115,25 +122,19 @@ class RegisterForm extends Component {
         history.push('/');
     };
 
+    handleChangeCountry = (value) => {
+        this.setState({birthCountry: value} );
+        this.getCities(value.value);
+        //console.log("value", value);
+        //console.log("handle cities", this.state.cities);
+    }
+
     render() {
         const { page, changePage, languages, almatyUniversities } = this.props;
 
         if (page === 3) {
             return (
                 <form>
-                    <Field>
-                        <Label isSize="medium">В каком городе вы ищете жилье?</Label>
-                        <Control className="is-expanded">
-                            <Select isSize="medium"
-                                    isSearchable
-                                    closeMenuOnSelect={true}
-                                    onChange={(value) => this.handleInput('currentCity', value)}
-                                    options={COUNTRIES}
-                                    className="is-fullwidth mandatory-field"
-                                    value={this.state.currentCity}
-                            />
-                        </Control>
-                    </Field>
                     <Field>
                         <Label isSize="medium">Максимальное число сожителей</Label>
                         <Control>
@@ -172,6 +173,45 @@ class RegisterForm extends Component {
                                     className="is-fullwidth mandatory-field"
                                     value={this.state.languages}
                                 />
+                        </Control>
+                    </Field>
+                    <Field>
+                        <Label isSize="medium">В каком городе вы ищете жилье?</Label>
+                        <Control className="is-expanded">
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('currentCity', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth mandatory-field"
+                                    value={this.state.currentCity}
+                            />
+                        </Control>
+                    </Field>
+                    <Field>
+                        <Label isSize="medium">Университет или колледж</Label>
+                        <Control className="is-expanded">
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('university', value)}
+                                    options={almatyUniversities}
+                                    className="is-fullwidth"
+                                    value={this.state.university}
+                            />
+                        </Control>
+                    </Field>
+                    <Field>
+                        <Label isSize="medium">Специальность</Label>
+                        <Control className="is-expanded">
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleInput('speciality', value)}
+                                    options={COUNTRIES}
+                                    className="is-fullwidth"
+                                    value={this.state.speciality}
+                            />
                         </Control>
                     </Field>
                     <Field>
@@ -247,7 +287,7 @@ class RegisterForm extends Component {
                             <Select isSize="medium"
                                     isSearchable
                                     closeMenuOnSelect={true}
-                                    onChange={(value) => this.handleInput('birthCountry', value)}
+                                    onChange={(value) => this.handleChangeCountry(value)}
                                     options={COUNTRIES}
                                     className="is-fullwidth mandatory-field"
                                     value={this.state.birthCountry}
@@ -261,35 +301,9 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCity', value)}
-                                    options={COUNTRIES}
+                                    options={this.state.cities}
                                     className="is-fullwidth"
                                     value={this.state.birthCity}
-                            />
-                        </Control>
-                    </Field>
-                    <Field>
-                        <Label isSize="medium">Университет или колледж</Label>
-                        <Control className="is-expanded">
-                            <Select isSize="medium"
-                                    isSearchable
-                                    closeMenuOnSelect={true}
-                                    onChange={(value) => this.handleInput('university', value)}
-                                    options={almatyUniversities}
-                                    className="is-fullwidth"
-                                    value={this.state.university}
-                            />
-                        </Control>
-                    </Field>
-                    <Field>
-                        <Label isSize="medium">Специальность</Label>
-                        <Control className="is-expanded">
-                            <Select isSize="medium"
-                                    isSearchable
-                                    closeMenuOnSelect={true}
-                                    onChange={(value) => this.handleInput('speciality', value)}
-                                    options={COUNTRIES}
-                                    className="is-fullwidth"
-                                    value={this.state.speciality}
                             />
                         </Control>
                     </Field>

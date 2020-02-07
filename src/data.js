@@ -4,7 +4,7 @@ import user1 from "./images/user1.png"
 const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
 const LANGUAGES_URL ="http://api.roomie.kz/languages";
 const ALMATY_UNI_URL = "http://api.roomie.kz/universities/183";
-//const ALL_GROUPS_URL = "http://api.roomie.kz/allgroups";
+const ALL_GROUPS_URL = 'http://localhost:9300/allgroups';
 
 export default class Data extends Component {
 
@@ -175,7 +175,7 @@ export default class Data extends Component {
     };
 
     getGroups = () => {
-        return fetch('http://localhost:9300/allgroups')
+        return fetch(ALL_GROUPS_URL)
             .then(res => res.json())
             .then(res => {
             //console.log("res " + JSON.stringify(res));
@@ -211,6 +211,20 @@ export default class Data extends Component {
                 return languages
             })
     };
+
+    getCities = async ({countryName}) => {
+        //console.log("dataaaa", countryName);
+        return fetch(`http://api.roomie.kz/cities/${countryName}`, {method: 'GET'})
+            .then(res => {return res.json()})
+            .then(res => {
+                const cities = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
+                    return {label: item.name, value: item.id, id: item.id}
+                });
+                //console.log("data cities", cities);
+                return cities;
+            })
+    }
 
     getAlmatyUniversities = async () => {
         //fetch(LANGUAGES_URL).then(response => response.json()).then(console.log);

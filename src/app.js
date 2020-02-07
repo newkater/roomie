@@ -35,6 +35,7 @@ export default class App extends Component {
         groups: [],
         countries: [],
         languages: [],
+        cities: [],
         almatyUniversities: [],
         Auth: this.initialAuthData
     };
