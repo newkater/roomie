@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import debounce from "lodash";
 import "./register-form.css";
 import {Button, Control, Field, Input, Label} from "bloomer";
-import {LANGUAGES} from "../../utils/languages";
+import {COUNTRIES} from "../../utils/countries";
 import Select from 'react-select';
 import {withRouter} from 'react-router-dom';
 import "react-date-picker/dist/DatePicker.css";
@@ -116,7 +116,7 @@ class RegisterForm extends Component {
     };
 
     render() {
-        const { page, changePage, countries } = this.props;
+        const { page, changePage, languages, almatyUniversities } = this.props;
 
         if (page === 3) {
             return (
@@ -128,7 +128,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('currentCity', value)}
-                                    options={countries}
+                                    options={COUNTRIES}
                                     className="is-fullwidth mandatory-field"
                                     value={this.state.currentCity}
                             />
@@ -165,7 +165,7 @@ class RegisterForm extends Component {
                         <Control className="is-expanded">
                             <Select isSize="medium"
                                     isMulti
-                                    options={LANGUAGES}
+                                    options={languages}
                                     isSearchable
                                     closeMenuOnSelect={false}
                                     onChange={(value) => this.handleInput('languages', value)}
@@ -248,7 +248,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCountry', value)}
-                                    options={countries}
+                                    options={COUNTRIES}
                                     className="is-fullwidth mandatory-field"
                                     value={this.state.birthCountry}
                             />
@@ -261,7 +261,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCity', value)}
-                                    options={countries}
+                                    options={COUNTRIES}
                                     className="is-fullwidth"
                                     value={this.state.birthCity}
                             />
@@ -274,7 +274,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('university', value)}
-                                    options={countries}
+                                    options={almatyUniversities}
                                     className="is-fullwidth"
                                     value={this.state.university}
                             />
@@ -287,7 +287,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('speciality', value)}
-                                    options={countries}
+                                    options={COUNTRIES}
                                     className="is-fullwidth"
                                     value={this.state.speciality}
                             />

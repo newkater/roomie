@@ -9,6 +9,7 @@ import './profile-block.css';
 import Avatar from "../avatar";
 import {ageToString} from "../../utils";
 import Select from "react-select";
+import {COUNTRIES} from "./../../utils/countries";
 import {Link} from "react-router-dom";
 
 const habits = [
@@ -122,8 +123,8 @@ class ProfileBlock extends Component {
     render() {
         let {showDetails, isChanging} = this.state;
         let {imgPath, age, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
-        const {countries, languages} = this.props;
-        console.log("profile-block lang", languages);
+        const {languages, almatyUniversities} = this.props;
+        //console.log("profile-block coun", countries);
         return (
             <div className="profile">
                 <ToastContainer
@@ -212,7 +213,7 @@ class ProfileBlock extends Component {
                                                 isSearchable
                                                 closeMenuOnSelect={true}
                                                 onChange={(value) => this.handleInput('university', value)}
-                                                options={countries}
+                                                options={almatyUniversities}
                                                 value={this.state.university}
                                         />
                                     </div>
@@ -225,7 +226,7 @@ class ProfileBlock extends Component {
                                                 className="profile-change-value"
                                                 closeMenuOnSelect={true}
                                                 onChange={(value) => this.handleInput('specialty', value)}
-                                                options={countries}
+                                                options={COUNTRIES}
                                                 value={this.state.specialty}
                                         />
                                     </div>

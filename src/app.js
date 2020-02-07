@@ -35,6 +35,7 @@ export default class App extends Component {
         groups: [],
         countries: [],
         languages: [],
+        almatyUniversities: [],
         Auth: this.initialAuthData
     };
 
@@ -86,6 +87,12 @@ export default class App extends Component {
         });
     };
 
+    onAlmatyUniversitiesLoaded = (almatyUniversities) => {
+        this.setState({
+            almatyUniversities: [...almatyUniversities]
+        });
+    };
+
     getCountries = () => {
         this.data.getCountries()
             .then(countries => {
@@ -102,6 +109,14 @@ export default class App extends Component {
             .catch(this.onError)
     };
 
+    getAlmatyUniversities = () => {
+        this.data.getAlmatyUniversities()
+            .then(almatyUniversities => {
+                this.onAlmatyUniversitiesLoaded(almatyUniversities);
+            })
+            .catch(this.onError)
+    };
+
     getUser = ({id}) => {
         this.data.getUser({id}).then(res => console.log("app getUser", res))
             .catch(this.onError);
@@ -111,6 +126,7 @@ export default class App extends Component {
         this.getGroups();
         this.getCountries();
         this.getLanguages();
+        this.getAlmatyUniversities();
     }
 
     register = (form) => {
@@ -207,7 +223,7 @@ export default class App extends Component {
     };
 
     render() {
-        let {groups, countries, languages} = this.state;
+        let {groups, countries, languages, almatyUniversities} = this.state;
         return (
             <Router>
                 <div>
@@ -247,6 +263,8 @@ export default class App extends Component {
                                    <RegisterPage
                                        countries={countries}
                                        register={this.register}
+                                       languages={languages}
+                                       almatyUniversities={almatyUniversities}
                                        num={"first"}
                                    />
                                }
@@ -273,6 +291,7 @@ export default class App extends Component {
                                        userUpdate={this.userUpdate}
                                        id={match.params.id}
                                        languages={languages}
+                                       almatyUniversities={almatyUniversities}
                                        getUser = {this.data.getUser}
                                        userDelete={this.userDelete}
                                        //user={this.getUser(match.params.id)}
