@@ -8,8 +8,15 @@ import user1 from "../../images/user1.png";
 
 const AppHeader = () => {
 
+    const email = sessionStorage.getItem("email");
+    const name = sessionStorage.getItem("name");
+    const photo = sessionStorage.getItem("photo");
+    //const password = sessionStorage.getItem("password");
+
+    const isAuthorized = email ? true : false;
+
     const [isActive, setIsActive] = useState(false);
-    const [isAuthorized, setIsAuthorized] = useState(true)
+   // const [isAuthorized, setIsAuthorized] = useState(true)
 
     return (
         <Navbar>
@@ -37,7 +44,7 @@ const AppHeader = () => {
                     {!isAuthorized &&
                     <NavbarEnd>
                         <NavbarItem>
-                            <Link to="/login" onClick={() => setIsAuthorized(!isAuthorized)}>Вход</Link>
+                            <Link to="/login">Вход</Link>
                         </NavbarItem>
                         <NavbarItem>
                             <Link to="/register">Регистрация</Link>
@@ -49,12 +56,13 @@ const AppHeader = () => {
                         <NavbarItem>
                             <Avatar image={user1} size={32} />
                             <Link to="/profile/1">
-                                <div>Камила К.</div>
+                                <div>{name}</div>
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Link to="./../../" onClick={() => {
-                                setIsAuthorized(false);
+                            <Link to="/" onClick={() => {
+                                sessionStorage.removeItem("name");
+                                sessionStorage.removeItem("photo");
                                 sessionStorage.removeItem('email');
                                 sessionStorage.removeItem('password');
                             }}>
