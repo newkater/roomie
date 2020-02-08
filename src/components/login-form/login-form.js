@@ -85,6 +85,7 @@ class LoginForm extends React.Component {
                         </Field>
                         <Control isPulled="right">
                             <Button type="submit"
+                                    disabled={this.state.email==="" || this.state.password ===""}
                                     onClick={this.handleSubmit}
                                     style={{
                                 "background": "#001AFF",
