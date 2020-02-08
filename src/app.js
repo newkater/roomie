@@ -166,12 +166,13 @@ export default class App extends Component {
     login = (credentials) => {
         this.setAuthLoading();
         authService.signIn(credentials)
-            .then(result => {
-                console.log(result);
-                const {id} = result;
-                sessionStorage.setItem('id', result.id);
-                sessionStorage.setItem('photo', result.photo);
-                sessionStorage.setItem('name', result.name);
+            .then(res => {
+                let result = JSON.parse(res);
+                console.log("res", result);
+                const {id, name, photo} = result[0];
+                sessionStorage.setItem('id', id);
+                sessionStorage.setItem('photo', photo);
+                sessionStorage.setItem('name', name);
                 this.setAuthData({id: id});
             })
             .catch(error => {
