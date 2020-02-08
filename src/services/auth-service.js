@@ -8,12 +8,13 @@ const UPDATE_GROUP_URL =`http://api.roomie.kz/profile/:id`;
 const DELETE_USER_URL =`http://api.roomie.kz/profile/:id`;
 
 export const signIn = async (credentials) => {
+    const auth = 'Basic '+ encode(credentials.email + ":" + credentials.password);
     const result = await fetch(AUTH_URL, {
         method: "GET",
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic '+ encode(credentials.email + ":" + credentials.password),
+            'Authorization': auth,
         },
         //body: JSON.stringify({...credentials}),
     });
@@ -22,11 +23,12 @@ export const signIn = async (credentials) => {
         throw new Error('Sign in failed');
     }
     sessionStorage.setItem('email', credentials.email);
-    sessionStorage.setItem('password', credentials.password);
+    sessionStorage.setItem("auth", auth);
     return await result.json();
 };
 
 export const signUp = async (form) => {
+    const auth = 'Basic '+ encode(form.email + ":" + form.password);
     console.log("form", form);
     const result = await fetch(SIGNUP_URL, {
         method: "POST",
@@ -40,7 +42,7 @@ export const signUp = async (form) => {
     }
     //console.log("register!!", result);
     sessionStorage.setItem('email', form.email);
-    sessionStorage.setItem('password', form.password);
+    sessionStorage.setItem("auth", auth);
     return await result.json();
 };
 

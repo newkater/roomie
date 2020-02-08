@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container, Navbar, NavbarItem, NavbarBurger, NavbarBrand, NavbarMenu, NavbarStart, NavbarEnd} from "bloomer";
 import "./app-header.css"
 import {Link} from "react-router-dom";
@@ -11,12 +11,11 @@ const AppHeader = () => {
     const email = sessionStorage.getItem("email");
     const name = sessionStorage.getItem("name");
     const photo = sessionStorage.getItem("photo");
+    const id = sessionStorage.getItem("id");
+    const isAuthorized = sessionStorage.getItem("isAuthorized");
     //const password = sessionStorage.getItem("password");
 
-    let isAuthorized = email ? true : false;
-
     const [isActive, setIsActive] = useState(false);
-   // const [isAuthorized, setIsAuthorized] = useState(true)
 
     return (
         <Navbar>
@@ -55,7 +54,7 @@ const AppHeader = () => {
                     <NavbarEnd>
                         <NavbarItem>
                             <Avatar image={user1} size={32} />
-                            <Link to="/profile/1">
+                            <Link to={`/profile/${id}`}>
                                 <div>{name}</div>
                             </Link>
                         </NavbarItem>
@@ -65,7 +64,8 @@ const AppHeader = () => {
                                 sessionStorage.removeItem("photo");
                                 sessionStorage.removeItem('email');
                                 sessionStorage.removeItem('password');
-                                isAuthorized = false;
+                                sessionStorage.removeItem('isAuthorized');
+                                window.location.reload();
                             }}>
                                 <div className="logout-button"/>
                             </Link>

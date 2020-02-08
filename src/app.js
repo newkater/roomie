@@ -173,6 +173,7 @@ export default class App extends Component {
                 sessionStorage.setItem('id', id);
                 sessionStorage.setItem('photo', photo);
                 sessionStorage.setItem('name', name);
+                sessionStorage.setItem('isAuthorized', 'yes');
                 this.setAuthData({id: id});
             })
             .catch(error => {
