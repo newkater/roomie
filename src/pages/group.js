@@ -17,6 +17,14 @@ class GroupPage extends Component {
         this.setState({groupBlockType: "3"});
     };
 
+    isMember = () => {
+        return this.props.group.members.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
+    };
+
+    isApplicant = () => {
+        return this.props.group.applications.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
+    }
+
     componentDidMount() {
         window.scrollTo(0, 0)
     }
@@ -49,6 +57,7 @@ class GroupPage extends Component {
         console.log("group page props ", this.props);
         console.log("group page", group);
         const {name, members, applications, telegramLink, whatsappLink} = group;
+        console.log("check", this.isMember());
         return (
             <Container>
                 <Link to="/">
