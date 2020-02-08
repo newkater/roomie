@@ -13,7 +13,7 @@ const AppHeader = () => {
     const photo = sessionStorage.getItem("photo");
     //const password = sessionStorage.getItem("password");
 
-    const isAuthorized = email ? true : false;
+    let isAuthorized = email ? true : false;
 
     const [isActive, setIsActive] = useState(false);
    // const [isAuthorized, setIsAuthorized] = useState(true)
@@ -65,6 +65,7 @@ const AppHeader = () => {
                                 sessionStorage.removeItem("photo");
                                 sessionStorage.removeItem('email');
                                 sessionStorage.removeItem('password');
+                                isAuthorized = false;
                             }}>
                                 <div className="logout-button"/>
                             </Link>

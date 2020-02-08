@@ -1,3 +1,5 @@
+import { encode } from "base-64";
+
 const AUTH_URL =`http://api.roomie.kz/login`;
 const SIGNUP_URL = `http://api.roomie.kz/register`;
 const CREATE_GROUP_URL =`http://api.roomie.kz/create-group`;
@@ -7,10 +9,13 @@ const DELETE_USER_URL =`http://api.roomie.kz/profile/:id`;
 
 export const signIn = async (credentials) => {
     const result = await fetch(AUTH_URL, {
-        method: "POST",
+        method: "GET",
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({...credentials}),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic '+ encode(credentials.email + ":" + credentials.password),
+        },
+        //body: JSON.stringify({...credentials}),
     });
     if (!result.ok) {
         console.log(result);
