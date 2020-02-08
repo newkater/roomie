@@ -4,6 +4,7 @@ import "./avatar.css"
 const Avatar = ({size, image}) => {
     const style = {
         backgroundImage: `url(${image})`,
+        backgroundRepeat: 'no-repeat',
         width: `${size}px`,
         height: `${size}px`
     }

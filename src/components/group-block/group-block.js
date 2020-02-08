@@ -3,11 +3,7 @@ import {Box, Button} from "bloomer";
 import {Link} from 'react-router-dom';
 import "./group-block.css";
 import Avatar from "../avatar";
-import user2 from "./../../images/user2.png"
-import user3 from "./../../images/user3.png"
-import user4 from "./../../images/user4.png"
-import * as PropTypes from "prop-types";
-
+import camera from './../../images/camera-black.svg';
 
 const boxStyle = {
     background: "#FFFFFF",
@@ -52,12 +48,21 @@ const buttonStyle2 = {
     color: "#C2C2C2"
 }
 
-const membersList = () => {
+const plus = (num) => {
+    return(
+        <div className="group-block-plus">
+            +{num}
+        </div>
+    )
+}
+
+const membersList = (members) => {
+    const firstMembers = members.slice(0, 3);
     return(
         <div className="group-block-members">
-            <Avatar size={64} image={user2}/>
-            <Avatar size={64} image={user3}/>
-            <Avatar size={64} image={user4}/>
+            {firstMembers.map(member => <Avatar size={64} image={member.photo || camera}/>)}
+            {(members.length === 4) && <Avatar size={64} image={members[3].photo || camera}/>}
+            {(members.length > 4) && plus(members.length - 3)}
         </div>
     )
 };
@@ -149,7 +154,7 @@ export default class GroupBlock extends Component {
             showMembers,
             user
         } = this.props;
-        const {id, name, city, rentalPeriod, peopleNumber, free, groupInfo} = group;
+        const {id, name, city, rentalPeriod, members, peopleNumber, free, groupInfo} = group;
         type = this.state.groupBlockType;
         return (
             <div>
@@ -171,7 +176,7 @@ export default class GroupBlock extends Component {
                         </div>
                     }
                     {
-                        showMembers && membersList()
+                        showMembers && membersList(members)
                     }
                     {
                         showInfo &&

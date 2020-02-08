@@ -94,3 +94,17 @@
     top: 10px;
     right: 10px;
 }
+
+.group-block-plus {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    border: #0019FF solid 3px;
+    color: #0019FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
