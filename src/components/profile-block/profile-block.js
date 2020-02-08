@@ -105,17 +105,17 @@ class ProfileBlock extends Component {
                 password: sessionStorage.getItem('password'),
                 id: this.state.id,
                 userName: this.state.userName,
-                sex: this.state.sex,
-                birthCountry: this.state.birthCountry,
+                sex: this.state.sex.value,
+                birthCountry: this.state.birthCountry.value,
                 birthDate: this.state.birthDate,
-                birthCity: this.state.birthCity,
-                university: this.state.university,
-                speciality: this.state.speciality,
+                birthCity: this.state.birthCity.value,
+                university: this.state.university.value,
+                speciality: this.state.speciality.value,
                 phoneNumber: this.state.phoneNumber,
-                currentCity: this.state.currentCity,
-                maxRoommatesNumber: this.state.maxRoommatesNumber,
-                rentalPeriod: this.state.rentalPeriod,
-                languages: this.state.languages,
+                currentCity: this.state.currentCity.value,
+                maxRoommatesNumber: this.state.maxRoommatesNumber.value,
+                rentalPeriod: this.state.rentalPeriod.value,
+                languages: this.state.languages.map((item) => item.id),
                 badHabits: this.state.badHabits,
                 userInfo: this.state.userInfo,
                 groups: this.state.groups
@@ -145,6 +145,7 @@ class ProfileBlock extends Component {
         let {imgPath, age, languages, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
         const { almatyUniversities} = this.props;
         const allLanguages=this.props.languages;
+        const isAuthorised = sessionStorage.getItem("email")?true:false;
         //console.log("profile-block coun", countries);
         return (
             <div className="profile">

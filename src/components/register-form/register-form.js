@@ -21,8 +21,8 @@ const dalshe = {
 };
 
 const genders = [
-    { value: 'male', label: 'Мужской' },
-    { value: 'female', label: 'Женский' }
+    { value: 'MALE', label: 'Мужской' },
+    { value: 'FEMALE', label: 'Женский' }
 ];
 
 const habits = [
@@ -72,7 +72,7 @@ class RegisterForm extends Component {
         university: '',
         speciality: '',
         phoneNumber: '',
-        currentCity: '',
+        currentCity: 183,
         maxRoommatesNumber: '',
         rentalPeriod: '',
         languages: null,
@@ -116,18 +116,18 @@ class RegisterForm extends Component {
                 email: this.state.email,
                 password: this.state.password,
                 userName: this.state.userName,
-                sex: this.state.sex,
-                birthCountry: this.state.birthCountry,
+                sex: this.state.sex.value,
+                birthCountry: this.state.birthCountry.value,
                 birthDate: this.state.birthDate,
                 birthCity: this.state.birthCity,
-                university: this.state.university,
-                speciality: this.state.speciality,
+                university: this.state.university.value,
+                speciality: this.state.speciality.value,
                 phoneNumber: this.state.phoneNumber,
                 currentCity: this.state.currentCity,
-                maxRoommatesNumber: this.state.maxRoommatesNumber,
-                rentalPeriod: this.state.rentalPeriod,
-                languages: this.state.languages,
-                badHabits: this.state.badHabits,
+                maxRoommatesNumber: this.state.maxRoommatesNumber.value,
+                rentalPeriod: this.state.rentalPeriod.value,
+                languages: this.state.languages.map((item) => item.id),
+                badHabits: this.state.badHabits.value,
                 userInfo: this.state.userInfo
             });
         history.push('/');
@@ -197,19 +197,19 @@ class RegisterForm extends Component {
                                 />
                         </Control>
                     </Field>
-                    <Field>
-                        <Label isSize="medium">В каком городе вы ищете жилье?</Label>
-                        <Control className="is-expanded">
-                            <Select isSize="medium"
-                                    isSearchable
-                                    closeMenuOnSelect={true}
-                                    onChange={(value) => this.handleInput('currentCity', value)}
-                                    options={kazakhCities}
-                                    className="is-fullwidth mandatory-field"
-                                    value={this.state.currentCity}
-                            />
-                        </Control>
-                    </Field>
+                    {/*<Field>*/}
+                    {/*    <Label isSize="medium">В каком городе вы ищете жилье?</Label>*/}
+                    {/*    <Control className="is-expanded">*/}
+                    {/*        <Select isSize="medium"*/}
+                    {/*                isSearchable*/}
+                    {/*                closeMenuOnSelect={true}*/}
+                    {/*                onChange={(value) => this.handleInput('currentCity', value)}*/}
+                    {/*                options={kazakhCities}*/}
+                    {/*                className="is-fullwidth mandatory-field"*/}
+                    {/*                value={this.state.currentCity}*/}
+                    {/*        />*/}
+                    {/*    </Control>*/}
+                    {/*</Field>*/}
                     <Field>
                         <Label isSize="medium">Университет или колледж</Label>
                         <Control className="is-expanded">

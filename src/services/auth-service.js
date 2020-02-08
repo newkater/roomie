@@ -1,9 +1,9 @@
-const AUTH_URL =`http://localhost:9200/login`;
-const SIGNUP_URL = `http://localhost:9200/register`;
-const CREATE_GROUP_URL =`http://localhost:9200/create-group`;
-const UPDATE_USER_URL =`http://localhost:9200/profile/:id`;
-const UPDATE_GROUP_URL =`http://localhost:9200/profile/:id`;
-const DELETE_USER_URL =`http://localhost:9200/profile/:id`;
+const AUTH_URL =`http://api.roomie.kz/login`;
+const SIGNUP_URL = `http://api.roomie.kz/register`;
+const CREATE_GROUP_URL =`http://api.roomie.kz/create-group`;
+const UPDATE_USER_URL =`http://api.roomie.kz/profile/:id`;
+const UPDATE_GROUP_URL =`http://api.roomie.kz/profile/:id`;
+const DELETE_USER_URL =`http://api.roomie.kz/profile/:id`;
 
 export const signIn = async (credentials) => {
     const result = await fetch(AUTH_URL, {
@@ -22,6 +22,7 @@ export const signIn = async (credentials) => {
 };
 
 export const signUp = async (form) => {
+    console.log("form", form);
     const result = await fetch(SIGNUP_URL, {
         method: "POST",
         mode: 'cors',
@@ -32,6 +33,7 @@ export const signUp = async (form) => {
         console.log(result);
         throw new Error(`Sign Up Failed`);
     }
+    //console.log("register!!", result);
     sessionStorage.setItem('email', form.email);
     sessionStorage.setItem('password', form.password);
     return await result.json();
