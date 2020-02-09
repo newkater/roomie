@@ -149,12 +149,14 @@ export default class App extends Component {
     register = (form) => {
         this.setAuthLoading();
         authService.signUp(form)
-            .then(result => {
+            .then(res => {
+                let result = JSON.parse(res);
                 console.log("app register ", result);
-                const {id} = result;
-                sessionStorage.setItem('id', result.id);
-                sessionStorage.setItem('photo', result.photo);
-                sessionStorage.setItem('name', result.name);
+                const {id, name, photo} = result[0];
+                sessionStorage.setItem('id', id);
+                sessionStorage.setItem('photo', photo);
+                sessionStorage.setItem('name', name);
+                sessionStorage.setItem('isAuthorized', 'yes');
                 this.setAuthData({id: id});
             })
             .catch(error => {

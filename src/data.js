@@ -223,7 +223,7 @@ export default class Data extends Component {
                 });
                 //console.log("data cities", cities);
                 return cities;
-            })
+            });
     }
 
     getSpecialities = async ({universityId}) => {

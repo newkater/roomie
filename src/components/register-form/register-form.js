@@ -84,7 +84,10 @@ class RegisterForm extends Component {
     };
 
     getCities = (countryName) => {
-        this.data.getCities({countryName}).then(res => console.log("getCities", res)).then(res => this.setState({cities: res}))
+        this.data.getCities({countryName}).then(res => {
+            console.log("getCities", res);
+            return res;
+        }).then(res => this.setState({cities: res})).then(() => console.log("handle cities", this.state.cities));
     };
 
     getSpecialities = (universityId) => {
@@ -136,8 +139,8 @@ class RegisterForm extends Component {
     handleChangeCountry = (value) => {
         this.setState({birthCountry: value} );
         this.getCities(value.value);
-        //console.log("value", value);
-        //console.log("handle cities", this.state.cities);
+        console.log("value", value);
+        console.log("handle cities", this.state.cities);
     }
 
     handleChangeUniversity = (value) => {
