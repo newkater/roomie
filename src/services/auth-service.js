@@ -47,10 +47,14 @@ export const signUp = async (form) => {
 };
 
 export const groupCreation = async (form) => {
+    const auth = sessionStorage.getItem('auth');
     const result = await fetch(CREATE_GROUP_URL, {
         method: "POST",
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+        },
         body: JSON.stringify({...form}),
     });
     if (!result.ok) {
@@ -61,10 +65,14 @@ export const groupCreation = async (form) => {
 };
 
 export const groupUpdate = async (form) => {
+    const auth = sessionStorage.getItem('auth');
     const result = await fetch(UPDATE_GROUP_URL, {
         method: "PUT",
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+        },
         body: JSON.stringify({...form}),
     });
     if (!result.ok) {
@@ -75,10 +83,14 @@ export const groupUpdate = async (form) => {
 };
 
 export const userUpdate = async (form) => {
+    const auth = sessionStorage.getItem('auth');
     const result = await fetch(UPDATE_USER_URL, {
         method: "PUT",
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+        },
         body: JSON.stringify({...form}),
     });
     if (!result.ok) {
@@ -89,10 +101,14 @@ export const userUpdate = async (form) => {
 };
 
 export const userDelete = async (credentials) => {
+    const auth = sessionStorage.getItem('auth');
     const result = await fetch(DELETE_USER_URL, {
         method: "DELETE",
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth,
+        },
         body: JSON.stringify({...credentials}),
     });
     if (!result.ok) {

@@ -7,6 +7,7 @@ import {Column, Columns, Container} from "bloomer";
 import ConfettiBlock from "../components/confetti-block";
 
 const groupsList = (groups, type) => {
+    if (groups == undefined) return '';
     return groups.map((el) => {
         return (
             <Column isSize={'1/3'} >
@@ -34,8 +35,7 @@ class ProfilePage extends Component {
     render() {
         const {groupBlockType, user} = this.state;
         const {userUpdate, countries, userDelete, groupUpdate, languages, almatyUniversities} = this.props;
-        this.setState(user.groups);
-        let groups = groupsList(this.state.groups, groupBlockType);
+        let groups = groupsList(this.state.user.groups, groupBlockType);
         //console.log("profile page countries ", countries);
         return (
             <div className="page">
@@ -48,7 +48,7 @@ class ProfilePage extends Component {
                         <Column isSize={'1/3'} >
                             <ConfettiBlock/>
                         </Column>
-                        <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
+                        {groups.length>0 && <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
                     </Columns>
                 </Container>
             </div>

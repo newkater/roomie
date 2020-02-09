@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import user1 from "./images/user1.png"
+import {encode} from "base-64";
 
 const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
 const LANGUAGES_URL ="http://api.roomie.kz/languages";
@@ -285,7 +286,16 @@ export default class Data extends Component {
     }
 
     getUser = ({id}) => {
-            return fetch(`http://api.roomie.kz/profile/${id}`, {method: 'GET'})
+        const auth = sessionStorage.getItem('auth');
+            return fetch(`http://api.roomie.kz/profile/${id}`, {
+                method: "GET",
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': auth,
+                },
+                //body: JSON.stringify({...credentials}),
+            })
             .then(res => {return res.json()})
             .then(res => {
                 const profile = JSON.parse(res);
