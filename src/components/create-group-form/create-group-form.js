@@ -56,6 +56,7 @@ class CreateGroupForm extends Component {
     };
 
     render() {
+        const {kazakhCities} = this.props;
         return (
             <form>
                 <Field>
@@ -90,7 +91,7 @@ class CreateGroupForm extends Component {
                                 isSearchable
                                 closeMenuOnSelect={true}
                                 onChange={(value) => this.handleInput('city', value)}
-                                options={COUNTRIES}
+                                options={kazakhCities}
                                 className="is-fullwidth mandatory-field-crate-group-form"
                                 value={this.state.city}
                         />

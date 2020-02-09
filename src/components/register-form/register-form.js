@@ -80,14 +80,22 @@ class RegisterForm extends Component {
         userInfo: '',
         isPasswordCorrect: true,
         cities: [],
-        specialities: []
+        specialities: [],
+        universities: []
     };
 
-    getCities = (countryName) => {
-        this.data.getCities({countryName}).then(res => {
+    getCities = (cityName) => {
+        this.data.getCities({cityName}).then(res => {
             console.log("getCities", res);
             return res;
         }).then(res => this.setState({cities: res})).then(() => console.log("handle cities", this.state.cities));
+    };
+
+    getUniversities = (cityId) => {
+        this.data.getUniversities({cityId}).then(res => {
+            console.log("getUniversities", res);
+            return res;
+        }).then(res => this.setState({universities: res})).then(() => console.log("handle universities", this.state.universities));
     };
 
     getSpecialities = (universityId) => {
@@ -143,6 +151,13 @@ class RegisterForm extends Component {
         console.log("handle cities", this.state.cities);
     }
 
+    handleChangeCity = (value) => {
+        this.setState({currentCity: value} );
+        this.getUniversities(value.value);
+        console.log("value", value);
+        console.log("handle universities", this.state.universities);
+    }
+
     handleChangeUniversity = (value) => {
         this.setState({university: value} );
         this.getSpecialities(value.value);
@@ -155,7 +170,7 @@ class RegisterForm extends Component {
 
         const allLanguages=this.props.languages;
 
-        const {specialities, cities} = this.state;
+        const {specialities, cities, universities} = this.state;
 
         if (page === 3) {
             return (
@@ -200,19 +215,19 @@ class RegisterForm extends Component {
                                 />
                         </Control>
                     </Field>
-                    {/*<Field>*/}
-                    {/*    <Label isSize="medium">В каком городе вы ищете жилье?</Label>*/}
-                    {/*    <Control className="is-expanded">*/}
-                    {/*        <Select isSize="medium"*/}
-                    {/*                isSearchable*/}
-                    {/*                closeMenuOnSelect={true}*/}
-                    {/*                onChange={(value) => this.handleInput('currentCity', value)}*/}
-                    {/*                options={kazakhCities}*/}
-                    {/*                className="is-fullwidth mandatory-field"*/}
-                    {/*                value={this.state.currentCity}*/}
-                    {/*        />*/}
-                    {/*    </Control>*/}
-                    {/*</Field>*/}
+                    <Field>
+                        <Label isSize="medium">В каком городе вы ищете жилье?</Label>
+                        <Control className="is-expanded">
+                            <Select isSize="medium"
+                                    isSearchable
+                                    closeMenuOnSelect={true}
+                                    onChange={(value) => this.handleChangeCity(value)}
+                                    options={kazakhCities}
+                                    className="is-fullwidth mandatory-field"
+                                    value={this.state.currentCity}
+                            />
+                        </Control>
+                    </Field>
                     <Field>
                         <Label isSize="medium">Университет или колледж</Label>
                         <Control className="is-expanded">
@@ -220,7 +235,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleChangeUniversity(value)}
-                                    options={almatyUniversities}
+                                    options={universities}
                                     className="is-fullwidth"
                                     value={this.state.university}
                             />
@@ -326,7 +341,7 @@ class RegisterForm extends Component {
                                     isSearchable
                                     closeMenuOnSelect={true}
                                     onChange={(value) => this.handleInput('birthCity', value)}
-                                    options={this.state.cities}
+                                    options={kazakhCities}
                                     className="is-fullwidth"
                                     value={this.state.birthCity}
                             />

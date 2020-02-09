@@ -301,6 +301,7 @@ export default class App extends Component {
                         <Route exact path={'/create-group'}
                                render = {() =>
                                    <CreateGroupPage
+                                       kazakhCities={kazakhCities}
                                        createGroup={this.createGroup}
                                    />
                                }

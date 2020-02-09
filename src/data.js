@@ -270,6 +270,20 @@ export default class Data extends Component {
             })
     };
 
+    getUniversities = async ({cityId}) => {
+        //console.log("dataaaa", countryName);
+        return fetch(`http://api.roomie.kz/universities/${cityId}`, {method: 'GET'})
+            .then(res => {return res.json()})
+            .then(res => {
+                const universities = JSON.parse(res).map((item) => {
+                    //console.log("data data ", item);
+                    return {label: item.name, value: item.id, id: item.id}
+                });
+                //console.log("data cities", cities);
+                return universities;
+            });
+    }
+
     getUser = ({id}) => {
             return fetch(`http://api.roomie.kz/profile/${id}`, {method: 'GET'})
             .then(res => {return res.json()})
