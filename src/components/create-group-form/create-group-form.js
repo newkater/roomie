@@ -3,6 +3,7 @@ import {Button, Control, Field, Input, Label} from "bloomer";
 import Select from "react-select";
 import {COUNTRIES} from "../../utils";
 import {withRouter} from 'react-router-dom';
+import './create-group-form.css';
 
 const timePeriods = [
     { value: 1, label: '1 месяц' },
@@ -38,17 +39,15 @@ class CreateGroupForm extends Component {
 
     handleSubmit = (event) => {
         const {createGroup, history} = this.props;
-        console.log("create-group props", this.props);
+        //console.log("create-group props", this.props);
         event.preventDefault();
         console.log("Submit", this.state);
         createGroup(
             {
-                email: sessionStorage.getItem('email'),
-                password: sessionStorage.getItem('password'),
                 groupName: this.state.groupName,
-                city: this.state.city,
-                peopleNeeded: this.state.peopleNeeded,
-                rentalPeriod: this.state.rentalPeriod,
+                city: this.state.city.value,
+                peopleNeeded: this.state.peopleNeeded.value,
+                rentalPeriod: this.state.rentalPeriod.value,
                 telegramLink: this.state.telegramLink,
                 whatsappLink: this.state.whatsappLink,
                 groupInfo: this.state.groupInfo
@@ -66,6 +65,7 @@ class CreateGroupForm extends Component {
                                onChange={(event) => this.handleInput('groupName', event.target.value)}
                                placeholder='Студенты-физики'
                                isSize="medium"
+                               className="mandatory-field-crate-group-form"
                                value={this.state.groupName}
                         />
                     </Control>
@@ -78,7 +78,7 @@ class CreateGroupForm extends Component {
                                 closeMenuOnSelect={true}
                                 onChange={(value) => this.handleInput('peopleNeeded', value)}
                                 options={peopleNumber}
-                                className="is-fullwidth"
+                                className="is-fullwidth mandatory-field-crate-group-form"
                                 value={this.state.peopleNeeded}
                         />
                     </Control>
@@ -91,7 +91,7 @@ class CreateGroupForm extends Component {
                                 closeMenuOnSelect={true}
                                 onChange={(value) => this.handleInput('city', value)}
                                 options={COUNTRIES}
-                                className="is-fullwidth"
+                                className="is-fullwidth mandatory-field-crate-group-form"
                                 value={this.state.city}
                         />
                     </Control>
@@ -104,7 +104,7 @@ class CreateGroupForm extends Component {
                                 closeMenuOnSelect={true}
                                 onChange={(value) => this.handleInput('rentalPeriod', value)}
                                 options={timePeriods}
-                                className="is-fullwidth"
+                                className="is-fullwidth mandatory-field-crate-group-form"
                                 value={this.state.rentalPeriod}
                         />
                     </Control>
@@ -115,6 +115,7 @@ class CreateGroupForm extends Component {
                         <Input type="text"
                                onChange={(event) => this.handleInput('telegramLink', event.target.value)}
                                isSize="medium"
+                               className="mandatory-field-crate-group-form"
                                value={this.state.telegramLink}
                         />
                     </Control>
@@ -125,6 +126,7 @@ class CreateGroupForm extends Component {
                         <Input type="text"
                                onChange={(event) => this.handleInput('whatsappLink', event.target.value)}
                                isSize="medium"
+                               className="mandatory-field-crate-group-form"
                                value={this.state.whatsappLink}
                         />
                     </Control>
@@ -141,6 +143,7 @@ class CreateGroupForm extends Component {
                 </Field>
                 <div>
                     <Button type="submit"
+                            disabled={this.state.groupName==='' || this.state.city ==='' || this.state.peopleNeeded==='' || this.state.rentalPeriod==='' || this.state.telegramLink==='' || this.state.whatsappLink===''}
                             onClick={this.handleSubmit}
                             isColor='info'
                             style={{"width": "100%", "height": "54px"}}>

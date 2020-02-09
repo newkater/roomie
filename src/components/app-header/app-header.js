@@ -3,7 +3,7 @@ import {Container, Navbar, NavbarItem, NavbarBurger, NavbarBrand, NavbarMenu, Na
 import "./app-header.css"
 import {Link} from "react-router-dom";
 import Avatar from "../avatar";
-import user1 from "../../images/user1.png";
+import camera from "./../../images/camera-black.svg";
 
 
 const AppHeader = () => {
@@ -53,7 +53,7 @@ const AppHeader = () => {
                     {isAuthorized &&
                     <NavbarEnd>
                         <NavbarItem>
-                            <Avatar image={user1} size={32} />
+                            <Avatar image={photo==="undefined"?camera:photo} size={32} />
                             <Link to={`/profile/${id}`}>
                                 <div>{name}</div>
                             </Link>

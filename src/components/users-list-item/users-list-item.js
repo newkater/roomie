@@ -1,16 +1,17 @@
 import React from "react";
 import {Content} from "bloomer";
 import {Link} from "react-router-dom";
+import camera from './../../images/camera-black.svg'
 
 const UsersListItem = ({user}) => {
-    const {userInfo, age, userCity, id} = user;
+    const {userInfo, age, userCity, id, photo} = user;
     return (
         <Content isDisplay="flex">
             <figure className="image is-64x64">
                 <Link to={`/profile/${id}`}>
                     {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                     <img className="is-rounded"
-                     src="https://bulma.io/images/placeholders/64x64.png"
+                     src={photo||camera}
                      alt="Image"/>
                 </Link>
             </figure>

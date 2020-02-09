@@ -271,12 +271,14 @@ export default class Data extends Component {
     };
 
     getUser = ({id}) => {
-        const a = this.createUser(id, this._users[id], this._age[id], this._cities[id],
-            this._usersInfo[id], this._birthDates[id], this._univercities[id], this._specialities[id],
-            this._languages[id], this._badHabits[id], this._phoneNumbers[id]);
-        return new Promise(resolve => {
-            setTimeout( () => {resolve(a)},100)
-        });
+            return fetch(`http://api.roomie.kz/profile/${id}`, {method: 'GET'})
+            .then(res => {return res.json()})
+            .then(res => {
+                const profile = JSON.parse(res);
+                console.log("data profile", profile);
+                return profile;
+            })
+
     };
 
     getQuestions = () => this._questions;

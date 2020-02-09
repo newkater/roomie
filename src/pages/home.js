@@ -17,7 +17,7 @@ class HomePage extends Component {
     render() {
         let {groups, groupUpdate} = this.props;
         const {groupBlockType} = this.state;
-        console.log("home ", groups);
+        //console.log("home ", groups);
         const groupBlockRef = React.createRef();
         return (
             <Container>
