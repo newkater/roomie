@@ -5,7 +5,7 @@ import {encode} from "base-64";
 const COUNTRIES_URL ="http://api.roomie.kz/allcountries";
 const LANGUAGES_URL ="http://api.roomie.kz/languages";
 const ALMATY_UNI_URL = "http://api.roomie.kz/universities/183";
-const ALL_GROUPS_URL = 'http://localhost:9300/allgroups';
+const ALL_GROUPS_URL = 'http://api.roomie.kz/allgroups';
 
 export default class Data extends Component {
 
@@ -179,7 +179,7 @@ export default class Data extends Component {
         return fetch(ALL_GROUPS_URL)
             .then(res => res.json())
             .then(res => {
-            //console.log("res " + JSON.stringify(res));
+            console.log("res " + JSON.stringify(res));
             const groups = res;
             //console.log("fourps = " + JSON.stringify(groups));
             return groups;

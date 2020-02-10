@@ -44,9 +44,10 @@ class CreateGroupForm extends Component {
         console.log("Submit", this.state);
         createGroup(
             {
-                groupName: this.state.groupName,
-                city: this.state.city.value,
-                peopleNeeded: this.state.peopleNeeded.value,
+                ownerId: sessionStorage.getItem('id'),
+                name: this.state.groupName,
+                cityId: this.state.city.value,
+                maxNumOfRoommates: this.state.peopleNeeded.value,
                 rentalPeriod: this.state.rentalPeriod.value,
                 telegramLink: this.state.telegramLink,
                 whatsappLink: this.state.whatsappLink,
@@ -57,6 +58,7 @@ class CreateGroupForm extends Component {
 
     render() {
         const {kazakhCities} = this.props;
+        console.log("cities", kazakhCities);
         return (
             <form>
                 <Field>

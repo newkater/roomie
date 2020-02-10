@@ -320,7 +320,7 @@ class ProfileBlock extends Component {
                                         </div>
                                         <div className="profile-change-value">
                                             <textarea className="profile-change-value textarea"
-                                                      onChange={(event) => this.handleInput('info', event.target.value)}
+                                                      onChange={(event) => this.handleInput('userInfo', event.target.value)}
                                                       placeholder=''
                                                       value={this.state.info}
                                                       isSize="medium"/>

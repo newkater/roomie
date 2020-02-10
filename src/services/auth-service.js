@@ -2,7 +2,7 @@ import { encode } from "base-64";
 
 const AUTH_URL =`http://api.roomie.kz/login`;
 const SIGNUP_URL = `http://api.roomie.kz/register`;
-const CREATE_GROUP_URL =`http://api.roomie.kz/create-group`;
+const CREATE_GROUP_URL =`http://api.roomie.kz/creategroup`;
 const UPDATE_USER_URL =`http://api.roomie.kz/user/:id`;
 const UPDATE_GROUP_URL =`http://api.roomie.kz/profile/:id`;
 const DELETE_USER_URL =`http://api.roomie.kz/profile/:id`;

@@ -21,7 +21,7 @@ class CreateGroupPage extends Component {
     }
 
     render() {
-        const {createGroup} = this.props;
+        const {createGroup, kazakhCities} = this.props;
         return (
             <Container>
                 <Section style={{"margin-top": "50px"}}>
@@ -31,7 +31,7 @@ class CreateGroupPage extends Component {
                     </Title>
                 </Section>
                 <Section style={{"max-width": "500px", "margin": "0 auto"}}>
-                    <CreateGroupForm createGroup={createGroup}/>
+                    <CreateGroupForm createGroup={createGroup} kazakhCities={kazakhCities}/>
                 </Section>
             </Container>
         );
