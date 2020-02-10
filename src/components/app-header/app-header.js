@@ -53,7 +53,7 @@ const AppHeader = () => {
                     {isAuthorized &&
                     <NavbarEnd>
                         <NavbarItem>
-                            <Avatar image={photo==="undefined"?camera:photo} size={32} />
+                            <Link to={`/profile/${id}`}><Avatar image={photo==="undefined"?camera:photo} size={32} /></Link>
                             <Link to={`/profile/${id}`}>
                                 <div>{name}</div>
                             </Link>

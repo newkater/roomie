@@ -78,14 +78,20 @@ class GroupPage extends Component {
                                         showHeader={false}
                             />
                         </div>
-                        <div>
-                            <LinksBlock telegramLink={telegramLink} whatsappLink={whatsappLink}/>
-                        </div>
+                        {
+                            this.isMember() &&
+                            <div>
+                                <LinksBlock telegramLink={telegramLink} whatsappLink={whatsappLink}/>
+                            </div>
+                        }
                     </div>
                     <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                         <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
                         <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
-                        <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
+                        {
+                            this.isMember() &&
+                            <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
+                        }
                     </div>
                 </div>
                 {/*<Columns>*/}

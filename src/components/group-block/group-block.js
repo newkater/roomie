@@ -97,9 +97,28 @@ export default class GroupBlock extends Component {
         polls: this.props.group.polls
     };
 
+    isMember = () => {
+        let {members} = this.state;
+        if (members == undefined || members==null) members = [];
+        const id = sessionStorage.getItem('id');
+        let arr = ((members == undefined || members==null)?[]:members.filter((item) => {return item.id==id}));
+        //console.log("member", arr.length!==0, typeof id, members);
+        return arr.length!==0;
+    };
+
+    isApplicant = () => {
+        let {applications} = this.state;
+        //console.log("applicant", applications);
+        if (applications == undefined || applications==null) applications = [];
+        const id = sessionStorage.getItem('id');
+        let arr = ((applications == undefined || applications==null)?[]:applications.filter((item) => {return item.id==id}))
+        //console.log("applicant", arr.length!==0, applications);
+        return arr.length!==0;
+    };
+
     addApplication = () => {
         this.setState({groupBlockType: "3"});
-        this.setState({applications: ()=>[...this.state.applications, {
+        this.setState({applications: [...this.state.applications, {
                 id: sessionStorage.getItem('id'),
                 name: sessionStorage.getItem('name'),
                 age: undefined,
@@ -117,6 +136,7 @@ export default class GroupBlock extends Component {
         array.splice(index, 1);
         this.setState({applications: array});
         this.handleSubmit();
+        //window.location.reload();
     };
 
     handleSubmit = () => {
@@ -156,6 +176,8 @@ export default class GroupBlock extends Component {
         } = this.props;
         const {id, name, city, rentalPeriod, members, peopleNumber, free, groupInfo} = group;
         type = this.state.groupBlockType;
+        const isMember = this.isMember();
+        const isApplicant = this.isApplicant();
         return (
             <div>
                 <Box style={boxStyle} className="group-block">
@@ -201,14 +223,14 @@ export default class GroupBlock extends Component {
                     }
 
                     {
-                        (type === "1") &&
+                        (!isMember && !isApplicant) &&
                         <footer className="group-block-controls">
                             <Button style={buttonStyle1} onClick={this.addApplication}>Подать заявку</Button>
                         </footer>
                     }
 
                     {
-                        (type === "2") &&
+                        (isMember || isApplicant) &&
                         <footer className="group-block-controls">
                             <Button disabled>Заявка подана</Button>
                             <Button style={buttonStyle} onClick={this.deleteApplication}>Отменить</Button>
@@ -221,14 +243,6 @@ export default class GroupBlock extends Component {
                             <div style={buttonStyle2}>Ваша заявка на рассмотрении!</div>
                         </footer>
                     }
-
-                    {
-                        (type === "4") &&
-                        <footer className="group-block-controls">
-                            <div style={buttonStyle2}>Вы состоите в группе.</div>
-                        </footer>
-                    }
-
 
                 </Box>
 

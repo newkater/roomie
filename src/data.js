@@ -298,7 +298,14 @@ export default class Data extends Component {
             })
             .then(res => {return res.json()})
             .then(res => {
-                const profile = JSON.parse(res);
+                let profile = JSON.parse(res);
+                console.log("data ", profile);
+                profile.languages = profile.languages.map((item) =>{
+                    return item.languageName;
+                });
+                profile.languages = profile.languages.join(", ");
+                profile.badHabits = profile.badHabits[0].habitName;
+                profile.university = profile.universityName;
                 console.log("data profile", profile);
                 return profile;
             })

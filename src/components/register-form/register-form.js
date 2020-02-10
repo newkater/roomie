@@ -54,7 +54,7 @@ let putError = (password, pass) => {
 };
 
 let debouncedError = (password, pass) => {
-    console.log("debouncedError came ", putError(password, pass));
+    //console.log("debouncedError came ", putError(password, pass));
     return (debounce(putError(password, pass), 500));
 };
 
@@ -122,6 +122,8 @@ class RegisterForm extends Component {
         console.log("register props", this.props);
         event.preventDefault();
         console.log("Submit", this.state);
+        let lang = [...this.state.languages];
+        lang= lang.map((item) => {return {id: item.id}});
         register(
             {
                 email: this.state.email,
@@ -130,14 +132,14 @@ class RegisterForm extends Component {
                 sex: this.state.sex.value,
                 birthCountry: this.state.birthCountry.value,
                 birthDate: this.state.birthDate,
-                birthCity: this.state.birthCity,
+                birthCity: this.state.birthCity.value,
                 university: this.state.university.value,
                 speciality: this.state.speciality.value,
                 phoneNumber: this.state.phoneNumber,
-                currentCity: this.state.currentCity,
+                currentCity: this.state.currentCity.value,
                 maxRoommatesNumber: this.state.maxRoommatesNumber.value,
                 rentalPeriod: this.state.rentalPeriod.value,
-                languages: this.state.languages.map((item) => item.id),
+                languages: lang,
                 badHabits: this.state.badHabits.value,
                 userInfo: this.state.userInfo
             });

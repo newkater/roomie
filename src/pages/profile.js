@@ -36,20 +36,26 @@ class ProfilePage extends Component {
         const {groupBlockType, user} = this.state;
         const {userUpdate, countries, userDelete, groupUpdate, languages, almatyUniversities} = this.props;
         let groups = groupsList(this.state.user.groups, groupBlockType);
+        const isUser = (sessionStorage.getItem('id') == user.id)
         //console.log("profile page countries ", countries);
         return (
             <div className="page">
                 <Container>
                     {this.state.loading ? <div>Loading ...</div> : <ProfileBlock userDelete={userDelete} userUpdate = {userUpdate} user={user} countries={countries} languages={languages} almatyUniversities={almatyUniversities}/>}
 
-                    <h3 className="title2 title-groups">Мои группы</h3>
+                    {
+                        isUser &&
+                        <div>
+                            <h3 className="title2 title-groups">Мои группы</h3>
 
-                    <Columns isMultiline={true}>
-                        <Column isSize={'1/3'} >
-                            <ConfettiBlock/>
-                        </Column>
-                        {groups.length>0 && <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
-                    </Columns>
+                            <Columns isMultiline={true}>
+                                <Column isSize={'1/3'} >
+                                    <ConfettiBlock/>
+                                </Column>
+                                {groups.length>0 && <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
+                            </Columns>
+                        </div>
+                    }
                 </Container>
             </div>
         );

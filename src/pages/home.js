@@ -17,17 +17,23 @@ class HomePage extends Component {
     render() {
         let {groups, groupUpdate} = this.props;
         const {groupBlockType} = this.state;
-        //console.log("home ", groups);
+        console.log("home ", groups);
         const groupBlockRef = React.createRef();
+        const isAuthorized = sessionStorage.getItem('isAuthorized');
         return (
             <Container>
                 <div className="home-bg-image home-page">
                     <PromoBlock onAnchorClick={() => groupBlockRef.current.scrollIntoView({behavior: "smooth"})}/>
                 </div>
-                <h3 id="group-blocks" ref={groupBlockRef} className="title2 title-groups">Найдите подходящую группу</h3>
-                <Columns isMultiline={true}>
-                    <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
-                </Columns>
+                {
+                    isAuthorized &&
+                    <div>
+                        <h3 id="group-blocks" ref={groupBlockRef} className="title2 title-groups">Найдите подходящую группу</h3>
+                        <Columns isMultiline={true}>
+                            <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
+                        </Columns>
+                    </div>
+                }
             </Container>
         );
     }

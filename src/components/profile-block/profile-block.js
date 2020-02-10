@@ -12,6 +12,8 @@ import Select from "react-select";
 import {COUNTRIES} from "./../../utils/countries";
 import {Link} from "react-router-dom";
 import Data from "../../data";
+import cameraBlack from './../../images/camera-black.svg';
+import cameraWhite from './../../images/camera-white.svg';
 
 const habits = [
     {value: "Нет", label: "Нет"},
@@ -33,21 +35,29 @@ const userProp = (key, value) => {
     )
 };
 
+const toBase64String = (type, data) => {
+    return `data:${type};base64,${data}`;
+};
+
 class ProfileBlock extends Component {
     data=new Data();
     state = {
         id: this.props.user.id,
-        imgPath: this.props.user.imgPath,
+        photo: this.props.user.photo,
         name: this.props.user.name,
         age: this.props.user.age,
-        city: this.props.user.city,
+        sex: this.props.user.sex,
+        currentCity: this.props.user.currentCity,
+        birthCity: this.props.user.birthCity,
         birthDate: this.props.user.birthDate,
         university: this.props.user.university,
-        specialty: this.props.user.specialty,
+        specialty: this.props.user.speciality,
         languages: this.props.user.languages,
         badHabits: this.props.user.badHabits,
         phoneNumber: this.props.user.phoneNumber,
-        info: this.props.user.info,
+        userInfo: this.props.user.userInfo,
+        maxRoommatesNumber: this.props.user.maxRoommatesNumber,
+        rentalPeriod: this.props.user.rentalPeriod,
         showDetails: false,
         isChanging: false,
         specialities: []
@@ -94,28 +104,39 @@ class ProfileBlock extends Component {
         console.log("profile", this.state);
     };
 
+    handleChangeImage = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.addEventListener("load", () => (this.setState({photo: reader.result})));
+        reader.readAsDataURL(file);
+        //console.log("reader", reader.result)
+    }
+
     handleSubmit = (event) => {
         const {userUpdate} = this.props;
         console.log("update user props", this.props);
         event.preventDefault();
         console.log("Submit", this.state);
+        let lang = [...this.state.languages];
+        lang= lang.map((item) => {return {id: item.id}});
         userUpdate(
             {
                 email: sessionStorage.getItem('email'),
                 password: sessionStorage.getItem('password'),
+                photo: this.state.photo,
                 id: this.state.id,
-                userName: this.state.userName,
-                sex: this.state.sex.value,
-                birthCountry: this.state.birthCountry.value,
+                userName: this.state.name,
+                sex: this.state.sex,
+                birthCountry: 'Казахстан',
                 birthDate: this.state.birthDate,
-                birthCity: this.state.birthCity.value,
-                university: this.state.university.value,
-                speciality: this.state.speciality.value,
+                birthCity: this.state.birthCity,
+                university: this.state.university,
+                speciality: this.state.specialty,
                 phoneNumber: this.state.phoneNumber,
-                currentCity: this.state.currentCity.value,
-                maxRoommatesNumber: this.state.maxRoommatesNumber.value,
-                rentalPeriod: this.state.rentalPeriod.value,
-                languages: this.state.languages.map((item) => item.id),
+                currentCity: this.state.currentCity,
+                maxRoommatesNumber: this.state.maxRoommatesNumber,
+                rentalPeriod: this.state.rentalPeriod,
+                languages: lang,
                 badHabits: this.state.badHabits,
                 userInfo: this.state.userInfo,
                 groups: this.state.groups
@@ -142,7 +163,7 @@ class ProfileBlock extends Component {
 
     render() {
         let {showDetails, isChanging} = this.state;
-        let {imgPath, age, languages, badHabits, birthDate, city, info, name, phoneNumber, specialty, university} = this.state;
+        let {photo, age, languages, badHabits, birthDate, birthCity, currentCity, userInfo, name, phoneNumber, specialty, university} = this.state;
         const { almatyUniversities} = this.props;
         const allLanguages=this.props.languages;
         const isAuthorised = sessionStorage.getItem("email")?true:false;
@@ -172,13 +193,13 @@ class ProfileBlock extends Component {
                     !isChanging &&
                     <div className="box profile-block">
                         <div className="profile-picture">
-                            <Avatar image={imgPath} size={200}/>
+                            <Avatar image={photo || cameraBlack} size={200}/>
                         </div>
                         <div className="profile-info">
                             <div className="profile-info-name">{name}</div>
                             <div className="profile-info-age">{ageToString(age)}</div>
                             {userProp('Родная страна', 'Казахстан', isChanging)}
-                            {userProp('Родной город', city, isChanging)}
+                            {userProp('Родной город', birthCity, isChanging)}
                             <CSSTransition
                                 in={showDetails}
                                 timeout={300}
@@ -193,7 +214,7 @@ class ProfileBlock extends Component {
                                     {userProp('Языки', languages, isChanging)}
                                     {userProp('Вредные привычки', badHabits, isChanging)}
                                     {userProp('Телефон', phoneNumber, isChanging)}
-                                    {userProp('О себе', info, isChanging)}
+                                    {userProp('О себе', userInfo, isChanging)}
                                 </section>
                             </CSSTransition>
                         </div>
@@ -203,7 +224,10 @@ class ProfileBlock extends Component {
                     isChanging &&
                     <div className="box profile-block">
                         <div className="profile-picture">
-                            <Avatar image={imgPath} size={200}/>
+                            <Avatar image={photo || cameraBlack} size={200}/>
+                            <div>
+                                <Input type='file' onChange={this.handleChangeImage}/>
+                            </div>
                         </div>
                         <div className="profile-info">
                             <CSSTransition

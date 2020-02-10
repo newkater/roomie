@@ -3,7 +3,7 @@ import { encode } from "base-64";
 const AUTH_URL =`http://api.roomie.kz/login`;
 const SIGNUP_URL = `http://api.roomie.kz/register`;
 const CREATE_GROUP_URL =`http://api.roomie.kz/create-group`;
-const UPDATE_USER_URL =`http://api.roomie.kz/profile/:id`;
+const UPDATE_USER_URL =`http://api.roomie.kz/user/:id`;
 const UPDATE_GROUP_URL =`http://api.roomie.kz/profile/:id`;
 const DELETE_USER_URL =`http://api.roomie.kz/profile/:id`;
 
@@ -23,6 +23,7 @@ export const signIn = async (credentials) => {
         throw new Error('Sign in failed');
     }
     sessionStorage.setItem('email', credentials.email);
+    sessionStorage.setItem('password', credentials.password);
     sessionStorage.setItem("auth", auth);
     return await result.json();
 };
@@ -42,6 +43,7 @@ export const signUp = async (form) => {
     }
     //console.log("register!!", result);
     sessionStorage.setItem('email', form.email);
+    sessionStorage.setItem('password', form.password);
     sessionStorage.setItem("auth", auth);
     return await result.json();
 };
@@ -85,7 +87,7 @@ export const groupUpdate = async (form) => {
 export const userUpdate = async (form) => {
     const auth = sessionStorage.getItem('auth');
     const result = await fetch(UPDATE_USER_URL, {
-        method: "PUT",
+        method: "PATCH",
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',

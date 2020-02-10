@@ -215,6 +215,7 @@ export default class App extends Component {
         authService.userUpdate(form)
             .then(result => {
                 console.log("app userUpdate ", result);
+                sessionStorage.setItem('photo', form.photo);
             })
             .catch(error => {
                 console.log(error);
