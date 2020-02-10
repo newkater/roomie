@@ -13,6 +13,15 @@ const boxStyle = {
     padding: "36px 24px"
 };
 
+const boxStyle1 = {
+    background: "#FFFFFF",
+    boxShadow: "0px 0px 48px rgba(0, 0, 0, 0.05)",
+    borderRadius: "8px",
+    width: "352px",
+    height: "450px",
+    padding: "36px 24px"
+};
+
 const buttonStyle = {
     fontFamily: "Roboto",
     fontStyle: "normal",
@@ -57,6 +66,7 @@ const plus = (num) => {
 }
 
 const membersList = (members) => {
+    if (members==undefined) return;
     const firstMembers = members.slice(0, 3);
     return(
         <div className="group-block-members">
@@ -172,15 +182,18 @@ export default class GroupBlock extends Component {
             showAbout,
             showInfo,
             showMembers,
-            user
+            user,
+            adStyle
         } = this.props;
         const {id, name, city, rentalPeriod, members, peopleNumber, free, groupInfo} = group;
         type = this.state.groupBlockType;
         const isMember = this.isMember();
         const isApplicant = this.isApplicant();
+        //console.log('ad', adStyle);
         return (
             <div>
-                <Box style={boxStyle} className="group-block">
+
+                <Box style={adStyle} className="group-block box-style">
                     {
                         showHeader &&
                         <header className="group-block-header">

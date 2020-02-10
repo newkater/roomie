@@ -6,12 +6,16 @@ import GroupBlock from "../components/group-block";
 import {Column, Columns, Container} from "bloomer";
 import ConfettiBlock from "../components/confetti-block";
 
+const adStyle = {
+    height: "450px"
+};
+
 const groupsList = (groups, type) => {
     if (groups == undefined) return '';
     return groups.map((el) => {
         return (
             <Column isSize={'1/3'} >
-                <GroupBlock style={{"height": "450px"}} type={type} group={el}/>
+                <GroupBlock className="profile-group-block" type={type} group={el} adStyle={adStyle}/>
             </Column>
         );
     });
@@ -52,7 +56,7 @@ class ProfilePage extends Component {
                                 <Column isSize={'1/3'} >
                                     <ConfettiBlock/>
                                 </Column>
-                                {groups.length>0 && <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
+                                {groups.length>0 && <GroupBlocks adStyle={adStyle} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
                             </Columns>
                         </div>
                     }

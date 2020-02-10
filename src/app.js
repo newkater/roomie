@@ -213,7 +213,7 @@ export default class App extends Component {
         this.setAuthLoading();
         console.log("app userUpdate ", form);
         authService.userUpdate(form)
-            .then(result => {
+            .then((result) => {
                 console.log("app userUpdate ", result);
                 sessionStorage.setItem('photo', form.photo);
             })

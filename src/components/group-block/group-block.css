@@ -108,3 +108,11 @@
     font-size: 20px;
     font-weight: bold;
 }
+
+.box-style {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 48px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    width: 352px;
+    padding: 36px 24px;
+}

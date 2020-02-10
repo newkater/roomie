@@ -119,6 +119,8 @@ class ProfileBlock extends Component {
         console.log("Submit", this.state);
         let lang = [...this.state.languages];
         lang= lang.map((item) => {return {id: item.id}});
+        let badHabits = this.state.badHabits;
+        if (badHabits.value != undefined) badHabits=badHabits.value;
         userUpdate(
             {
                 email: sessionStorage.getItem('email'),
@@ -137,11 +139,11 @@ class ProfileBlock extends Component {
                 maxRoommatesNumber: this.state.maxRoommatesNumber,
                 rentalPeriod: this.state.rentalPeriod,
                 languages: lang,
-                badHabits: this.state.badHabits,
+                badHabits: badHabits,
                 userInfo: this.state.userInfo,
                 groups: this.state.groups
             });
-        //window.location.reload();
+        window.location.reload();
     };
 
     getSpecialities = (universityId) => {
@@ -258,7 +260,7 @@ class ProfileBlock extends Component {
                                                 className="profile-change-value"
                                                 isSearchable
                                                 closeMenuOnSelect={true}
-                                                onChange={(value) => this.handleChangeUniversity(value)}
+                                                onChange={(value) => {if (value!= undefined)this.handleChangeUniversity(value)}}
                                                 options={almatyUniversities}
                                                 value={this.state.university}
                                         />
@@ -271,7 +273,7 @@ class ProfileBlock extends Component {
                                                 isSearchable
                                                 className="profile-change-value"
                                                 closeMenuOnSelect={true}
-                                                onChange={(value) => this.handleInput('specialty', value)}
+                                                onChange={(value) => {if (value!= undefined) this.handleInput('specialty', value)}}
                                                 options={this.state.specialities}
                                                 value={this.state.specialty}
                                         />
@@ -286,7 +288,7 @@ class ProfileBlock extends Component {
                                                 options={allLanguages}
                                                 isSearchable
                                                 closeMenuOnSelect={false}
-                                                onChange={(value) => this.handleInput('languages', value)}
+                                                onChange={(value) => {if (value!= undefined) this.handleInput('languages', value)}}
                                                 value={this.state.languages}
                                         />
                                     </div>
@@ -298,7 +300,7 @@ class ProfileBlock extends Component {
                                                 isSearchable
                                                 className="profile-change-value is-fullwidth"
                                                 closeMenuOnSelect={true}
-                                                onChange={(value) => this.handleInput('badHabits', value)}
+                                                onChange={(value) => {if (value!= undefined) this.handleInput('badHabits', value)}}
                                                 options={habits}
                                                 value={this.state.badHabits}
                                         />
