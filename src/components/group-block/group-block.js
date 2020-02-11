@@ -158,8 +158,9 @@ export default class GroupBlock extends Component {
         let array = [...this.state.applications];
         const index = Number(sessionStorage.getItem('id'));
         array.splice(index, 1);
-        this.setState({applications: array});
+        this.setState({applications: this.state.applications.filter(u => u.id != userId)});
         this.handleSubmit();
+        //this.forceUpdate();
         //window.location.reload();
     };
 
@@ -266,7 +267,7 @@ export default class GroupBlock extends Component {
                     }
 
                     {
-                        (type === "3") &&
+                        (!isMember && isApplicant) &&
                         <footer className="group-block-controls">
                             <div style={buttonStyle2}>Ваша заявка на рассмотрении!</div>
                         </footer>

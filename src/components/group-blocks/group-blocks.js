@@ -9,7 +9,7 @@ const GroupBlocks = ({groups, type, groupUpdate, adStyle, apply, cancel}) => {
         //console.log("group-blocks", el);
         return (
             <Column isSize={'1/3'} >
-                <GroupBlock cancel={cancel} apply={apply} type={type} group={el} groupUpdate={groupUpdate} adStyle={adStyle}/>
+                <GroupBlock key={el.id} cancel={cancel} apply={apply} type={type} group={el} groupUpdate={groupUpdate} adStyle={adStyle}/>
             </Column>
         );
     });
