@@ -73,6 +73,13 @@ class GroupPage extends Component {
         const {name, members, applications, telegramLink, whatsappLink} = group;
         console.log("name group", name);
         console.log("check", this.isMember());
+        const arr = applications.map((item) => {return {
+            id: item.id,
+            type: "ADD",
+            person: item.name,
+            positive: 0,
+            negative: 0
+        }});
 
 
         return (
@@ -111,7 +118,7 @@ class GroupPage extends Component {
                         <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                             <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
                             <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
-                            <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
+                            <PollList name="Опросы" membersNumber={arr.length} pollList={arr} groupUpdate={groupUpdate} group={group}/>
                         </div>
                     </div>
                     {/*<Columns>*/}
