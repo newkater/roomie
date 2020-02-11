@@ -89,8 +89,8 @@ export default class Poll extends Component {
                 <span>
                     <div className="voted-people">Проголосовало {positive+negative}</div>
                     <div className="flex-container">
-                        <Button className="flex-item vote-button" onClick={this.positiveAnswer}>Я за!</Button>
-                        <Button className="flex-item vote-button" isColor="#C4C4C4" isOutlined onClick={this.negativeAnswer}>Я против</Button>
+                        <Button className="flex-item vote-button" >Я за!</Button>
+                        <Button className="flex-item vote-button" isColor="#C4C4C4" isOutlined>Я против</Button>
                     </div>
                 </span>
             </div>

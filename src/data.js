@@ -195,6 +195,26 @@ export default class Data extends Component {
         });
     };
 
+    getGroup = (id) => {
+        const auth = sessionStorage.getItem('auth');
+        return fetch(`${ALL_GROUPS_URL}/${id}`, {
+            method: "GET",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': auth,
+            },
+            //body: JSON.stringify({...credentials}),
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log("res " + JSON.stringify(res));
+                const group  = JSON.parse(res);
+                console.log("data group = " + JSON.stringify(group));
+                return group;
+            });
+    };
+
     getCountries = async () => {
         //fetch(COUNTRIES_URL).then(response => response.json()).then(console.log);
         return fetch(COUNTRIES_URL, {method: 'GET'})

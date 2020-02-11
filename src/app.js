@@ -268,6 +268,7 @@ export default class App extends Component {
                                    return <GroupPage
                                        groupUpdate={this.groupUpdate}
                                        id={match.params.id}
+
                                        group={this.getGroupById(parseInt(match.params.id))}
                                    />
                                }}

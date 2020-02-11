@@ -143,7 +143,7 @@ class ProfileBlock extends Component {
                 userInfo: this.state.userInfo,
                 groups: this.state.groups
             });
-        window.location.reload();
+        //window.location.reload();
     };
 
     getSpecialities = (universityId) => {

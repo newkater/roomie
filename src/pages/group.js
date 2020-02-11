@@ -1,16 +1,21 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Container} from "bloomer";
 import GroupBlock from "../components/group-block";
 import UsersListCollapse from "../components/users-list-collapse";
 import "./group.css";
-import * as PropTypes from "prop-types";
 import PollList from "../components/poll-list";
 import {Link} from "react-router-dom";
 import LinksBlock from "../components/links-block/links-block";
+import Data from './../data';
 
 class GroupPage extends Component {
+    data = new Data();
+
     state = {
-        groupBlockType: "2"
+        groupBlockType: "2",
+        group: this.props.group || null,
+        loading: false,
+        error: false
     };
 
     isClick = () => {
@@ -18,15 +23,24 @@ class GroupPage extends Component {
     };
 
     isMember = () => {
-        return this.props.group.members.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
+        if (!this.state.group) {
+            return false;
+        }
+        return this.state.group.members.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
     };
 
     isApplicant = () => {
-        return this.props.group.applications.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
+        return this.state.group.applications.findIndex(x => x.id==sessionStorage.getItem('id')) > -1;
     }
 
     componentDidMount() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        if (!this.state.group) {
+            this.setState({loading: true, error: false});
+            this.data.getGroup(this.props.id).then((group) => {this.setState({loading: false, group: group, error: false})})
+                .catch((err) => this.setState({error: true, loading:false, group: null}))
+        }
+
     }
 
     render() {
@@ -52,62 +66,69 @@ class GroupPage extends Component {
                 negative: 4
             }
             ];
-        const {groupBlockType} = this.state;
-        let {group, groupUpdate} = this.props;
-        console.log("group page props ", this.props);
+        const {groupBlockType, group, error, loading} = this.state;
+        let {groupUpdate} = this.props;
+        //console.log("group page props ", this.props);
         console.log("group page", group);
         const {name, members, applications, telegramLink, whatsappLink} = group;
+        console.log("name group", name);
         console.log("check", this.isMember());
+
+
         return (
             <Container>
-                <Link to="/">
-                    <div className="previous-page">
-                        <div className="previous-page-button"/>
-                        <div className="previous-page-text">Назад к списку групп</div>
-                    </div>
-                </Link>
-                <p className="group-name">{name}</p>
-                <div className="flex-container">
-                     <div style={{"flex-basis": "352px"}}>
-                        <div>
-                            <GroupBlock type={groupBlockType}
-                                        isClick={this.isClick}
-                                        groupUpdate={groupUpdate}
-                                        group={group}
-                                        showMembers={false}
-                                        showHeader={false}
-                            />
+                {loading && <div>Loading group</div>}
+                {error && <div>Группа не найдена</div>}
+                { group &&
+                <Fragment>
+                    <Link to="/">
+                        <div className="previous-page">
+                            <div className="previous-page-button"/>
+                            <div className="previous-page-text">Назад к списку групп</div>
                         </div>
-                        {
-                            this.isMember() &&
+                    </Link>
+                    <p className="group-name">{name}</p>
+                    <div className="flex-container">
+                         <div style={{"flex-basis": "352px"}}>
                             <div>
-                                <LinksBlock telegramLink={telegramLink} whatsappLink={whatsappLink}/>
+                                <GroupBlock type={groupBlockType}
+                                            isClick={this.isClick}
+                                            groupUpdate={groupUpdate}
+                                            group={group}
+                                            showMembers={false}
+                                            showHeader={false}
+                                />
                             </div>
-                        }
+                            {
+                                this.isMember() &&
+                                <div>
+                                    <LinksBlock telegramLink={telegramLink} whatsappLink={whatsappLink}/>
+                                </div>
+                            }
+                        </div>
+                        <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
+                            <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
+                            <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
+                            {
+                                this.isMember() &&
+                                <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
+                            }
+                        </div>
                     </div>
-                    <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
-                        <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
-                        <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
-                        {
-                            this.isMember() &&
-                            <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
-                        }
-                    </div>
-                </div>
-                {/*<Columns>*/}
-                {/*    <Column isSize="1/3">*/}
-                {/*        <GroupBlock type={groupBlockType} isClick={this.isClick} group={group}/>*/}
-                {/*    </Column>*/}
-                {/*    <Column>*/}
-                {/*        <UsersListCollapse name="Участники" membersNumber={group.members.length} usersList={group.members}/>*/}
-                {/*        <UsersListCollapse name="Заявки на участие" membersNumber={group.applications.length} usersList={group.applications}/>*/}
-                {/*    </Column>*/}
-                {/*</Columns>*/}
+                    {/*<Columns>*/}
+                    {/*    <Column isSize="1/3">*/}
+                    {/*        <GroupBlock type={groupBlockType} isClick={this.isClick} group={group}/>*/}
+                    {/*    </Column>*/}
+                    {/*    <Column>*/}
+                    {/*        <UsersListCollapse name="Участники" membersNumber={group.members.length} usersList={group.members}/>*/}
+                    {/*        <UsersListCollapse name="Заявки на участие" membersNumber={group.applications.length} usersList={group.applications}/>*/}
+                    {/*    </Column>*/}
+                    {/*</Columns>*/}
+                </Fragment>
+                }
             </Container>
         );
     }
 }
-
-GroupPage.propTypes = {id: PropTypes.any};
 
 export default GroupPage;
