@@ -39,7 +39,7 @@ class ProfilePage extends Component {
 
     render() {
         const {groupBlockType, user} = this.state;
-        const {userUpdate, countries, userDelete, groupUpdate, languages, almatyUniversities} = this.props;
+        const {userUpdate, countries, userDelete, groupUpdate, languages, almatyUniversities, apply, cancel} = this.props;
         let groups = this.state.user.groups;
         const isUser = (sessionStorage.getItem('id') == user.id)
         console.log("profile page  ", this.state.user.groups);
@@ -57,7 +57,7 @@ class ProfilePage extends Component {
                                 <Column isSize={'1/3'} >
                                     <ConfettiBlock/>
                                 </Column>
-                                {groups!=undefined && <GroupBlocks adStyle={adStyle} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
+                                {groups!=undefined && <GroupBlocks cancel={cancel} apply={apply} adStyle={adStyle} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
                             </Columns>
                         </div>
                     }

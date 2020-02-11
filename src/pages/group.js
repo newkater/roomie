@@ -67,7 +67,7 @@ class GroupPage extends Component {
             }
             ];
         const {groupBlockType, group, error, loading} = this.state;
-        let {groupUpdate} = this.props;
+        let {groupUpdate, apply, cancel} = this.props;
         //console.log("group page props ", this.props);
         console.log("group page", group);
         const {name, members, applications, telegramLink, whatsappLink} = group;
@@ -92,6 +92,8 @@ class GroupPage extends Component {
                          <div style={{"flex-basis": "352px"}}>
                             <div>
                                 <GroupBlock type={groupBlockType}
+                                            apply={apply}
+                                            cancel={cancel}
                                             isClick={this.isClick}
                                             groupUpdate={groupUpdate}
                                             group={group}
@@ -109,10 +111,7 @@ class GroupPage extends Component {
                         <div style={{"flex-basis": "737px", "margin-left": "32px", "margin-top": "0px"}}>
                             <UsersListCollapse name="Участники" membersNumber={members.length} usersList={members}/>
                             <UsersListCollapse name="Заявки на участие" membersNumber={applications.length} usersList={applications}/>
-                            {
-                                this.isMember() &&
-                                <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
-                            }
+                            <PollList name="Опросы" membersNumber={elements.length} pollList={elements} groupUpdate={groupUpdate} group={group}/>
                         </div>
                     </div>
                     {/*<Columns>*/}

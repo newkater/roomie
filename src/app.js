@@ -244,6 +244,31 @@ export default class App extends Component {
         return null;
     };
 
+    apply = ({user, groupId}) => {
+        const { groups } = this.state;
+        let group = {};
+        const index = groups.findIndex(g => g.id === groupId);
+        if (index > -1) {
+            group = groups[index];
+            group.applications.push(user);
+            const newGroups = [...groups.filter(g => g.id !== groupId), group];
+            this.setState({groups: newGroups});
+        }
+    }
+
+    cancel = ({userId, groupId}) => {
+        const { groups } = this.state;
+        let group = {};
+        const index = groups.findIndex(g => g.id === groupId);
+        if (index > -1) {
+            group = groups[index];
+            const newApplications = group.applications.filter(u => u.id !== userId);
+            group.applications = newApplications;
+            const newGroups = [...groups.filter(g => g.id !== groupId), group];
+            this.setState({groups: newGroups});
+        }
+    }
+
     render() {
         let {groups, countries, languages, almatyUniversities, kazakhCities} = this.state;
         return (
@@ -254,6 +279,8 @@ export default class App extends Component {
                         <Route exact path={'/'}
                                render = {() =>
                                    <HomePage
+                                       cancel={this.cancel}
+                                       apply={this.apply}
                                        groupUpdate={this.groupUpdate}
                                        groups={groups}
                                    />
@@ -266,6 +293,8 @@ export default class App extends Component {
                                render ={({match}) => {
                                    //console.log("APP", this.getGroupById(parseInt(match.params.id)));
                                    return <GroupPage
+                                       apply={this.apply}
+                                       cancel={this.cancel}
                                        groupUpdate={this.groupUpdate}
                                        id={match.params.id}
 
@@ -311,6 +340,8 @@ export default class App extends Component {
                         <Route exact path={'/profile/:id'}
                                render = {({match}) =>
                                    <ProfilePage
+                                       apply={this.apply}
+                                       cancel={this.cancel}
                                        groupUpdate={this.groupUpdate}
                                        countries={countries}
                                        userUpdate={this.userUpdate}

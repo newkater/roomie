@@ -127,6 +127,16 @@ export default class GroupBlock extends Component {
     };
 
     addApplication = () => {
+        const groupId = this.props.group.id;
+        const user = {
+            id: sessionStorage.getItem('id'),
+            name: sessionStorage.getItem('name'),
+            age: undefined,
+            photo: sessionStorage.getItem('photo'),
+            userCity: undefined,
+            userInfo: undefined
+        }
+        this.props.apply({user, groupId});
         this.setState({groupBlockType: "3"});
         this.setState({applications: [...this.state.applications, {
                 id: sessionStorage.getItem('id'),
@@ -140,6 +150,10 @@ export default class GroupBlock extends Component {
     };
 
     deleteApplication = () => {
+        const groupId = this.props.group.id;
+        const userId = sessionStorage.getItem('id');
+        this.props.cancel({groupId, userId});
+
         this.setState({groupBlockType: "1"});
         let array = [...this.state.applications];
         const index = Number(sessionStorage.getItem('id'));
@@ -188,8 +202,8 @@ export default class GroupBlock extends Component {
         } = this.props;
         const {id, name, city, rentalPeriod, members, peopleNumber, free, groupInfo} = group;
         type = this.state.groupBlockType;
-        const isMember = this.isMember();
-        const isApplicant = this.isApplicant();
+        let isMember = this.isMember();
+        let isApplicant = this.isApplicant();
         //console.log('group-block', this.state);
         return (
             <div>

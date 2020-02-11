@@ -15,7 +15,7 @@ class HomePage extends Component {
     }
 
     render() {
-        let {groups, groupUpdate} = this.props;
+        let {groups, groupUpdate, apply, cancel} = this.props;
         const {groupBlockType} = this.state;
         console.log("home ", groups);
         const groupBlockRef = React.createRef();
@@ -30,7 +30,7 @@ class HomePage extends Component {
                     <div>
                         <h3 id="group-blocks" ref={groupBlockRef} className="title2 title-groups">Найдите подходящую группу</h3>
                         <Columns isMultiline={true}>
-                            <GroupBlocks type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
+                            <GroupBlocks cancel={cancel} apply={apply} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>
                         </Columns>
                     </div>
                 }
