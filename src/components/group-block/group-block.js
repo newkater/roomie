@@ -189,7 +189,7 @@ export default class GroupBlock extends Component {
         type = this.state.groupBlockType;
         const isMember = this.isMember();
         const isApplicant = this.isApplicant();
-        //console.log('ad', adStyle);
+        //console.log('group-block', this.state);
         return (
             <div>
 

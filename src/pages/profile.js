@@ -13,6 +13,7 @@ const adStyle = {
 const groupsList = (groups, type) => {
     if (groups == undefined) return '';
     return groups.map((el) => {
+        console.log("profile-grouplist", el);
         return (
             <Column isSize={'1/3'} >
                 <GroupBlock className="profile-group-block" type={type} group={el} adStyle={adStyle}/>
@@ -39,9 +40,9 @@ class ProfilePage extends Component {
     render() {
         const {groupBlockType, user} = this.state;
         const {userUpdate, countries, userDelete, groupUpdate, languages, almatyUniversities} = this.props;
-        let groups = groupsList(this.state.user.groups, groupBlockType);
+        let groups = this.state.user.groups;
         const isUser = (sessionStorage.getItem('id') == user.id)
-        //console.log("profile page countries ", countries);
+        console.log("profile page  ", this.state.user.groups);
         return (
             <div className="page">
                 <Container>
@@ -56,7 +57,7 @@ class ProfilePage extends Component {
                                 <Column isSize={'1/3'} >
                                     <ConfettiBlock/>
                                 </Column>
-                                {groups.length>0 && <GroupBlocks adStyle={adStyle} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
+                                {groups!=undefined && <GroupBlocks adStyle={adStyle} type={groupBlockType} groups={groups} groupUpdate={groupUpdate}/>}
                             </Columns>
                         </div>
                     }

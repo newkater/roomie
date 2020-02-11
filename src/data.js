@@ -176,12 +176,21 @@ export default class Data extends Component {
     };
 
     getGroups = () => {
-        return fetch(ALL_GROUPS_URL)
+        const auth = sessionStorage.getItem('auth');
+        return fetch(ALL_GROUPS_URL, {
+            method: "GET",
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': auth,
+            },
+            //body: JSON.stringify({...credentials}),
+        })
             .then(res => res.json())
             .then(res => {
             console.log("res " + JSON.stringify(res));
-            const groups = res;
-            //console.log("fourps = " + JSON.stringify(groups));
+            const groups  = JSON.parse(res);
+            console.log("fourps = " + JSON.stringify(groups));
             return groups;
         });
     };
@@ -213,7 +222,7 @@ export default class Data extends Component {
             })
     };
 
-    getCities = async ({countryName}) => {
+    getCities = async (countryName) => {
         //console.log("dataaaa", countryName);
         return fetch(`http://api.roomie.kz/cities/${countryName}`, {method: 'GET'})
             .then(res => {return res.json()})
@@ -222,7 +231,7 @@ export default class Data extends Component {
                     //console.log("data data ", item);
                     return {label: item.name, value: item.id, id: item.id}
                 });
-                //console.log("data cities", cities);
+                console.log("data cities", cities);
                 return cities;
             });
     }
@@ -306,11 +315,10 @@ export default class Data extends Component {
                 profile.languages = profile.languages.join(", ");
                 if (profile.badHabits.length!==0)profile.badHabits = profile.badHabits[0].habitName;
                 profile.university = profile.universityName;
-                profile.groups=[profile.ownedGroup];
+                //profile.groups=[profile.ownedGroup];
                 console.log("data profile", profile);
                 return profile;
             })
-
     };
 
     getQuestions = () => this._questions;

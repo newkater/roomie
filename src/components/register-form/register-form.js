@@ -84,11 +84,11 @@ class RegisterForm extends Component {
         universities: []
     };
 
-    getCities = (cityName) => {
-        this.data.getCities({cityName}).then(res => {
+    getCities = (countryName) => {
+        this.data.getCities({countryName}).then(res => {
             console.log("getCities", res);
             return res;
-        }).then(res => this.setState({cities: res})).then(() => console.log("handle cities", this.state.cities));
+        }).then(res => this.setState({cities: res})).then(() => console.log("handle cities1", this.state.cities));
     };
 
     getUniversities = (cityId) => {
