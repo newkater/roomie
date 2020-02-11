@@ -156,6 +156,7 @@ export default class GroupBlock extends Component {
         console.log("Submit", this.state);
         groupUpdate(
             {
+                userName: sessionStorage.getItem('name'),
                 email: sessionStorage.getItem('email'),
                 password: sessionStorage.getItem('password'),
                 id: this.state.id,
